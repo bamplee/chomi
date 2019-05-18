@@ -15,8 +15,10 @@ seoul-sw-openapi:
   key: '{cipher}50b3fcd69c200d2650a7972c5f8c049312a24dc57eadeff595bca51627c2141772663d0d1537742c617ef4bb8eb6c12e'
   ribbon:
     listOfServers: swopenapi.seoul.go.kr
+    MaxAutoRetries: 5
 
 seoul-openapi:
   key: '{cipher}c8df9349e540bb4d979edcdfb7f9ad6484d46c5181e799fe83f88063bb943e19affb2a1d70a85b35df949997e8500d82'
   ribbon:
     listOfServers: openapi.seoul.go.kr:8088
+    MaxAutoRetries: 5
