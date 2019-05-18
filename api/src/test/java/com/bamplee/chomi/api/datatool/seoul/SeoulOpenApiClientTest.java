@@ -1,13 +1,13 @@
 package com.bamplee.chomi.api.datatool.seoul;
 
 import com.bamplee.chomi.api.datatool.seoul.dto.GetParkInfoResponse;
+import com.bamplee.chomi.api.datatool.seoul.dto.PublicBicycleRenTIdinfoResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
@@ -28,4 +28,9 @@ public class SeoulOpenApiClientTest {
         assertEquals(result.getParkInfo().getResult().getCode(), "INFO-000");
     }
 
+    @Test
+    public void publicBicycleRenTIdinfo() {
+        PublicBicycleRenTIdinfoResponse result = seoulOpenApiClient.publicBicycleRenTIdinfo(key, "1", "1000");
+        assertEquals(result.getPublicBicycleRenTIdinfo().getResult().getCode(), "INFO-000");
+    }
 }

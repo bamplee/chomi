@@ -2,6 +2,7 @@ package com.bamplee.chomi.api.datatool.seoul;
 
 import com.bamplee.chomi.api.datatool.common.LoggingFallbackFactory;
 import com.bamplee.chomi.api.datatool.seoul.dto.GetParkInfoResponse;
+import com.bamplee.chomi.api.datatool.seoul.dto.PublicBicycleRenTIdinfoResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,11 @@ public class SeoulOpenApiClientFallbackFactory implements LoggingFallbackFactory
     public static class SeoulOpenApiClientFallback implements SeoulOpenApiClient {
         @Override
         public GetParkInfoResponse getParkInfo(String key, String startIndex, String endIndex) {
+            return null;
+        }
+
+        @Override
+        public PublicBicycleRenTIdinfoResponse publicBicycleRenTIdinfo(String key, String startIndex, String endIndex) {
             return null;
         }
     }
