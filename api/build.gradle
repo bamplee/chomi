@@ -1,0 +1,29 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.bamplee.chomi'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // feign
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.1.1.RELEASE'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon:2.1.1.RELEASE'
+    implementation 'io.github.openfeign:feign-jaxb:9.3.1'
+    implementation 'io.github.openfeign:feign-jackson:9.3.1'
+
+    // etc
+    implementation 'org.projectlombok:lombok:1.18.8'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
