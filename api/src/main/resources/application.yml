@@ -22,3 +22,10 @@ seoul-openapi:
   ribbon:
     listOfServers: openapi.seoul.go.kr:8088
     MaxAutoRetries: 5
+
+tmoney-openapi:
+  key: '{cipher}4e8080087c764ea537c514424e7e226b80ef169b075031c0c86bcc468202b560c89e52ff7b08115ded965efe3d50c952f5545d6cc9c7ececdbe0e47d08f9062e'
+  ribbon:
+    IsSecure: true
+    listOfServers: gateway.openapi.t-money.co.kr:5556
+    MaxAutoRetries: 5
