@@ -2,6 +2,7 @@ package com.bamplee.chomi.api.datatool;
 
 import com.bamplee.chomi.api.datatool.naver.NaverClientInterceptor;
 import com.bamplee.chomi.api.datatool.naver.NaverMapsClient;
+import com.bamplee.chomi.api.datatool.odsay.OdSayClient;
 import com.bamplee.chomi.api.datatool.seoul.SeoulOpenApiClient;
 import com.bamplee.chomi.api.datatool.seoul.SeoulSWOpenApiClient;
 import com.bamplee.chomi.api.datatool.tmoney.TMoneyOpenApiClient;
@@ -60,5 +61,14 @@ public class DataToolConfig {
                     .contract(new SpringMvcContract())
                     .retryer(new Retryer.Default())
                     .target(NaverMapsClient.class, "naver-maps");
+    }
+
+    @Bean
+    public OdSayClient odSayClient() {
+        return Feign.builder()
+                    .decoder(new JacksonDecoder())
+                    .contract(new SpringMvcContract())
+                    .retryer(new Retryer.Default())
+                    .target(OdSayClient.class, "odsay");
     }
 }

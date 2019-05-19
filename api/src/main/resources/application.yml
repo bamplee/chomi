@@ -36,3 +36,9 @@ naver-maps:
   ribbon:
     IsSecure: true
     MaxAutoRetries: 5
+
+odsay:
+  key: '{cipher}ae078e0e2a988e413fd787b6b18c5dd50d8c5f23f152d1ccfeb609330b9a1de975e745d4de8b68ee4e1c1e52fb33ec4f15404a585f5fd1b84e1137c42d891a9b'
+  ribbon:
+    IsSecure: true
+    MaxAutoRetries: 5
