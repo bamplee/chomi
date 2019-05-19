@@ -1,6 +1,7 @@
 package com.bamplee.chomi.api.datatool.naver;
 
 import com.bamplee.chomi.api.datatool.common.LoggingFallbackFactory;
+import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGcResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGeocodingResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,11 @@ public class NaverMapsClientFallbackFactory implements LoggingFallbackFactory<Na
 
         @Override
         public NaverMapsGeocodingResponse geocode(String query, String coordinate, String filter, String page, String count) {
+            return null;
+        }
+
+        @Override
+        public NaverMapsGcResponse gc(String coords, String request, String sourcecrs, String targetcrs, String orders, String output) {
             return null;
         }
     }

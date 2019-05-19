@@ -1,12 +1,13 @@
 package com.bamplee.chomi.api.datatool.naver;
 
+import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGcResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGeocodingResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "naver-maps", url="https://naveropenapi.apigw.ntruss.com", fallback = NaverMapsClientFallbackFactory.class)
+@FeignClient(name = "naver-maps", url = "https://naveropenapi.apigw.ntruss.com", fallback = NaverMapsClientFallbackFactory.class)
 public interface NaverMapsClient {
     @GetMapping("map-place/v1/search")
     NaverMapsSearchPlacesResponse search(@RequestParam("query") String query, @RequestParam("coordinate") String coordinate);
@@ -17,4 +18,13 @@ public interface NaverMapsClient {
                                        @RequestParam(value = "filter", required = false) String filter,
                                        @RequestParam(value = "page", required = false) String page,
                                        @RequestParam(value = "count", required = false) String count);
+
+    // https://apidocs.ncloud.com/ko/ai-naver/maps_reverse_geocoding/gc/#요청-파라미터
+    @GetMapping("map-reversegeocode/v2/gc")
+    NaverMapsGcResponse gc(@RequestParam("coords") String coords,
+                           @RequestParam(value = "request", required = false) String request,
+                           @RequestParam(value = "sourcecrs", required = false) String sourcecrs,
+                           @RequestParam(value = "targetcrs", required = false) String targetcrs,
+                           @RequestParam(value = "orders", required = false) String orders,
+                           @RequestParam(value = "output", required = false) String output);
 }

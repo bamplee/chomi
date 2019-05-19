@@ -1,5 +1,6 @@
 package com.bamplee.chomi.api.datatool.naver;
 
+import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGcResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGeocodingResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,12 @@ public class NaverMapsClientTest {
     @Test
     public void geocode() {
         NaverMapsGeocodingResponse result = naverMapsClient.geocode("분당구 불정로 6", null, null, null, null);
+        log.debug(result.toString());
+    }
+
+    @Test
+    public void gc() {
+        NaverMapsGcResponse result = naverMapsClient.gc("128.12345,37.98776", null, null, null, null, "json");
         log.debug(result.toString());
     }
 }
