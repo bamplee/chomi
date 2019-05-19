@@ -3,6 +3,7 @@ import { Component } from 'react';
 import './styles/styles.css';
 import DestinationInput from './components/common/MapSearch';
 import MapCard from './components/common/MapCard';
+import MapView from './components/common/MapView';
 
 class App extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class App extends Component {
     render() {
         return (
           <div>
+              <MapView/>
               <DestinationInput/>
               <MapCard/>
           </div>
