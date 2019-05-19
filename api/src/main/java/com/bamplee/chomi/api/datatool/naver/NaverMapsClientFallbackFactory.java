@@ -38,5 +38,18 @@ public class NaverMapsClientFallbackFactory implements LoggingFallbackFactory<Na
         public NaverMapsGcResponse gc(String coords, String request, String sourcecrs, String targetcrs, String orders, String output) {
             return null;
         }
+
+        @Override
+        public String raster(Integer w,
+                             Integer h,
+                             String center,
+                             Integer level,
+                             String markers,
+                             String crs,
+                             String maptype,
+                             String format,
+                             String scale) {
+            return null;
+        }
     }
 }

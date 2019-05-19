@@ -27,4 +27,15 @@ public interface NaverMapsClient {
                            @RequestParam(value = "targetcrs", required = false) String targetcrs,
                            @RequestParam(value = "orders", required = false) String orders,
                            @RequestParam(value = "output", required = false) String output);
+
+    @GetMapping("map-static/v2/raster")
+    String raster(@RequestParam("w") Integer w,
+                  @RequestParam("h") Integer h,
+                  @RequestParam(value = "center", required = false) String center,
+                  @RequestParam(value = "level", required = false) Integer level,
+                  @RequestParam(value = "markers", required = false) String markers,
+                  @RequestParam(value = "crs", required = false) String crs,
+                  @RequestParam(value = "maptype", required = false) String maptype,
+                  @RequestParam(value = "format", required = false) String format,
+                  @RequestParam(value = "scale", required = false) String scale);
 }

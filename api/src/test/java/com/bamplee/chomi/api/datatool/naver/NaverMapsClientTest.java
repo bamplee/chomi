@@ -34,4 +34,10 @@ public class NaverMapsClientTest {
         NaverMapsGcResponse result = naverMapsClient.gc("128.12345,37.98776", null, null, null, null, "json");
         log.debug(result.toString());
     }
+
+    @Test
+    public void raster() {
+        String result = naverMapsClient.raster(300, 300, "127.1054221,37.3591614", 16, null, null, null, null, null);
+        log.debug(result);
+    }
 }
