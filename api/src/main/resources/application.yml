@@ -29,3 +29,10 @@ tmoney-openapi:
     IsSecure: true
     listOfServers: gateway.openapi.t-money.co.kr:5556
     MaxAutoRetries: 5
+
+naver-search-places:
+  id: '{cipher}a113ad1ea3d4b87f1aae30928a50dc244cf98f66a83647d8f084d6cd531d0eef'
+  secret: '{cipher}134c625bbdc3f894c2ad3a7becd162013777a7e2a515c72ba4a10adb7970bda89ec556afefef0f8ab151813a3dc1761746297e809d9dcbf26d546b1c23e0553c'
+  ribbon:
+    IsSecure: true
+    MaxAutoRetries: 5
