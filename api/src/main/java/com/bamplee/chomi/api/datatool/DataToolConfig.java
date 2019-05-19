@@ -1,7 +1,7 @@
 package com.bamplee.chomi.api.datatool;
 
 import com.bamplee.chomi.api.datatool.naver.NaverClientInterceptor;
-import com.bamplee.chomi.api.datatool.naver.NaverSearchPlacesClient;
+import com.bamplee.chomi.api.datatool.naver.NaverMapsClient;
 import com.bamplee.chomi.api.datatool.seoul.SeoulOpenApiClient;
 import com.bamplee.chomi.api.datatool.seoul.SeoulSWOpenApiClient;
 import com.bamplee.chomi.api.datatool.tmoney.TMoneyOpenApiClient;
@@ -54,11 +54,11 @@ public class DataToolConfig {
     }
 
     @Bean
-    public NaverSearchPlacesClient naverSearchPlacesClient() {
+    public NaverMapsClient naverMapsClient() {
         return Feign.builder()
                     .requestInterceptor(new NaverClientInterceptor())
                     .contract(new SpringMvcContract())
                     .retryer(new Retryer.Default())
-                    .target(NaverSearchPlacesClient.class, "naver-search-places");
+                    .target(NaverMapsClient.class, "naver-maps");
     }
 }

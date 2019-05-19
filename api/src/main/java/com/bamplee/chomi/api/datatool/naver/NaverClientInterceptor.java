@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class NaverClientInterceptor implements RequestInterceptor {
-    @Value("${naver-search-places.id}")
+    @Value("${naver-maps.id}")
     private String id;
-    @Value("${naver-search-places.secret}")
+    @Value("${naver-maps.secret}")
     private String secret;
 
     @Override

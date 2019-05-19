@@ -3,7 +3,7 @@ package com.bamplee.chomi.api.datatool.naver.dto;
 import lombok.Data;
 
 @Data
-public class NaverSearchPlacesResponse {
+public class NaverMapsSearchPlacesResponse {
     private String status;
     private Meta meta;
     private Place[] places;
