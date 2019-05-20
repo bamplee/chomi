@@ -1,11 +1,11 @@
 import React from 'react';
-import { NaverMap, RenderAfterNavermapsLoaded } from 'react-naver-maps'
+import {NaverMap, RenderAfterNavermapsLoaded} from 'react-naver-maps'
 
 function MapView(props) {
     return (
       <RenderAfterNavermapsLoaded
         // fixme ncpClientId 의 경우 허용 도메인 수정 필요
-        ncpClientId={'epit1z6yed'}
+        ncpClientId={props.ncpClientId}
         error={<p>Maps Load Error</p>}
         loading={<p>Maps Loading...</p>}
       >
