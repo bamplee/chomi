@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,7 +20,7 @@ public class OdSayClientTest {
 
     @Test
     public void searchPubTransPath() {
-        String result = odSayClient.searchPubTransPath(apiKey, "126.9027279", "37.5349277", "126.9145430", "37.5499421", "0", "0", "0");
+        OdSaySearchPubTransPathResponse result = odSayClient.searchPubTransPath(apiKey, "126.9027279", "37.5349277", "126.9145430", "37.5499421", "0", "0", "0");
         log.debug(result.toString());
     }
 }

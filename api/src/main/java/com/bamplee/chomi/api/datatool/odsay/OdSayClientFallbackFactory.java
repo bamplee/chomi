@@ -23,7 +23,7 @@ public class OdSayClientFallbackFactory implements LoggingFallbackFactory<OdSayC
 
     public static class OdSayClientFallback implements OdSayClient {
         @Override
-        public String searchPubTransPath(String apiKey,
+        public OdSaySearchPubTransPathResponse searchPubTransPath(String apiKey,
                                                                   String startX,
                                                                   String startY,
                                                                   String endX,

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = "odsay", url = "https://api.odsay.com", fallback = OdSayClientFallbackFactory.class)
 public interface OdSayClient {
     @GetMapping("v1/api/searchPubTransPath")
-    String searchPubTransPath(@RequestParam("apiKey") String apiKey,
+    OdSaySearchPubTransPathResponse searchPubTransPath(@RequestParam("apiKey") String apiKey,
                                                        @RequestParam("SX") String startX,
                                                        @RequestParam("SY") String startY,
                                                        @RequestParam("EX") String endX,

@@ -25,7 +25,7 @@ public class NaverMapsClientFallbackFactory implements LoggingFallbackFactory<Na
 
     public static class NaverMapsClientFallback implements NaverMapsClient {
         @Override
-        public NaverMapsSearchPlacesResponse search(String query, String coordinate) {
+        public NaverMapsSearchPlacesResponse search(String query, String coordinate, String orderBy) {
             return null;
         }
 
@@ -40,7 +40,7 @@ public class NaverMapsClientFallbackFactory implements LoggingFallbackFactory<Na
         }
 
         @Override
-        public String raster(Integer w,
+        public byte[] raster(Integer w,
                              Integer h,
                              String center,
                              Integer level,

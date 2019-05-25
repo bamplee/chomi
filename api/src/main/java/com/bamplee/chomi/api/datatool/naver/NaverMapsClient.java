@@ -4,13 +4,14 @@ import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGcResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGeocodingResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "naver-maps", url = "https://naveropenapi.apigw.ntruss.com", fallback = NaverMapsClientFallbackFactory.class)
 public interface NaverMapsClient {
     @GetMapping("map-place/v1/search")
-    NaverMapsSearchPlacesResponse search(@RequestParam("query") String query, @RequestParam("coordinate") String coordinate);
+    NaverMapsSearchPlacesResponse search(@RequestParam("query") String query, @RequestParam("coordinate") String coordinate, @RequestParam(value = "orderBy", required = false) String orderBy);
 
     @GetMapping("map-geocode/v2/geocode")
     NaverMapsGeocodingResponse geocode(@RequestParam("query") String query,
@@ -28,8 +29,8 @@ public interface NaverMapsClient {
                            @RequestParam(value = "orders", required = false) String orders,
                            @RequestParam(value = "output", required = false) String output);
 
-    @GetMapping("map-static/v2/raster")
-    String raster(@RequestParam("w") Integer w,
+    @GetMapping(value = "map-static/v2/raster", produces = MediaType.IMAGE_JPEG_VALUE)
+    byte[] raster(@RequestParam("w") Integer w,
                   @RequestParam("h") Integer h,
                   @RequestParam(value = "center", required = false) String center,
                   @RequestParam(value = "level", required = false) Integer level,

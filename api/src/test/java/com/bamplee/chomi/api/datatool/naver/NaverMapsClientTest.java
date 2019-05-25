@@ -19,7 +19,7 @@ public class NaverMapsClientTest {
 
     @Test
     public void search() {
-        NaverMapsSearchPlacesResponse result = naverMapsClient.search("서울", "126.986,37.541");
+        NaverMapsSearchPlacesResponse result = naverMapsClient.search("서울", "126.986,37.541", null);
         log.debug(result.toString());
     }
 
@@ -37,7 +37,7 @@ public class NaverMapsClientTest {
 
     @Test
     public void raster() {
-        String result = naverMapsClient.raster(300, 300, "127.1054221,37.3591614", 16, null, null, null, null, null);
-        log.debug(result);
+        byte[] result = naverMapsClient.raster(300, 300, "127.1054221,37.3591614", 16, null, null, null, null, null);
+        log.debug(String.valueOf(result));
     }
 }
