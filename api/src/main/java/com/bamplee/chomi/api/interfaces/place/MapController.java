@@ -3,11 +3,10 @@ package com.bamplee.chomi.api.interfaces.place;
 import com.bamplee.chomi.api.application.MapService;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
 import com.bamplee.chomi.api.datatool.odsay.dto.OdSaySearchPubTransPathResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("api/v1/maps")
 public class MapController {
@@ -29,4 +28,10 @@ public class MapController {
                                                  @RequestParam("endY") String endY) {
         return mapService.route(startX, startY, endX, endY);
     }
+
+    @GetMapping(value = "image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] image(@RequestParam("x") String x, @RequestParam("y") String y) {
+        return mapService.image(x, y);
+    }
+
 }

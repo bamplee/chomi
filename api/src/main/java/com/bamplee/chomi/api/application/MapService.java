@@ -7,4 +7,6 @@ public interface MapService {
     NaverMapsSearchPlacesResponse search(String query);
 
     OdSaySearchPubTransPathResponse route(String startX, String startY, String endX, String endY);
+
+    byte[] image(String x, String y);
 }

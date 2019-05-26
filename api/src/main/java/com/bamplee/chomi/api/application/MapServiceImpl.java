@@ -29,4 +29,11 @@ public class MapServiceImpl implements MapService {
     public OdSaySearchPubTransPathResponse route(String startX, String startY, String endX, String endY) {
         return odSayClient.searchPubTransPath(odsayKey, startX, startY, endX, endY, "0", "0", "0");
     }
+
+    @Override
+    public byte[] image(String x, String y) {
+        String center = x + "," + y;
+        String markers = "type:d|size:small|pos:" + x + "%20" + y;
+        return naverMapsClient.raster(360, 150, center, 16, markers, null, null, null, "2");
+    }
 }
