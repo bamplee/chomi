@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
 
     // feign
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.1.1.RELEASE'
@@ -27,6 +28,7 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.8'
     implementation 'com.google.guava:guava:23.0'
     implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'com.github.ben-manes.caffeine:caffeine'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

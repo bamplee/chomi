@@ -5,6 +5,7 @@ import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
 import com.bamplee.chomi.api.datatool.odsay.OdSayClient;
 import com.bamplee.chomi.api.datatool.odsay.dto.OdSaySearchPubTransPathResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,6 +26,7 @@ public class MapServiceImpl implements MapService {
         return naverMapsClient.search(query, "126.986,37.541", "popularity");
     }
 
+    @Cacheable(value = "route")
     @Override
     public OdSaySearchPubTransPathResponse route(String startX, String startY, String endX, String endY) {
         return odSayClient.searchPubTransPath(odsayKey, startX, startY, endX, endY, "0", "0", "0");

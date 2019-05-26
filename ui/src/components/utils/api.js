@@ -22,7 +22,7 @@ export const API_MODULE = {
     search: (query, callback) => {
         axiosGet('http://localhost:8080/api/v1/maps/search', {query: query}, callback)
     },
-    image: (x, y, callback) => {
-        axiosGet('http://localhost:8080/api/v1/maps/image', {x: x, y: y}, callback)
+    route: (startX, startY, endX, endY, callback) => {
+        axiosGet('http://localhost:8080/api/v1/maps/route', {startX: startX, startY: startY, endX: endX, endY: endY}, callback)
     }
 };

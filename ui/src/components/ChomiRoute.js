@@ -1,5 +1,7 @@
-import React, {Component} from 'react';
-import {Button, Card, Icon, Input, PageHeader, Pagination, Tag, Timeline, Typography} from "antd";
+import React, { Component } from 'react';
+import { Radio, Card, Icon, Input, PageHeader, Timeline, Typography, Checkbox, Button } from 'antd';
+import { API_MODULE } from './utils/api';
+import MapView from './common/MapView';
 
 class ChomiRoute extends Component {
     constructor(props) {
@@ -10,105 +12,123 @@ class ChomiRoute extends Component {
 
     initState = () => {
         return {
-            slideIndex: 0
+            routeIndex: 0,
+            optionValue: 0,
+            slideIndex: 0,
+            route: {}
         }
     };
 
-    split = (str) => {
-        const length = 20;
-        return str.length > length ? str.slice(0, length) + '..' : str;
+    componentWillMount = () => {
+        const {startPoint, endPoint} = this.props;
+        let startKeys = Object.keys(startPoint);
+        let endKeys = Object.keys(endPoint);
+        if (startKeys.length > 0 && endKeys.length > 0) {
+            API_MODULE.route(startPoint.x, startPoint.y, endPoint.x, endPoint.y, (response) => {
+                if (response.status === 200) {
+                    let data = response.data.result;
+                    this.setState({route: data});
+                }
+                else {
+                    //fixme
+                }
+            })
+        }
+    };
+
+    convertMToKm = (m) => {
+        return m / 1000;
+    };
+
+    handleOptionChange = (e) => {
+        this.setState({optionValue: e.target.value});
+    };
+
+    handleRouteIndex = (routeIndex) => {
+        const {route} = this.state;
+        if (routeIndex < 0 || routeIndex === route.subwayBusCount + route.busCount + route.subwayCount) {
+            return;
+        }
+        this.setState({routeIndex: routeIndex});
     };
 
     render() {
+        const {route, routeIndex} = this.state;
         const {startPoint, endPoint} = this.props;
         return (
-            <React.Fragment>
-                <PageHeader title="Title" subTitle="This is a subtitle"/>
-                <Input.Search
-                    style={{paddingLeft: 5, paddingRight: 5, paddingTop: 2, paddingBottom: 2}}
-                    size="large"
-                    addonBefore="출발"
-                    placeholder="출발지 검색"
-                    value={startPoint.name}
-                    onClick={() => this.props.history.push({
-                        pathname: '/search',
-                        search: (startPoint.name ? 'query=' + startPoint.name : ''),
-                        state: {type: 'start'}
-                    })}
-                    onSearch={value => console.log(value)}
-                />
-                <Input.Search
-                    style={{paddingLeft: 5, paddingRight: 5, paddingTop: 2, paddingBottom: 2}}
-                    size="large"
-                    addonBefore="도착"
-                    placeholder="목적지 검색"
-                    value={endPoint.name}
-                    onClick={() => this.props.history.push({
-                        pathname: '/search',
-                        search: (endPoint.name ? 'query=' + endPoint.name : ''),
-                        state: {type: 'end'}
-                    })}
-                    onSearch={value => console.log(value)}
-                />
-                <Card title={<span>
-                    <Typography.Text code style={{marginRight: 10}}>경로 1</Typography.Text>
-                    <Typography.Text>약 </Typography.Text>
-                    <Typography.Text type="danger">10</Typography.Text>
-                    <Typography.Text>분, </Typography.Text>
-                    <Typography.Text type="warning">5000</Typography.Text>
-                    <Typography.Text>원</Typography.Text>
-                </span>} bordered={true} style={{margin: 5}}>
-                    <Timeline>
-                        <Timeline.Item>출발</Timeline.Item>
-                        <Timeline.Item color="green">경유</Timeline.Item>
-                        <Timeline.Item color="red">도착</Timeline.Item>
-                    </Timeline>
-                </Card>
-                <div style={{display: 'flex', justifyContent: 'center'}}>
-                <Button.Group>
-                    <Button type="default">
-                        <Icon type="left"/>
-                        이전
-                    </Button>
-                    <Button type="default">
-                        다음
-                        <Icon type="right"/>
-                    </Button>
-                </Button.Group>
-                </div>
-            </React.Fragment>
-            /*<Carousel style={{overflow: 'hidden'}}
-                      frameOverflow="visible"
-                      cellSpacing={10}
-                      slideWidth={0.8}
-                      infinite
-                      beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                      afterChange={index => this.setState({slideIndex: index})}
-            >
-                {['1', '2', '3'].map((val, index) => (
-                    <WingBlank size="lg">
-                        <WhiteSpace size="lg"/>
-                        <Card style={{
-                            display: 'block',
-                            position: 'relative',
-                            top: this.state.slideIndex === index ? -10 : 0,
-                            height: this.state.imgHeight,
-                            boxShadow: '2px 1px 1px rgba(0, 0, 0, 0.2)',
-                        }}>
-                            <Card.Header
-                                title="This is title"
-                                thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
-                                extra={<span>this is extra</span>}
-                            />
-                            <Card.Body>
-                                <div>This is content of `Card`</div>
-                            </Card.Body>
-                            <Card.Footer content="footer content" extra={<div>extra footer content</div>}/>
-                        </Card>
-                        <WhiteSpace size="lg"/>
-                    </WingBlank>
-                ))}
-            </Carousel>*/
+          <React.Fragment>
+              {/*
+              <PageHeader title="Title" subTitle="This is a subtitle"/>
+*/}
+              <Input.Search
+                style={{paddingLeft: 5, paddingRight: 5, paddingTop: 5, paddingBottom: 2}}
+                size="large"
+                addonBefore="출발"
+                placeholder="출발지 검색"
+                value={startPoint.name}
+                onClick={() => this.props.history.push({
+                    pathname: '/search',
+                    search: (startPoint.name ? 'query=' + startPoint.name : ''),
+                    state: {type: 'start'}
+                })}
+                onSearch={value => console.log(value)}
+              />
+              <Input.Search
+                style={{paddingLeft: 5, paddingRight: 5, paddingTop: 2, paddingBottom: 2}}
+                size="large"
+                addonBefore="도착"
+                placeholder="목적지 검색"
+                value={endPoint.name}
+                onClick={() => this.props.history.push({
+                    pathname: '/search',
+                    search: (endPoint.name ? 'query=' + endPoint.name : ''),
+                    state: {type: 'end'}
+                })}
+                onSearch={value => console.log(value)}
+              />
+              {
+                  Object.keys(route).length > 0 ?
+                    <Card
+                      actions={[<Icon type="left"
+                                      onClick={() => this.handleRouteIndex(routeIndex - 1)}/>,
+                          <Typography.Text>{routeIndex + 1}
+                              / {route.subwayBusCount + route.busCount + route.subwayCount}</Typography.Text>,
+                          <Icon type="right"
+                                onClick={() => this.handleRouteIndex(routeIndex + 1)}/>]}
+                      title={
+                          <span></span>
+                      } bordered={true} style={{margin: 5}}>
+                        <div style={{marginBottom: -50}}>
+                            <div style={{marginBottom: 20}}>
+                                {/*
+                              <Typography.Text code style={{marginRight: 10}}>경로 {routeIndex + 1} / {route.subwayBusCount + route.busCount + route.subwayCount}</Typography.Text>
+*/}
+                                <Typography.Text
+                                  type="danger">{this.convertMToKm(route.path[routeIndex].info.totalDistance)}</Typography.Text>
+                                <Typography.Text>km,&nbsp;&nbsp;&nbsp;</Typography.Text>
+                                <Typography.Text>약 </Typography.Text>
+                                <Typography.Text type="danger">{route.path[routeIndex].info.totalTime}</Typography.Text>
+                                <Typography.Text>분,&nbsp;&nbsp;&nbsp;</Typography.Text>
+                                <Typography.Text type="warning">{route.path[routeIndex].info.payment}</Typography.Text>
+                                <Typography.Text>원</Typography.Text>
+                            </div>
+                            <Timeline>
+                                <Timeline.Item>{route.path[routeIndex].info.firstStartStation}</Timeline.Item>
+                                <Timeline.Item color="orange">TEST - 주차장</Timeline.Item>
+                                {/*
+                            <Timeline.Item dot={<Icon type="clock-circle-o" style={{ fontSize: '16px' }} />} color="red">ABCD</Timeline.Item>
+*/}
+                                <Timeline.Item
+                                  color="green">{route.path[routeIndex].info.lastEndStation}</Timeline.Item>
+                                {/*
+                            <Timeline.Item color="orange">도착</Timeline.Item>
+                            <Timeline.Item color="red">도착</Timeline.Item>
+*/}
+                            </Timeline>
+                        </div>
+                    </Card> : ''
+              }
+          </React.Fragment>
         )
     }
 }

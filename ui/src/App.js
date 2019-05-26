@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import './styles/styles.css';
 import ChomiSearch from "./components/ChomiSearch";
 import ChomiRoute from "./components/ChomiRoute";
-import ChomiHome from "./components/ChomiHome";
 
 class App extends Component {
     constructor(props) {
@@ -14,7 +13,7 @@ class App extends Component {
     initState = () => {
         return {
             startPoint: this.defaultStartPoint(),
-            endPoint: {}
+            endPoint: this.defaultEndPoint()
         }
     };
 
@@ -28,6 +27,19 @@ class App extends Component {
             sessionId: "dezD72oBOAUY6uUlM0gM",
             x: "127.1054328",
             y: "37.3595963",
+        }
+    };
+
+    defaultEndPoint = () => {
+        return {
+            distance: 12117.830189421165,
+            jibun_address: "서울특별시 강남구 수서동 214-3",
+            name: "수서역 수서평택고속선",
+            phone_number: "1800-1472",
+            road_address: "서울특별시 강남구 밤고개로 99 수서역사",
+            sessionId: "0E_D72oBe9kwkY1_OQRw",
+            x: "127.1043773",
+            y: "37.4855438"
         }
     };
 
