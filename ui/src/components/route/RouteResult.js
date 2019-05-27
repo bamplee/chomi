@@ -1,54 +1,21 @@
 import React, { Component } from 'react';
-import { Input, Button, Card, Icon, Timeline, Typography } from 'antd';
+import { Card, Icon, Timeline, Typography } from 'antd';
 import { inject, observer } from 'mobx-react';
-import MapView from './common/MapView';
 
 @inject('uiStore', 'searchStore')
 @observer
-class ChomiRoute extends Component {
+class RouteResult extends Component {
+    componentWillMount = () => {
+        const {searchStore} = this.props;
+        if (searchStore.departure.name && searchStore.destination.name) {
+            searchStore.route();
+        }
+    };
+
     render() {
         const {searchStore} = this.props;
         return (
           <React.Fragment>
-              <div className="search_input">
-                  <Input.Search
-                    size="large"
-                    addonBefore="출발"
-                    placeholder="출발지 검색"
-                    value={searchStore.departure.name}
-                    onClick={this.handleDepartureInput}
-                  />
-                  <Button icon="more"
-                          shape=""
-                          size="large"
-                          type="default"
-                          className="icon_rotate_90 right_button"
-                          onClick={() => {
-                          }}/>
-              </div>
-              <div className="search_input">
-                  <Input.Search
-                    size="large"
-                    addonBefore="도착"
-                    placeholder="목적지 검색"
-                    value={searchStore.destination.name}
-                    onClick={this.handleDestinationInput}
-                  />
-                  <Button icon="swap"
-                          shape=""
-                          size="large"
-                          type="default"
-                          className="icon_rotate_90 right_button"
-                          onClick={searchStore.swap}/>
-              </div>
-              <div style={{paddingLeft: 5, paddingRight: 5}}>
-                  <MapView
-                    center={this.getDistanceFromLatLonInKm(searchStore.departure.y, searchStore.departure.x, searchStore.destination.y, searchStore.destination.x)}
-                    startX={searchStore.departure.x}
-                    startY={searchStore.departure.y}
-                    endX={searchStore.destination.x}
-                    endY={searchStore.destination.y}/>
-              </div>
               {
                   Object.keys(searchStore.routeList).length > 0 ?
                     <Card
@@ -98,31 +65,6 @@ class ChomiRoute extends Component {
         )
     }
 
-    componentWillMount = () => {
-        const {searchStore} = this.props;
-        if (searchStore.departure.name && searchStore.destination.name) {
-            searchStore.route();
-        }
-    };
-
-    handleDepartureInput = () => {
-        const {searchStore, uiStore} = this.props;
-        uiStore.handleDepartureInput();
-        searchStore.search(searchStore.departure.name);
-        this.redirect();
-    };
-
-    handleDestinationInput = () => {
-        const {searchStore, uiStore} = this.props;
-        uiStore.handleDestinationInput();
-        searchStore.search(searchStore.destination.name);
-        this.redirect();
-    };
-
-    getDistanceFromLatLonInKm = (lat1, lng1, lat2, lng2) => {
-        return {lat: ((lat1 * 1 + lat2 * 1) / 2), lng: ((lng1 * 1 + lng2 * 1) / 2)}
-    };
-
     getTrafficTypeColor = (trafficType) => {
         if (trafficType === 1) {
             return 'orange';
@@ -146,10 +88,6 @@ class ChomiRoute extends Component {
             return '도보';
         }
     };
-
-    redirect = () => {
-        this.props.history.push({pathname: '/search'})
-    };
 }
 
-export default ChomiRoute;
+export default RouteResult;

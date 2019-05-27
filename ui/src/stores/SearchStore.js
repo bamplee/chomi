@@ -4,7 +4,7 @@ import { api } from '../api'
 class SearchStore {
     @observable departure = this.dummyStartPoint();
     @observable destination = this.dummyEndPoint();
-    @observable placeList = [];
+    @observable addressList = [];
     @observable historyList = [];
     @observable routeList = [];
     @observable routeIndex = 0;
@@ -16,11 +16,14 @@ class SearchStore {
     };
 
     @action search = (query) => {
-        if (query) {
-            api.search(query).then(res => res.data.places).then(placeList => this.placeList = placeList);
+        if (query.length === 0) {
+            return;
+        }
+        else if (query) {
+            api.search(query).then(res => res.data.places).then(placeList => this.addressList = placeList);
         }
         else {
-            this.placeList = [];
+            this.addressList = [];
         }
     };
 
@@ -32,11 +35,11 @@ class SearchStore {
     };
 
     @action handleDeparture = (index) => {
-        this.departure = this.placeList[index];
+        this.departure = this.addressList[index];
     };
 
     @action handleDestination = (index) => {
-        this.destination = this.placeList[index];
+        this.destination = this.addressList[index];
     };
 
     @action decreaseRouteIndex = () => {

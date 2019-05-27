@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react';
 
 @inject('uiStore', 'searchStore')
 @observer
-class ChomiSearchList extends Component {
+class AddressResult extends Component {
     render() {
         const {searchStore} = this.props;
         return (
@@ -12,7 +12,7 @@ class ChomiSearchList extends Component {
               <Tabs className="search_list_tabs" type="card">
                   <Tabs.TabPane tab="검색결과" key="1">
                       <List
-                        dataSource={searchStore.placeList}
+                        dataSource={searchStore.addressList}
                         renderItem={(item, idx) => (
                           <List.Item onClick={() => this.handleItem(idx)}>
                               <div className="search_list_table">
@@ -60,4 +60,4 @@ class ChomiSearchList extends Component {
     };
 }
 
-export default ChomiSearchList;
+export default AddressResult;
