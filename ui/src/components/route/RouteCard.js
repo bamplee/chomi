@@ -14,18 +14,20 @@ class RouteResult extends Component {
           <React.Fragment>
               {
                   Object.keys(searchStore.routeList).length > 0 ?
-                    <Card className="route_result_card"
-                          actions={[
-                              <Icon type="left" onClick={searchStore.decreaseRouteIndex}/>,
-                              <Typography.Text>
-                                  {this.pagination(searchStore.routeIndex, searchStore.routeList)}
-                              </Typography.Text>,
-                              <Icon type="right" onClick={searchStore.increaseRouteIndex}/>]} bordered={true}>
-                        <div className="route_result_scroll">
-                            <RouteCardHeader/>
-                            <RouteCardContent/>
-                        </div>
-                    </Card>
+                    <div>
+                        <Card className="route_result_card"
+                              actions={[
+                                  <Icon type="left" onClick={searchStore.decreaseRouteIndex}/>,
+                                  <Typography.Text>
+                                      {this.pagination(searchStore.routeIndex, searchStore.routeList)}
+                                  </Typography.Text>,
+                                  <Icon type="right" onClick={searchStore.increaseRouteIndex}/>]} bordered={true}>
+                            <div className="route_result_scroll">
+                                <RouteCardHeader/>
+                                <RouteCardContent/>
+                            </div>
+                        </Card>
+                    </div>
                     : ''
               }
           </React.Fragment>

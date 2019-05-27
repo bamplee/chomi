@@ -15,5 +15,10 @@ export const api = {
             endX: endX,
             endY: endY
         })
+    },
+    graph: (mapObject) => {
+        return get('http://localhost:8080/api/v1/maps/graph', {
+            mapObject: mapObject
+        })
     }
 };

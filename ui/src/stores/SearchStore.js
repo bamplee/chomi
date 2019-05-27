@@ -8,6 +8,7 @@ class SearchStore {
     @observable historyList = [];
     @observable routeList = [];
     @observable routeIndex = 0;
+    @observable graph = {};
 
     constructor() {
         if (this.departure.name && this.destination.name) {
@@ -34,7 +35,11 @@ class SearchStore {
     };
 
     @action route = () => {
-        api.route(this.departure.x, this.departure.y, this.destination.x, this.destination.y).then(res => this.routeList = res.data.result);
+        api.route(this.departure.x, this.departure.y, this.destination.x, this.destination.y).then(res => {this.routeList = res.data.result;this.loadLane(this.routeList.path[this.routeIndex].info.mapObj)});
+    };
+
+    @action loadLane = (mapObj) => {
+        api.graph(mapObj).then(res => this.graph = res.data.result);
     };
 
     @action handleDeparture = (index) => {
@@ -47,10 +52,12 @@ class SearchStore {
 
     @action decreaseRouteIndex = () => {
         this.routeIndex = this.routeIndex > 0 ? this.routeIndex - 1 : this.routeIndex;
+        this.loadLane(this.routeList.path[this.routeIndex].info.mapObj);
     };
 
     @action increaseRouteIndex = () => {
         this.routeIndex = this.routeIndex + 1 < this.routeList.path.length ? this.routeIndex + 1 : this.routeIndex;
+        this.loadLane(this.routeList.path[this.routeIndex].info.mapObj);
     };
 
     dummyStartPoint = () => {

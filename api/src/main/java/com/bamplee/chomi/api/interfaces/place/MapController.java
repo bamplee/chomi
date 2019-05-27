@@ -2,6 +2,7 @@ package com.bamplee.chomi.api.interfaces.place;
 
 import com.bamplee.chomi.api.application.MapService;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
+import com.bamplee.chomi.api.datatool.odsay.dto.OdSayLoadLaneResponse;
 import com.bamplee.chomi.api.datatool.odsay.dto.OdSaySearchPubTransPathResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -34,4 +35,8 @@ public class MapController {
         return mapService.image(x, y);
     }
 
+    @GetMapping("graph")
+    public OdSayLoadLaneResponse graph(@RequestParam("mapObject") String mapObject) {
+        return mapService.graph(mapObject);
+    }
 }

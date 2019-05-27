@@ -1,5 +1,6 @@
 package com.bamplee.chomi.api.datatool.odsay;
 
+import com.bamplee.chomi.api.datatool.odsay.dto.OdSayLoadLaneResponse;
 import com.bamplee.chomi.api.datatool.odsay.dto.OdSaySearchPubTransPathResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Map;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -21,6 +24,12 @@ public class OdSayClientTest {
     @Test
     public void searchPubTransPath() {
         OdSaySearchPubTransPathResponse result = odSayClient.searchPubTransPath(apiKey, "126.9027279", "37.5349277", "126.9145430", "37.5499421", "0", "0", "0");
+        log.debug(result.toString());
+    }
+
+    @Test
+    public void loadLane() {
+        OdSayLoadLaneResponse result = odSayClient.loadLane(apiKey, "0:0@5140:1:19:21@100:2:1530:1521", null, null);
         log.debug(result.toString());
     }
 }

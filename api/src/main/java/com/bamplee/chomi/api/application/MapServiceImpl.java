@@ -3,6 +3,7 @@ package com.bamplee.chomi.api.application;
 import com.bamplee.chomi.api.datatool.naver.NaverMapsClient;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
 import com.bamplee.chomi.api.datatool.odsay.OdSayClient;
+import com.bamplee.chomi.api.datatool.odsay.dto.OdSayLoadLaneResponse;
 import com.bamplee.chomi.api.datatool.odsay.dto.OdSaySearchPubTransPathResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 public class MapServiceImpl implements MapService {
     private final NaverMapsClient naverMapsClient;
     private final OdSayClient odSayClient;
-
     @Value("${odsay.key}")
     String odsayKey;
 
@@ -30,6 +30,12 @@ public class MapServiceImpl implements MapService {
     @Override
     public OdSaySearchPubTransPathResponse route(String startX, String startY, String endX, String endY) {
         return odSayClient.searchPubTransPath(odsayKey, startX, startY, endX, endY, "0", "0", "0");
+    }
+
+    @Cacheable(value = "graph")
+    @Override
+    public OdSayLoadLaneResponse graph(String mapObject) {
+        return odSayClient.loadLane(odsayKey, "0:0@" + mapObject, null, null);
     }
 
     @Override
