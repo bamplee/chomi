@@ -15,7 +15,7 @@ class RouteCardContent extends Component {
                         <Timeline.Item key={idx} color={this.getTrafficTypeColor(x.trafficType)}>
                             {this.getTrafficTypeName(x.trafficType)}
                             <Typography.Text type="secondary">{x.sectionTime}분</Typography.Text>
-                            {/*
+{/*
                             <Typography.Text type="secondary">{x.distance / 1000}km</Typography.Text>
 */}
                             {

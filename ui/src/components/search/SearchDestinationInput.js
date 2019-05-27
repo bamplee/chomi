@@ -13,7 +13,6 @@ class SearchDestinationInput extends Component {
           <Conditional if={uiStore.clickSearchInput === '' || uiStore.clickSearchInput === 'destination'}>
               <div className="search_input">
                   <Button icon="arrow-left"
-                          shape=""
                           size="large"
                           type="default"
                           className="left_button"
@@ -25,7 +24,6 @@ class SearchDestinationInput extends Component {
                     onSearch={value => searchStore.search(value)}
                   />
                   <Button icon="ordered-list"
-                          shape=""
                           size="large"
                           type="default"
                           className="right_button"

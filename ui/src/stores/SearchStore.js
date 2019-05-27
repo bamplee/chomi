@@ -19,6 +19,7 @@ class SearchStore {
         let temp = this.departure;
         this.departure = this.destination;
         this.destination = temp;
+        this.route();
     };
 
     @action search = (query) => {
