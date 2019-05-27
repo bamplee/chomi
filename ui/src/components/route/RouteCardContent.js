@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Timeline } from 'antd';
+import { Typography, Tag, Timeline, Icon } from 'antd';
 import { inject, observer } from 'mobx-react';
 
 @inject('searchStore')
@@ -13,15 +13,30 @@ class RouteCardContent extends Component {
                   searchStore.routeList.path[searchStore.routeIndex].subPath.map((x, idx) => {
                       return (
                         <Timeline.Item key={idx} color={this.getTrafficTypeColor(x.trafficType)}>
-                            {this.getTrafficTypeName(x.trafficType)}/{x.distance / 1000}km/{x.sectionTime}분
-                            <br/>
+                            {this.getTrafficTypeName(x.trafficType)}
+                            <Typography.Text type="secondary">{x.sectionTime}분</Typography.Text>
+                            {/*
+                            <Typography.Text type="secondary">{x.distance / 1000}km</Typography.Text>
+*/}
                             {
                                 x.trafficType === 2 ?
-                                  x.lane[0].busNo + '번버스,' + x.startName + x.endName : ''
+                                  <div className="route_card_sub_title">
+                                      <Typography.Text className="route_card_sub_description"
+                                                       mark>{x.lane[0].busNo}번버스</Typography.Text>
+                                      <Typography.Text strong>{x.startName}</Typography.Text>
+                                      <Icon type="swap-right"/>
+                                      <Typography.Text strong>{x.endName}</Typography.Text>
+                                  </div> : ''
                             }
                             {
                                 x.trafficType === 1 ?
-                                  x.lane[0].name + ', ' + x.startName + '-' + x.endName : ''
+                                  <div className="route_card_sub_title">
+                                      <Typography.Text className="route_card_sub_description"
+                                                       mark>{x.lane[0].name}</Typography.Text>
+                                      <Typography.Text strong>{x.startName}역</Typography.Text>
+                                      <Icon type="swap-right"/>
+                                      <Typography.Text strong>{x.endName}역</Typography.Text>
+                                  </div> : ''
                             }
                         </Timeline.Item>
                       )
@@ -33,25 +48,25 @@ class RouteCardContent extends Component {
 
     getTrafficTypeColor = (trafficType) => {
         if (trafficType === 1) {
-            return 'orange';
+            return '#f50';
         }
         else if (trafficType === 2) {
-            return 'blue';
+            return '#2db7f5';
         }
         else if (trafficType === 3) {
-            return 'green';
+            return '#87d068';
         }
     };
 
     getTrafficTypeName = (trafficType) => {
         if (trafficType === 1) {
-            return '지하철';
+            return <Tag color="#f50">지하철</Tag>;
         }
         else if (trafficType === 2) {
-            return '버스';
+            return <Tag color="#2db7f5">버스</Tag>;
         }
         else if (trafficType === 3) {
-            return '도보';
+            return <Tag color="#87d068">도보</Tag>;
         }
     };
 }

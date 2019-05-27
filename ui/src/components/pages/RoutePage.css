@@ -38,3 +38,12 @@
     padding-left: 5px;
     padding-right: 5px;
 }
+
+.route_card_sub_title {
+    margin-top: 4px;
+}
+
+.route_card_sub_description {
+    
+    margin-right: 4px;
+}

@@ -18,6 +18,9 @@ class RouteCardHeader extends Component {
                   </Typography.Text>
               </div>
               <div className="row">
+                  <Typography.Text>
+                      약
+                  </Typography.Text>
                   <Typography.Text type="danger">
                       {searchStore.routeList.path[searchStore.routeIndex].info.totalTime}
                   </Typography.Text>
@@ -26,7 +29,7 @@ class RouteCardHeader extends Component {
                   </Typography.Text>
               </div>
               <div>
-                  <Typography.Text type="warning">
+                  <Typography.Text type="danger">
                       {searchStore.routeList.path[searchStore.routeIndex].info.payment}
                   </Typography.Text>
                   <Typography.Text>
