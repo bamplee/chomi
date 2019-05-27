@@ -1,0 +1,45 @@
+/*
+    SearchDepartureInput.js
+    SearchDestinationInput.js
+ */
+.search_input {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.search_input .left_button {
+    border: 1px solid transparent;
+    margin-right: 5px;
+}
+
+.search_input .right_button {
+    border: 1px solid transparent;
+    margin-left: 5px;
+}
+
+.icon_rotate_90 {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
+
+/*
+    SearchResultTab.js
+ */
+.search_list_tabs {
+    margin-top: 5px !important;
+}
+
+.search_list_table {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.search_list_table .content {
+    padding-left: 20px;
+    padding-right: 20px;
+}

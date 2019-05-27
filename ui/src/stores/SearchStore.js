@@ -4,10 +4,16 @@ import { api } from '../api'
 class SearchStore {
     @observable departure = this.dummyStartPoint();
     @observable destination = this.dummyEndPoint();
-    @observable addressList = [];
+    @observable PlaceList = [];
     @observable historyList = [];
     @observable routeList = [];
     @observable routeIndex = 0;
+
+    constructor() {
+        if (this.departure.name && this.destination.name) {
+            this.route();
+        }
+    }
 
     @action swap = () => {
         let temp = this.departure;
@@ -17,29 +23,25 @@ class SearchStore {
 
     @action search = (query) => {
         if (query.length === 0) {
-            return;
         }
         else if (query) {
-            api.search(query).then(res => res.data.places).then(placeList => this.addressList = placeList);
+            api.search(query).then(res => res.data.places).then(placeList => this.PlaceList = placeList);
         }
         else {
-            this.addressList = [];
+            this.PlaceList = [];
         }
     };
 
     @action route = () => {
-        api.route(this.departure.x, this.departure.y, this.destination.x, this.destination.y).then(res => {
-            console.log(res.data.result);
-            this.routeList = res.data.result
-        });
+        api.route(this.departure.x, this.departure.y, this.destination.x, this.destination.y).then(res => this.routeList = res.data.result);
     };
 
     @action handleDeparture = (index) => {
-        this.departure = this.addressList[index];
+        this.departure = this.PlaceList[index];
     };
 
     @action handleDestination = (index) => {
-        this.destination = this.addressList[index];
+        this.destination = this.PlaceList[index];
     };
 
     @action decreaseRouteIndex = () => {

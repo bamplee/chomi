@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import './styles/styles.css';
+
 import SearchPage from './components/pages/SearchPage';
 import RoutePage from './components/pages/RoutePage';
 

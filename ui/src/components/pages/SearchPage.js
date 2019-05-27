@@ -1,14 +1,17 @@
-import React  from 'react';
-import DepartureSearch from '../search/DepartureSearch';
-import DestinationSearch from '../search/DestinationSearch';
-import AddressList from '../search/AddressResult';
+import React from 'react';
+
+import SearchDepartureInput from '../search/SearchDepartureInput';
+import SearchDestinationInput from '../search/SearchDestinationInput';
+import SearchResultTab from '../search/SearchResultTab';
+
+import './SearchPage.css';
 
 function SearchPage(props) {
     return (
       <React.Fragment>
-          <DepartureSearch history={props.history}/>
-          <DestinationSearch history={props.history}/>
-          <AddressList history={props.history}/>
+          <SearchDepartureInput history={props.history}/>
+          <SearchDestinationInput history={props.history}/>
+          <SearchResultTab history={props.history}/>
       </React.Fragment>
     );
 }

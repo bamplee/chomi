@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Input, Button } from 'antd';
 import { inject, observer } from 'mobx-react';
+
 import { Conditional } from '../common/Conditional';
 
 @inject('uiStore', 'searchStore')
 @observer
-class DepartureSearch extends Component {
+class SearchDepartureInput extends Component {
     render() {
         const {searchStore, uiStore} = this.props;
         return (
@@ -35,4 +36,4 @@ class DepartureSearch extends Component {
     }
 }
 
-export default DepartureSearch;
+export default SearchDepartureInput;

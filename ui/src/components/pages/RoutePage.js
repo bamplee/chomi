@@ -1,14 +1,17 @@
-import React  from 'react';
-import DepartureResult from '../route/DepartureResult';
-import DestinationResult from '../route/DestinationResult';
+import React from 'react';
+
+import RouteDepartureInput from '../route/RouteDepartureInput';
+import RouteDestinationInput from '../route/RouteDestinationInput';
 import RouteMap from '../route/RouteMap';
-import RouteResult from '../route/RouteResult';
+import RouteResult from '../route/RouteCard';
+
+import './RoutePage.css'
 
 function RoutePage(props) {
     return (
       <React.Fragment>
-          <DepartureResult history={props.history}/>
-          <DestinationResult history={props.history}/>
+          <RouteDepartureInput history={props.history}/>
+          <RouteDestinationInput history={props.history}/>
           <RouteMap/>
           <RouteResult/>
       </React.Fragment>

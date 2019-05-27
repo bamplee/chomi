@@ -1,0 +1,40 @@
+/*
+    RouteDepartureInput.js
+    RouteDestinationInput.js
+ */
+.search_input {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/*
+    RouteCard.js
+ */
+.route_result_card {
+    margin: 5px !important;
+}
+
+.route_result_scroll {
+    overflow: scroll;
+    height: 220px;
+}
+
+.route_result_title {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+}
+
+.route_result_title .row {
+    margin-right: 14px;
+    padding-right: 14px;
+    border-right: 2px solid #F2F2F2;
+}
+
+.route_map_div {
+    padding-left: 5px;
+    padding-right: 5px;
+}

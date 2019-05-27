@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
+
 import NaverMap from '../common/NaverMap';
 
 @inject('uiStore', 'searchStore')
@@ -8,7 +9,7 @@ class RouteMap extends Component {
     render() {
         const {searchStore} = this.props;
         return (
-          <div style={{paddingLeft: 5, paddingRight: 5}}>
+          <div className="route_map_div">
               <NaverMap
                 center={this.getDistanceFromLatLonInKm(searchStore.departure.y, searchStore.departure.x, searchStore.destination.y, searchStore.destination.x)}
                 startX={searchStore.departure.x}

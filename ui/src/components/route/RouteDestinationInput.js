@@ -4,35 +4,33 @@ import { inject, observer } from 'mobx-react';
 
 @inject('uiStore', 'searchStore')
 @observer
-class DepartureResult extends Component {
+class RouteDestinationInput extends Component {
     render() {
         const {searchStore} = this.props;
         return (
           <div className="search_input">
               <Input.Search
                 size="large"
-                addonBefore="출발"
-                placeholder="출발지 검색"
-                value={searchStore.departure.name}
-                onClick={this.handleDepartureInput}
+                addonBefore="도착"
+                placeholder="목적지 검색"
+                value={searchStore.destination.name}
+                onClick={this.handleDestinationInput}
               />
-              <Button icon="more"
-                      shape=""
+              <Button icon="swap"
                       size="large"
                       type="default"
                       className="icon_rotate_90 right_button"
-                      onClick={() => {
-                      }}/>
+                      onClick={searchStore.swap}/>
           </div>
         )
     }
 
-    handleDepartureInput = () => {
+    handleDestinationInput = () => {
         const {searchStore, uiStore} = this.props;
-        uiStore.handleDepartureInput();
-        searchStore.search(searchStore.departure.name);
-        this.props.history.push({pathname: '/search'});
+        uiStore.handleDestinationInput();
+        searchStore.search(searchStore.destination.name);
+        this.props.history.push({pathname: '/search'})
     };
 }
 
-export default DepartureResult;
+export default RouteDestinationInput;
