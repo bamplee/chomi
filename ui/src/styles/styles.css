@@ -54,3 +54,28 @@
 * {
     font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
 }
+
+/*
+    ChomiRoute.js
+ */
+.search_input {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 5px 2px;
+}
+
+.search_input .left_button {
+    border: 1px solid transparent;
+    margin-right: 5px;
+}
+
+.search_input .right_button {
+    border: 1px solid transparent;
+    margin-left: 5px;
+}
+
+.icon_rotate_90 {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
