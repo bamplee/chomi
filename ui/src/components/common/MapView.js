@@ -1,5 +1,5 @@
 import React from 'react';
-import {Marker, NaverMap, RenderAfterNavermapsLoaded} from 'react-naver-maps'
+import { Marker, NaverMap, RenderAfterNavermapsLoaded } from 'react-naver-maps'
 
 function MapView(props) {
     return (
@@ -12,14 +12,19 @@ function MapView(props) {
           <NaverMap
             mapDivId={'maps-getting-started-uncontrolled'} // default: react-naver-map
             style={{
+                marginTop: 5,
                 width: '100%',
-                height: props.height,
+                height: window.innerHeight - 423,
             }}
-            defaultCenter={{lat: props.lat, lng: props.lng}}
-            defaultZoom={10}
+            center={{lat: props.center.lat, lng: props.center.lng}}
+            defaultZoom={5}
           >
               <Marker
-                  position={{lat: props.lat, lng: props.lng}}
+                title={'abcd'}
+                position={{lat: props.startY, lng: props.startX}}
+              />
+              <Marker
+                position={{lat: props.endY, lng: props.endX}}
               />
           </NaverMap>
       </RenderAfterNavermapsLoaded>
