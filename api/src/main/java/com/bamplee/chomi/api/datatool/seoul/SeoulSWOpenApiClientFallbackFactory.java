@@ -2,12 +2,10 @@ package com.bamplee.chomi.api.datatool.seoul;
 
 import com.bamplee.chomi.api.datatool.common.LoggingFallbackFactory;
 import com.bamplee.chomi.api.datatool.seoul.dto.ShortestRouteResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 public class SeoulSWOpenApiClientFallbackFactory implements LoggingFallbackFactory<SeoulSWOpenApiClient> {
     private static final SeoulSWOpenApiClient FALLBACK = new SeoulSWOpenApiClientFallback();
 

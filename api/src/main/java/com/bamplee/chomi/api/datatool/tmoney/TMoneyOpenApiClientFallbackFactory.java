@@ -2,12 +2,10 @@ package com.bamplee.chomi.api.datatool.tmoney;
 
 import com.bamplee.chomi.api.datatool.common.LoggingFallbackFactory;
 import com.bamplee.chomi.api.datatool.tmoney.dto.BsBikeRentIdGetResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 public class TMoneyOpenApiClientFallbackFactory implements LoggingFallbackFactory<TMoneyOpenApiClient> {
     private static final TMoneyOpenApiClient FALLBACK = new TMoneyOpenApiClientFallbackFactory.TMoneyOpenApiClientFallback();
 

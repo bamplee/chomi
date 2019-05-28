@@ -1,14 +1,50 @@
 package com.bamplee.chomi.api.datatool.seoul.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
-@Data
 public class GetParkInfoResponse {
     @JsonProperty("GetParkInfo")
     private ParkInfo parkInfo;
 
-    @Data
+    public ParkInfo getParkInfo() {
+        return parkInfo;
+    }
+
+    public void setParkInfo(ParkInfo parkInfo) {
+        this.parkInfo = parkInfo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GetParkInfoResponse that = (GetParkInfoResponse) o;
+        return new EqualsBuilder()
+            .append(parkInfo, that.parkInfo)
+            .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(parkInfo)
+            .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("parkInfo", parkInfo)
+            .toString();
+    }
+
     public static class ParkInfo {
         @JsonProperty("list_total_count")
         private Integer listTotalCount;
@@ -17,15 +53,118 @@ public class GetParkInfoResponse {
         @JsonProperty("row")
         private Row[] row;
 
-        @Data
+        public Integer getListTotalCount() {
+            return listTotalCount;
+        }
+
+        public void setListTotalCount(Integer listTotalCount) {
+            this.listTotalCount = listTotalCount;
+        }
+
+        public Result getResult() {
+            return result;
+        }
+
+        public void setResult(Result result) {
+            this.result = result;
+        }
+
+        public Row[] getRow() {
+            return row;
+        }
+
+        public void setRow(Row[] row) {
+            this.row = row;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            ParkInfo parkInfo = (ParkInfo) o;
+            return new EqualsBuilder()
+                .append(listTotalCount, parkInfo.listTotalCount)
+                .append(result, parkInfo.result)
+                .append(row, parkInfo.row)
+                .isEquals();
+        }
+
+        @Override
+        public int hashCode() {
+            return new HashCodeBuilder(17, 37)
+                .append(listTotalCount)
+                .append(result)
+                .append(row)
+                .toHashCode();
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                .append("listTotalCount", listTotalCount)
+                .append("result", result)
+                .append("row", row)
+                .toString();
+        }
+
         public static class Result {
             @JsonProperty("CODE")
             private String code;
             @JsonProperty("MESSAGE")
             private String message;
+
+            public String getCode() {
+                return code;
+            }
+
+            public void setCode(String code) {
+                this.code = code;
+            }
+
+            public String getMessage() {
+                return message;
+            }
+
+            public void setMessage(String message) {
+                this.message = message;
+            }
+
+            @Override
+            public boolean equals(Object o) {
+                if (this == o) {
+                    return true;
+                }
+                if (o == null || getClass() != o.getClass()) {
+                    return false;
+                }
+                Result result = (Result) o;
+                return new EqualsBuilder()
+                    .append(code, result.code)
+                    .append(message, result.message)
+                    .isEquals();
+            }
+
+            @Override
+            public int hashCode() {
+                return new HashCodeBuilder(17, 37)
+                    .append(code)
+                    .append(message)
+                    .toHashCode();
+            }
+
+            @Override
+            public String toString() {
+                return new ToStringBuilder(this)
+                    .append("code", code)
+                    .append("message", message)
+                    .toString();
+            }
         }
 
-        @Data
         public static class Row {
             @JsonProperty("PARKING_CODE")
             private String parkingCode;
@@ -113,6 +252,504 @@ public class GetParkInfoResponse {
             private String assignCode;
             @JsonProperty("ASSIGN_CODE_NM")
             private String assignCodeNm;
+
+            public String getParkingCode() {
+                return parkingCode;
+            }
+
+            public void setParkingCode(String parkingCode) {
+                this.parkingCode = parkingCode;
+            }
+
+            public String getParkingName() {
+                return parkingName;
+            }
+
+            public void setParkingName(String parkingName) {
+                this.parkingName = parkingName;
+            }
+
+            public String getAddr() {
+                return addr;
+            }
+
+            public void setAddr(String addr) {
+                this.addr = addr;
+            }
+
+            public String getParkingType() {
+                return parkingType;
+            }
+
+            public void setParkingType(String parkingType) {
+                this.parkingType = parkingType;
+            }
+
+            public String getParkingTypeNm() {
+                return parkingTypeNm;
+            }
+
+            public void setParkingTypeNm(String parkingTypeNm) {
+                this.parkingTypeNm = parkingTypeNm;
+            }
+
+            public String getOperationRule() {
+                return operationRule;
+            }
+
+            public void setOperationRule(String operationRule) {
+                this.operationRule = operationRule;
+            }
+
+            public String getOperationRuleNm() {
+                return operationRuleNm;
+            }
+
+            public void setOperationRuleNm(String operationRuleNm) {
+                this.operationRuleNm = operationRuleNm;
+            }
+
+            public String getTel() {
+                return tel;
+            }
+
+            public void setTel(String tel) {
+                this.tel = tel;
+            }
+
+            public String getQueStatus() {
+                return queStatus;
+            }
+
+            public void setQueStatus(String queStatus) {
+                this.queStatus = queStatus;
+            }
+
+            public String getQueStatusNm() {
+                return queStatusNm;
+            }
+
+            public void setQueStatusNm(String queStatusNm) {
+                this.queStatusNm = queStatusNm;
+            }
+
+            public String getCapacity() {
+                return capacity;
+            }
+
+            public void setCapacity(String capacity) {
+                this.capacity = capacity;
+            }
+
+            public String getCurParking() {
+                return curParking;
+            }
+
+            public void setCurParking(String curParking) {
+                this.curParking = curParking;
+            }
+
+            public String getCurParkingTime() {
+                return curParkingTime;
+            }
+
+            public void setCurParkingTime(String curParkingTime) {
+                this.curParkingTime = curParkingTime;
+            }
+
+            public String getPayYn() {
+                return payYn;
+            }
+
+            public void setPayYn(String payYn) {
+                this.payYn = payYn;
+            }
+
+            public String getPayNm() {
+                return payNm;
+            }
+
+            public void setPayNm(String payNm) {
+                this.payNm = payNm;
+            }
+
+            public String getNightFreeOpen() {
+                return nightFreeOpen;
+            }
+
+            public void setNightFreeOpen(String nightFreeOpen) {
+                this.nightFreeOpen = nightFreeOpen;
+            }
+
+            public String getNightFreeOpenNm() {
+                return nightFreeOpenNm;
+            }
+
+            public void setNightFreeOpenNm(String nightFreeOpenNm) {
+                this.nightFreeOpenNm = nightFreeOpenNm;
+            }
+
+            public String getWeekdayBeginTime() {
+                return weekdayBeginTime;
+            }
+
+            public void setWeekdayBeginTime(String weekdayBeginTime) {
+                this.weekdayBeginTime = weekdayBeginTime;
+            }
+
+            public String getWeekdayEndTime() {
+                return weekdayEndTime;
+            }
+
+            public void setWeekdayEndTime(String weekdayEndTime) {
+                this.weekdayEndTime = weekdayEndTime;
+            }
+
+            public String getWeekendBeginTime() {
+                return weekendBeginTime;
+            }
+
+            public void setWeekendBeginTime(String weekendBeginTime) {
+                this.weekendBeginTime = weekendBeginTime;
+            }
+
+            public String getWeekendEndTime() {
+                return weekendEndTime;
+            }
+
+            public void setWeekendEndTime(String weekendEndTime) {
+                this.weekendEndTime = weekendEndTime;
+            }
+
+            public String getHolidayBeginTime() {
+                return holidayBeginTime;
+            }
+
+            public void setHolidayBeginTime(String holidayBeginTime) {
+                this.holidayBeginTime = holidayBeginTime;
+            }
+
+            public String getHolidayEndTime() {
+                return holidayEndTime;
+            }
+
+            public void setHolidayEndTime(String holidayEndTime) {
+                this.holidayEndTime = holidayEndTime;
+            }
+
+            public String getSyncTime() {
+                return syncTime;
+            }
+
+            public void setSyncTime(String syncTime) {
+                this.syncTime = syncTime;
+            }
+
+            public String getSaturdayPayYn() {
+                return saturdayPayYn;
+            }
+
+            public void setSaturdayPayYn(String saturdayPayYn) {
+                this.saturdayPayYn = saturdayPayYn;
+            }
+
+            public String getSaturdayPayNm() {
+                return saturdayPayNm;
+            }
+
+            public void setSaturdayPayNm(String saturdayPayNm) {
+                this.saturdayPayNm = saturdayPayNm;
+            }
+
+            public String getHolidayPayYn() {
+                return holidayPayYn;
+            }
+
+            public void setHolidayPayYn(String holidayPayYn) {
+                this.holidayPayYn = holidayPayYn;
+            }
+
+            public String getHolidayPayNm() {
+                return holidayPayNm;
+            }
+
+            public void setHolidayPayNm(String holidayPayNm) {
+                this.holidayPayNm = holidayPayNm;
+            }
+
+            public String getFullTimeMonthly() {
+                return fullTimeMonthly;
+            }
+
+            public void setFullTimeMonthly(String fullTimeMonthly) {
+                this.fullTimeMonthly = fullTimeMonthly;
+            }
+
+            public String getGrpParkNm() {
+                return grpParkNm;
+            }
+
+            public void setGrpParkNm(String grpParkNm) {
+                this.grpParkNm = grpParkNm;
+            }
+
+            public String getRates() {
+                return rates;
+            }
+
+            public void setRates(String rates) {
+                this.rates = rates;
+            }
+
+            public String getTimeRate() {
+                return timeRate;
+            }
+
+            public void setTimeRate(String timeRate) {
+                this.timeRate = timeRate;
+            }
+
+            public String getAddRates() {
+                return addRates;
+            }
+
+            public void setAddRates(String addRates) {
+                this.addRates = addRates;
+            }
+
+            public String getAddTimeRate() {
+                return addTimeRate;
+            }
+
+            public void setAddTimeRate(String addTimeRate) {
+                this.addTimeRate = addTimeRate;
+            }
+
+            public String getBusRates() {
+                return busRates;
+            }
+
+            public void setBusRates(String busRates) {
+                this.busRates = busRates;
+            }
+
+            public String getBusTimeRate() {
+                return busTimeRate;
+            }
+
+            public void setBusTimeRate(String busTimeRate) {
+                this.busTimeRate = busTimeRate;
+            }
+
+            public String getBusAddTimeRate() {
+                return busAddTimeRate;
+            }
+
+            public void setBusAddTimeRate(String busAddTimeRate) {
+                this.busAddTimeRate = busAddTimeRate;
+            }
+
+            public String getBusAddRates() {
+                return busAddRates;
+            }
+
+            public void setBusAddRates(String busAddRates) {
+                this.busAddRates = busAddRates;
+            }
+
+            public String getDayMaximum() {
+                return dayMaximum;
+            }
+
+            public void setDayMaximum(String dayMaximum) {
+                this.dayMaximum = dayMaximum;
+            }
+
+            public String getLat() {
+                return lat;
+            }
+
+            public void setLat(String lat) {
+                this.lat = lat;
+            }
+
+            public String getLng() {
+                return lng;
+            }
+
+            public void setLng(String lng) {
+                this.lng = lng;
+            }
+
+            public String getAssignCode() {
+                return assignCode;
+            }
+
+            public void setAssignCode(String assignCode) {
+                this.assignCode = assignCode;
+            }
+
+            public String getAssignCodeNm() {
+                return assignCodeNm;
+            }
+
+            public void setAssignCodeNm(String assignCodeNm) {
+                this.assignCodeNm = assignCodeNm;
+            }
+
+            @Override
+            public boolean equals(Object o) {
+                if (this == o) {
+                    return true;
+                }
+                if (o == null || getClass() != o.getClass()) {
+                    return false;
+                }
+                Row row = (Row) o;
+                return new EqualsBuilder()
+                    .append(parkingCode, row.parkingCode)
+                    .append(parkingName, row.parkingName)
+                    .append(addr, row.addr)
+                    .append(parkingType, row.parkingType)
+                    .append(parkingTypeNm, row.parkingTypeNm)
+                    .append(operationRule, row.operationRule)
+                    .append(operationRuleNm, row.operationRuleNm)
+                    .append(tel, row.tel)
+                    .append(queStatus, row.queStatus)
+                    .append(queStatusNm, row.queStatusNm)
+                    .append(capacity, row.capacity)
+                    .append(curParking, row.curParking)
+                    .append(curParkingTime, row.curParkingTime)
+                    .append(payYn, row.payYn)
+                    .append(payNm, row.payNm)
+                    .append(nightFreeOpen, row.nightFreeOpen)
+                    .append(nightFreeOpenNm, row.nightFreeOpenNm)
+                    .append(weekdayBeginTime, row.weekdayBeginTime)
+                    .append(weekdayEndTime, row.weekdayEndTime)
+                    .append(weekendBeginTime, row.weekendBeginTime)
+                    .append(weekendEndTime, row.weekendEndTime)
+                    .append(holidayBeginTime, row.holidayBeginTime)
+                    .append(holidayEndTime, row.holidayEndTime)
+                    .append(syncTime, row.syncTime)
+                    .append(saturdayPayYn, row.saturdayPayYn)
+                    .append(saturdayPayNm, row.saturdayPayNm)
+                    .append(holidayPayYn, row.holidayPayYn)
+                    .append(holidayPayNm, row.holidayPayNm)
+                    .append(fullTimeMonthly, row.fullTimeMonthly)
+                    .append(grpParkNm, row.grpParkNm)
+                    .append(rates, row.rates)
+                    .append(timeRate, row.timeRate)
+                    .append(addRates, row.addRates)
+                    .append(addTimeRate, row.addTimeRate)
+                    .append(busRates, row.busRates)
+                    .append(busTimeRate, row.busTimeRate)
+                    .append(busAddTimeRate, row.busAddTimeRate)
+                    .append(busAddRates, row.busAddRates)
+                    .append(dayMaximum, row.dayMaximum)
+                    .append(lat, row.lat)
+                    .append(lng, row.lng)
+                    .append(assignCode, row.assignCode)
+                    .append(assignCodeNm, row.assignCodeNm)
+                    .isEquals();
+            }
+
+            @Override
+            public int hashCode() {
+                return new HashCodeBuilder(17, 37)
+                    .append(parkingCode)
+                    .append(parkingName)
+                    .append(addr)
+                    .append(parkingType)
+                    .append(parkingTypeNm)
+                    .append(operationRule)
+                    .append(operationRuleNm)
+                    .append(tel)
+                    .append(queStatus)
+                    .append(queStatusNm)
+                    .append(capacity)
+                    .append(curParking)
+                    .append(curParkingTime)
+                    .append(payYn)
+                    .append(payNm)
+                    .append(nightFreeOpen)
+                    .append(nightFreeOpenNm)
+                    .append(weekdayBeginTime)
+                    .append(weekdayEndTime)
+                    .append(weekendBeginTime)
+                    .append(weekendEndTime)
+                    .append(holidayBeginTime)
+                    .append(holidayEndTime)
+                    .append(syncTime)
+                    .append(saturdayPayYn)
+                    .append(saturdayPayNm)
+                    .append(holidayPayYn)
+                    .append(holidayPayNm)
+                    .append(fullTimeMonthly)
+                    .append(grpParkNm)
+                    .append(rates)
+                    .append(timeRate)
+                    .append(addRates)
+                    .append(addTimeRate)
+                    .append(busRates)
+                    .append(busTimeRate)
+                    .append(busAddTimeRate)
+                    .append(busAddRates)
+                    .append(dayMaximum)
+                    .append(lat)
+                    .append(lng)
+                    .append(assignCode)
+                    .append(assignCodeNm)
+                    .toHashCode();
+            }
+
+            @Override
+            public String toString() {
+                return new ToStringBuilder(this)
+                    .append("parkingCode", parkingCode)
+                    .append("parkingName", parkingName)
+                    .append("addr", addr)
+                    .append("parkingType", parkingType)
+                    .append("parkingTypeNm", parkingTypeNm)
+                    .append("operationRule", operationRule)
+                    .append("operationRuleNm", operationRuleNm)
+                    .append("tel", tel)
+                    .append("queStatus", queStatus)
+                    .append("queStatusNm", queStatusNm)
+                    .append("capacity", capacity)
+                    .append("curParking", curParking)
+                    .append("curParkingTime", curParkingTime)
+                    .append("payYn", payYn)
+                    .append("payNm", payNm)
+                    .append("nightFreeOpen", nightFreeOpen)
+                    .append("nightFreeOpenNm", nightFreeOpenNm)
+                    .append("weekdayBeginTime", weekdayBeginTime)
+                    .append("weekdayEndTime", weekdayEndTime)
+                    .append("weekendBeginTime", weekendBeginTime)
+                    .append("weekendEndTime", weekendEndTime)
+                    .append("holidayBeginTime", holidayBeginTime)
+                    .append("holidayEndTime", holidayEndTime)
+                    .append("syncTime", syncTime)
+                    .append("saturdayPayYn", saturdayPayYn)
+                    .append("saturdayPayNm", saturdayPayNm)
+                    .append("holidayPayYn", holidayPayYn)
+                    .append("holidayPayNm", holidayPayNm)
+                    .append("fullTimeMonthly", fullTimeMonthly)
+                    .append("grpParkNm", grpParkNm)
+                    .append("rates", rates)
+                    .append("timeRate", timeRate)
+                    .append("addRates", addRates)
+                    .append("addTimeRate", addTimeRate)
+                    .append("busRates", busRates)
+                    .append("busTimeRate", busTimeRate)
+                    .append("busAddTimeRate", busAddTimeRate)
+                    .append("busAddRates", busAddRates)
+                    .append("dayMaximum", dayMaximum)
+                    .append("lat", lat)
+                    .append("lng", lng)
+                    .append("assignCode", assignCode)
+                    .append("assignCodeNm", assignCodeNm)
+                    .toString();
+            }
         }
     }
 }

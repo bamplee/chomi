@@ -4,12 +4,10 @@ import com.bamplee.chomi.api.datatool.common.LoggingFallbackFactory;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGcResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGeocodingResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 public class NaverMapsClientFallbackFactory implements LoggingFallbackFactory<NaverMapsClient> {
     private static final NaverMapsClient FALLBACK = new NaverMapsClientFallback();
 
