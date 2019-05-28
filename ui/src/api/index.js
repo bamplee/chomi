@@ -6,10 +6,10 @@ const get = (path, params) => {
 
 export const api = {
     search: (query) => {
-        return get('http://localhost:8080/api/v1/maps/search', {query: query});
+        return get('/api/v1/maps/search', {query: query});
     },
     route: (startX, startY, endX, endY) => {
-        return get('http://localhost:8080/api/v1/maps/route', {
+        return get('/api/v1/maps/route', {
             startX: startX,
             startY: startY,
             endX: endX,
@@ -17,7 +17,7 @@ export const api = {
         })
     },
     graph: (mapObject) => {
-        return get('http://localhost:8080/api/v1/maps/graph', {
+        return get('/api/v1/maps/graph', {
             mapObject: mapObject
         })
     }
