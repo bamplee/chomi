@@ -5,32 +5,24 @@ import { inject, observer } from 'mobx-react';
 import RouteCardContent from './RouteCardContent';
 import RouteCardHeader from './RouteCardHeader';
 
-@inject('searchStore')
+@inject('routeStore')
 @observer
 class RouteResult extends Component {
     render() {
-        const {searchStore} = this.props;
+        const {routeStore} = this.props;
         return (
-          <React.Fragment>
-              {
-                  Object.keys(searchStore.routeList).length > 0 ?
-                    <div>
-                        <Card className="route_result_card"
-                              actions={[
-                                  <Icon type="left" onClick={searchStore.decreaseRouteIndex}/>,
-                                  <Typography.Text>
-                                      {this.pagination(searchStore.routeIndex, searchStore.routeList)}
-                                  </Typography.Text>,
-                                  <Icon type="right" onClick={searchStore.increaseRouteIndex}/>]} bordered={true}>
-                            <div className="route_result_scroll">
-                                <RouteCardHeader/>
-                                <RouteCardContent/>
-                            </div>
-                        </Card>
-                    </div>
-                    : ''
-              }
-          </React.Fragment>
+          <Card className="route_result_card"
+                actions={[
+                    <Icon type="left" onClick={routeStore.decreaseRouteIndex}/>,
+                    <Typography.Text>
+                        {this.pagination(routeStore.routeIndex, routeStore.routeList)}
+                    </Typography.Text>,
+                    <Icon type="right" onClick={routeStore.increaseRouteIndex}/>]} bordered={true}>
+              <div className="route_result_scroll">
+                  <RouteCardHeader/>
+                  <RouteCardContent/>
+              </div>
+          </Card>
         )
     }
 

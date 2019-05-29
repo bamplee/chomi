@@ -1,63 +1,44 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { api } from '../api'
+import { asyncAction } from 'mobx-utils';
 
 class SearchStore {
     @observable departure = this.dummyStartPoint();
     @observable destination = this.dummyEndPoint();
-    @observable PlaceList = [];
-    @observable historyList = [];
-    @observable routeList = [];
-    @observable routeIndex = 0;
-    @observable graph = {};
+    @observable departureList = [];
+    @observable destinationList = [];
+    @observable type = '';
 
-    constructor() {
-        if (this.departure.name && this.destination.name) {
-            this.route();
-        }
-    }
+    @action handleType = (type) => {
+        this.type = type;
+    };
+
+    @action handleDeparture = (departure) => {
+        this.departure = departure;
+    };
+
+    @action handleDestination = (destination) => {
+        this.destination = destination;
+    };
 
     @action swap = () => {
         let temp = this.departure;
         this.departure = this.destination;
         this.destination = temp;
-        this.route();
     };
 
-    @action search = (query) => {
-        if (query.length === 0) {
-        }
-        else if (query) {
-            api.search(query).then(res => res.data.places).then(placeList => this.PlaceList = placeList);
-        }
-        else {
-            this.PlaceList = [];
-        }
+    @asyncAction
+    async * departureSearch(query) {
+        if (query.length === 0)
+            return;
+        this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
     };
 
-    @action route = () => {
-        api.route(this.departure.x, this.departure.y, this.destination.x, this.destination.y).then(res => {this.routeList = res.data.result;this.loadLane(this.routeList.path[this.routeIndex].info.mapObj)});
-    };
-
-    @action loadLane = (mapObj) => {
-        api.graph(mapObj).then(res => this.graph = res.data.result);
-    };
-
-    @action handleDeparture = (index) => {
-        this.departure = this.PlaceList[index];
-    };
-
-    @action handleDestination = (index) => {
-        this.destination = this.PlaceList[index];
-    };
-
-    @action decreaseRouteIndex = () => {
-        this.routeIndex = this.routeIndex > 0 ? this.routeIndex - 1 : this.routeIndex;
-        this.loadLane(this.routeList.path[this.routeIndex].info.mapObj);
-    };
-
-    @action increaseRouteIndex = () => {
-        this.routeIndex = this.routeIndex + 1 < this.routeList.path.length ? this.routeIndex + 1 : this.routeIndex;
-        this.loadLane(this.routeList.path[this.routeIndex].info.mapObj);
+    @asyncAction
+    async * destinationSearch(query) {
+        if (query.length === 0)
+            return;
+        this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
     };
 
     dummyStartPoint = () => {

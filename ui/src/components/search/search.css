@@ -27,19 +27,16 @@
 }
 
 /*
-    SearchResultTab.js
+    table
  */
-.search_list_tabs {
-    margin-top: 5px !important;
-}
 
-.search_list_table {
+.search_table_row {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
 
-.search_list_table .content {
+.search_table_row .item_meta {
     padding-left: 20px;
     padding-right: 20px;
 }

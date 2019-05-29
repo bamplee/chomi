@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Input, Button } from 'antd';
 import { inject, observer } from 'mobx-react';
 
-@inject('uiStore', 'searchStore')
+@inject('searchStore')
 @observer
-class RouteDepartureInput extends Component {
+class SummaryDepartureBar extends Component {
     render() {
         const {searchStore} = this.props;
         return (
@@ -27,11 +27,11 @@ class RouteDepartureInput extends Component {
     }
 
     handleDepartureInput = () => {
-        const {searchStore, uiStore} = this.props;
-        uiStore.handleDepartureInput();
-        searchStore.search(searchStore.departure.name);
+        const {searchStore} = this.props;
+        searchStore.handleType('departure');
+        searchStore.departureSearch(searchStore.departure.name);
         this.props.history.push({pathname: '/search'});
     };
 }
 
-export default RouteDepartureInput;
+export default SummaryDepartureBar;

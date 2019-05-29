@@ -46,3 +46,34 @@
 .route_card_sub_description {
     margin-right: 4px;
 }
+
+.route_card_sub_bottom {
+    margin-right: 8px;
+    padding-right: 8px;
+    border-right: 1px solid #F2F2F2;
+}
+
+.route_result_input {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.route_result_input .left_button {
+    border: 1px solid transparent;
+    margin-right: 5px;
+}
+
+.route_result_input .text_div {
+    display: flex;
+    padding-left: 12px;
+    border-left: 1px solid #F2F2F2;
+    align-items: center;
+}
+
+.route_result_input .text_div .icon{
+    margin-left: 8px;
+    margin-right: 8px;
+}

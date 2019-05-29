@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { Marker, NaverMap, Polyline, RenderAfterNavermapsLoaded } from 'react-naver-maps'
 
-@inject('uiStore', 'searchStore')
+@inject('searchStore', 'routeStore')
 @observer
 class RouteMap extends Component {
     render() {
@@ -20,10 +20,10 @@ class RouteMap extends Component {
                     style={{
                         marginTop: 5,
                         width: '100%',
-                        height: window.innerHeight - 423,
+                        height: window.innerHeight - 378,
                     }}
                     center={this.getDistanceFromLatLonInKm(searchStore.departure.y, searchStore.departure.x, searchStore.destination.y, searchStore.destination.x)}
-                    defaultZoom={6}
+                    defaultZoom={5}
                   >
                       <Marker
                         title={'abcd'}
@@ -46,11 +46,11 @@ class RouteMap extends Component {
     };
 
     getGraph = () => {
-        const {searchStore} = this.props;
-        if (!Object.keys(searchStore.graph).length > 0) {
+        const {routeStore} = this.props;
+        if (!Object.keys(routeStore.graph).length > 0) {
             return;
         }
-        return searchStore.graph.lane.map((x, idx) => {
+        return routeStore.graph.lane.map((x, idx) => {
             return (
               <Polyline
                 key={idx}
