@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { List } from 'antd';
-import { inject, observer } from 'mobx-react';
+import React, {Component} from 'react';
+import {List} from 'antd';
+import {inject, observer} from 'mobx-react';
 
-import SearchTableRow from './SearchTableRow';
+import SearchPlaceRow from '../row/SearchPlaceRow';
 
-@inject('searchStore')
+@inject('searchStore', 'routeStore')
 @observer
 class SearchDepartureTable extends Component {
     render() {
         const {searchStore} = this.props;
         return (
-          <List
-            dataSource={searchStore.departureList}
-            renderItem={(item, idx) => (
-              <SearchTableRow item={item} onClick={() => this.handleDeparture(item)}/>
-            )}
-          />
+            <List
+                dataSource={searchStore.departureList}
+                renderItem={(item, idx) => (
+                    <SearchPlaceRow key={idx} item={item} onClick={() => this.handleDeparture(item)}/>
+                )}
+            />
         )
     }
 

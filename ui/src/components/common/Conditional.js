@@ -1,5 +1,5 @@
 export const Conditional = (props) => {
     return (
-      !!props.if && props.children
+        !!props.if && props.children
     );
 };

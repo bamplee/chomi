@@ -1,6 +1,6 @@
-import { observable, action, computed } from 'mobx';
-import { api } from '../api'
-import { asyncAction } from 'mobx-utils';
+import {observable, action} from 'mobx';
+import {api} from '../api'
+import {asyncAction} from 'mobx-utils';
 
 class SearchStore {
     @observable departure = this.dummyStartPoint();
@@ -28,14 +28,14 @@ class SearchStore {
     };
 
     @asyncAction
-    async * departureSearch(query) {
+    async* departureSearch(query) {
         if (query.length === 0)
             return;
         this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
     };
 
     @asyncAction
-    async * destinationSearch(query) {
+    async* destinationSearch(query) {
         if (query.length === 0)
             return;
         this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);

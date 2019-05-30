@@ -4,7 +4,7 @@ import {inject, observer} from 'mobx-react';
 
 @inject('routeStore')
 @observer
-class RouteCardHeader extends Component {
+class RouteSummaryRow extends Component {
     render() {
         const {routeStore} = this.props;
         return (
@@ -41,4 +41,4 @@ class RouteCardHeader extends Component {
     }
 }
 
-export default RouteCardHeader;
+export default RouteSummaryRow;

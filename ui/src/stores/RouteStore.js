@@ -1,6 +1,6 @@
-import { observable, action, computed } from 'mobx';
-import { api } from '../api'
-import { asyncAction } from 'mobx-utils';
+import {observable, action, computed} from 'mobx';
+import {api} from '../api'
+import {asyncAction} from 'mobx-utils';
 
 class RouteStore {
     @observable routeList = [];
@@ -16,14 +16,14 @@ class RouteStore {
     };
 
     @asyncAction
-    async * route(departure, destination) {
+    async* route(departure, destination) {
         let routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data.result);
         console.log(routeList);
         this.routeList = routeList;
     };
 
     @asyncAction
-    async * loadLane(mapObj) {
+    async* loadLane(mapObj) {
         let graph = yield api.graph(mapObj).then(res => res.data.result);
         this.graph = graph;
     };
