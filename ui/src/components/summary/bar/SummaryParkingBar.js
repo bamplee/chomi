@@ -9,7 +9,7 @@ class SummaryParkingBar extends Component {
         const {searchStore} = this.props;
         return (
             <Card className="summary_parking_bar" size="small"
-                  title={<Typography.Text>{searchStore.parking.name}</Typography.Text>} extra={<a href="#"></a>}>
+                  title={<Typography.Text>{searchStore.parking.name}</Typography.Text>}>
                 <p>{searchStore.parking.address}</p>
             </Card>
         )
