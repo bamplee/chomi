@@ -10,6 +10,7 @@ const searchType = {
 class SearchStore {
     @observable departure = this.dummyStartPoint();
     @observable destination = '';
+    @observable parking = '';
     @observable departureList = [];
     @observable destinationList = [];
     @observable parkingList = [];
@@ -23,6 +24,10 @@ class SearchStore {
     @action handleDestination = (destination) => {
         this.destination = destination;
         this.parkingList = this.dummyParkingList();
+    };
+
+    @action handleParking = (parking) => {
+        this.parking = parking;
     };
 
     @action swap = () => {
@@ -86,12 +91,12 @@ class SearchStore {
 
     dummyParkingList = () => {
         return [
-            {name: '주차장1', road_address: '주소1'},
-            {name: '주차장2', road_address: '주소2'},
-            {name: '주차장3', road_address: '주소3'},
-            {name: '주차장4', road_address: '주소4'},
-            {name: '주차장5', road_address: '주소5'},
-            {name: '주차장6', road_address: '주소6'},
+            {name: '주차장1', address: '주소1'},
+            {name: '주차장2', address: '주소2'},
+            {name: '주차장3', address: '주소3'},
+            {name: '주차장4', address: '주소4'},
+            {name: '주차장5', address: '주소5'},
+            {name: '주차장6', address: '주소6'},
         ];
     };
 }

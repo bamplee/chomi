@@ -7,6 +7,7 @@ import SummaryInfoBar from './bar/SummaryInfoBar';
 import './summary.css';
 import {Conditional} from "../common/Conditional";
 import ErrorPage from "../common/ErrorPage";
+import SummaryParkingBar from "./bar/SummaryParkingBar";
 
 @inject('searchStore')
 @observer
@@ -17,6 +18,7 @@ class SummaryContainer extends Component {
             <React.Fragment>
                 <Conditional if={searchStore.isSearchRoute}>
                     <SummaryInfoBar history={history}/>
+                    <SummaryParkingBar/>
                     <SummaryRouteTable history={history}/>
                 </Conditional>
                 <Conditional if={!searchStore.isSearchRoute}>

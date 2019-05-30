@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { Typography, List } from 'antd';
-import { inject, observer } from 'mobx-react';
-import { Conditional } from '../../common/Conditional';
+import React, {Component} from 'react';
+import {Typography, List} from 'antd';
+import {inject, observer} from 'mobx-react';
 import SearchParkingRow from '../row/SearchParkingRow';
 
 @inject('searchStore', 'routeStore')
@@ -15,14 +14,15 @@ class SearchParkingTable extends Component {
                   bordered
                   dataSource={searchStore.parkingList}
                   renderItem={(item, idx) => (
-                      <SearchParkingRow item={item} onClick={() => this.handleSummary()}/>
+                      <SearchParkingRow item={item} onClick={() => this.handleSummary(item)}/>
                   )}
             />
         )
     }
 
-    handleSummary = () => {
+    handleSummary = (parking) => {
         const {searchStore, routeStore} = this.props;
+        searchStore.handleParking(parking);
         routeStore.route(searchStore.departure, searchStore.destination);
         this.props.history.push({pathname: '/summary'});
     };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { List } from 'antd';
+import { Card, List, Typography } from 'antd';
 
 function SearchParkingRow(props) {
     return (
@@ -8,7 +8,7 @@ function SearchParkingRow(props) {
               <List.Item.Meta
                 className="item_meta"
                 title={props.item.name}
-                description={props.item.road_address}
+                description={props.item.address}
               />
           </div>
       </List.Item>
