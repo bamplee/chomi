@@ -12,7 +12,7 @@ class SummaryRouteTable extends Component {
             <List
                 dataSource={routeStore.path}
                 renderItem={(item, idx) => (
-                    <List.Item key={idx} onClick={() => this.props.history.push({pathname: '/route'})}>
+                    <List.Item key={idx} onClick={() => this.handleRouteDetail(idx)}>
                         <div className="summary_route_table">
                             <div className="header">
                                 <span><Tag>경로 {idx + 1}</Tag></span>
@@ -60,6 +60,12 @@ class SummaryRouteTable extends Component {
             </List>
         )
     }
+
+    handleRouteDetail = (idx) => {
+        const {routeStore} = this.props;
+        routeStore.handleRouteIndex(idx);
+        this.props.history.push({pathname: '/route'});
+    };
 }
 
 export default SummaryRouteTable;

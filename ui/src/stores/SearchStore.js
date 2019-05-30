@@ -2,12 +2,17 @@ import {observable, action} from 'mobx';
 import {api} from '../api'
 import {asyncAction} from 'mobx-utils';
 
+const searchType = {
+    DEPARTURE: Object.freeze('departure'),
+    DESTINATION: Object.freeze('destination'),
+};
+
 class SearchStore {
     @observable departure = this.dummyStartPoint();
-    @observable destination = this.dummyEndPoint();
+    @observable destination = '';
     @observable departureList = [];
     @observable destinationList = [];
-    @observable lastSearchType = 'destination';
+    @observable lastSearchType = searchType.DESTINATION;
 
     @action handleDeparture = (departure) => {
         this.departure = departure;
@@ -26,30 +31,34 @@ class SearchStore {
     @asyncAction
     async* refreshDepartureSearch() {
         let query = this.departure.name;
-        this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
-        this.lastSearchType = 'departure';
+        if (this.departure && query.length > 0) {
+            this.lastSearchType = searchType.DEPARTURE;
+            this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
+        }
     };
 
     @asyncAction
     async* departureSearch(query) {
         if (query.length > 0) {
+            this.lastSearchType = searchType.DEPARTURE;
             this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
-            this.lastSearchType = 'departure';
         }
     };
 
     @asyncAction
     async* refreshDestinationSearch() {
         let query = this.destination.name;
-        this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
-        this.lastSearchType = 'destination';
+        if (this.destination && query.length > 0) {
+            this.lastSearchType = searchType.DESTINATION;
+            this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
+        }
     };
 
     @asyncAction
     async* destinationSearch(query) {
         if (query.length > 0) {
+            this.lastSearchType = searchType.DESTINATION;
             this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
-            this.lastSearchType = 'destination';
         }
     };
 
@@ -63,19 +72,6 @@ class SearchStore {
             sessionId: 'dezD72oBOAUY6uUlM0gM',
             x: '127.1054328',
             y: '37.3595963',
-        };
-    };
-
-    dummyEndPoint = () => {
-        return {
-            distance: 12117.830189421165,
-            jibun_address: '서울특별시 강남구 수서동 214-3',
-            name: '수서역 수서평택고속선',
-            phone_number: '1800-1472',
-            road_address: '서울특별시 강남구 밤고개로 99 수서역사',
-            sessionId: '0E_D72oBe9kwkY1_OQRw',
-            x: '127.1043773',
-            y: '37.4855438'
         };
     };
 }

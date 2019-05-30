@@ -17,18 +17,21 @@ class RouteStore {
         this.loadLane();
     };
 
+    @action handleRouteIndex = (index) => {
+        this.routeIndex = index;
+        this.loadLane();
+    };
+
     @asyncAction
     async* route(departure, destination) {
-        let routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data.result);
-        this.routeList = routeList;
+        this.routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data.result);
         this.loadLane();
     };
 
     @asyncAction
     async* loadLane() {
         let info = this.routeList.path[this.routeIndex].info;
-        let graph = yield api.graph(info.mapObj).then(res => res.data.result);
-        this.graph = graph;
+        this.graph = yield api.graph(info.mapObj).then(res => res.data.result);
     };
 
     @computed
