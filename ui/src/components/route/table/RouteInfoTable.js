@@ -18,10 +18,8 @@ class RouteInfoTable extends Component {
                           {this.pagination(routeStore.routeIndex, routeStore.routeList)}
                       </Typography.Text>,
                       <Icon type="right" onClick={routeStore.increaseRouteIndex}/>]} bordered={true}>
-                <div className="route_result_scroll">
-                    <RouteSummaryRow/>
-                    <RouteDetailRow/>
-                </div>
+                <RouteSummaryRow/>
+                <RouteDetailRow/>
             </Card>
         )
     }

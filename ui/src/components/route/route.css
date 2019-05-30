@@ -17,11 +17,6 @@
     margin: 5px !important;
 }
 
-.route_result_scroll {
-    overflow: scroll;
-    height: 220px;
-}
-
 .route_result_title {
     display: flex;
     justify-content: flex-start;

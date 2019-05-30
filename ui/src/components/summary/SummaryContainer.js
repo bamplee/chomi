@@ -5,13 +5,14 @@ import SummaryDestinationBar from './bar/SummaryDestinationBar';
 
 import './summary.css';
 import SummaryCollapseTable from "./table/SummaryCollapseTable";
+import SummaryRouteTable from './table/SummaryRouteTable';
 
 function SummaryContainer(props) {
     return (
         <React.Fragment>
             <SummaryDepartureBar history={props.history}/>
             <SummaryDestinationBar history={props.history}/>
-            <SummaryCollapseTable history={props.history}/>
+            <SummaryRouteTable history={props.history}/>
         </React.Fragment>
     );
 }
