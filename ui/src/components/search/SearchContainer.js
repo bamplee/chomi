@@ -17,11 +17,11 @@ class SearchContainer extends Component {
         const {history} = this.props;
         return (
             <React.Fragment>
-                <Conditional if={searchStore.type === 'departure'}>
+                <Conditional if={searchStore.lastSearchType === 'departure'}>
                     <SearchDepartureBar history={history}/>
                     <SearchDepartureTable history={history}/>
                 </Conditional>
-                <Conditional if={searchStore.type === '' || searchStore.type === 'destination'}>
+                <Conditional if={searchStore.lastSearchType === 'destination'}>
                     <SearchDestinationBar history={history}/>
                     <SearchDestinationTable history={history}/>
                 </Conditional>

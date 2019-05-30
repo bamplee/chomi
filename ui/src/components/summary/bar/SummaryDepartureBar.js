@@ -28,8 +28,7 @@ class SummaryDepartureBar extends Component {
 
     handleDepartureInput = () => {
         const {searchStore} = this.props;
-        searchStore.handleType('departure');
-        searchStore.departureSearch(searchStore.departure.name);
+        searchStore.refreshDepartureSearch();
         this.props.history.push({pathname: '/search'});
     };
 }

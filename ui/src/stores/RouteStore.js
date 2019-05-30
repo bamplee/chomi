@@ -9,22 +9,25 @@ class RouteStore {
 
     @action decreaseRouteIndex = () => {
         this.routeIndex = this.routeIndex > 0 ? this.routeIndex - 1 : this.routeIndex;
+        this.loadLane();
     };
 
     @action increaseRouteIndex = () => {
         this.routeIndex = this.routeIndex + 1 < this.routeList.path.length ? this.routeIndex + 1 : this.routeIndex;
+        this.loadLane();
     };
 
     @asyncAction
     async* route(departure, destination) {
         let routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data.result);
-        console.log(routeList);
         this.routeList = routeList;
+        this.loadLane();
     };
 
     @asyncAction
-    async* loadLane(mapObj) {
-        let graph = yield api.graph(mapObj).then(res => res.data.result);
+    async* loadLane() {
+        let info = this.routeList.path[this.routeIndex].info;
+        let graph = yield api.graph(info.mapObj).then(res => res.data.result);
         this.graph = graph;
     };
 

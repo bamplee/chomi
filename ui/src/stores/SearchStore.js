@@ -7,11 +7,7 @@ class SearchStore {
     @observable destination = this.dummyEndPoint();
     @observable departureList = [];
     @observable destinationList = [];
-    @observable type = '';
-
-    @action handleType = (type) => {
-        this.type = type;
-    };
+    @observable lastSearchType = 'destination';
 
     @action handleDeparture = (departure) => {
         this.departure = departure;
@@ -28,17 +24,33 @@ class SearchStore {
     };
 
     @asyncAction
-    async* departureSearch(query) {
-        if (query.length === 0)
-            return;
+    async* refreshDepartureSearch() {
+        let query = this.departure.name;
         this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
+        this.lastSearchType = 'departure';
+    };
+
+    @asyncAction
+    async* departureSearch(query) {
+        if (query.length > 0) {
+            this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
+            this.lastSearchType = 'departure';
+        }
+    };
+
+    @asyncAction
+    async* refreshDestinationSearch() {
+        let query = this.destination.name;
+        this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
+        this.lastSearchType = 'destination';
     };
 
     @asyncAction
     async* destinationSearch(query) {
-        if (query.length === 0)
-            return;
-        this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
+        if (query.length > 0) {
+            this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
+            this.lastSearchType = 'destination';
+        }
     };
 
     dummyStartPoint = () => {

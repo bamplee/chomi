@@ -27,8 +27,7 @@ class SummaryDestinationBar extends Component {
 
     handleDestinationInput = () => {
         const {searchStore} = this.props;
-        searchStore.handleType('destination');
-        searchStore.destinationSearch(searchStore.destination.name);
+        searchStore.refreshDestinationSearch();
         this.props.history.push({pathname: '/search'})
     };
 }
