@@ -35,7 +35,7 @@ class RouteStore {
 
     @computed
     get path() {
-        return this.routeList.path;
+        return this.routeList.path ? this.routeList.path : [];
     };
 
     @computed
