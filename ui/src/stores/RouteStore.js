@@ -40,12 +40,12 @@ class RouteStore {
 
     @computed
     get info() {
-        return this.routeList.path[this.routeIndex].info;
+        return this.routeList.path ? this.routeList.path[this.routeIndex].info : {};
     };
 
     @computed
     get subPath() {
-        return this.routeList.path[this.routeIndex].subPath;
+        return this.routeList.path ? this.routeList.path[this.routeIndex].subPath : [];
     };
 }
 

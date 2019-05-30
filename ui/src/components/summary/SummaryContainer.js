@@ -1,16 +1,30 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {inject, observer} from 'mobx-react';
 
-import './summary.css';
 import SummaryRouteTable from './table/SummaryRouteTable';
 import SummaryInfoBar from './bar/SummaryInfoBar';
 
-function SummaryContainer(props) {
-    return (
-        <React.Fragment>
-            <SummaryInfoBar history={props.history}/>
-            <SummaryRouteTable history={props.history}/>
-        </React.Fragment>
-    );
+import './summary.css';
+import {Conditional} from "../common/Conditional";
+import ErrorPage from "../common/ErrorPage";
+
+@inject('searchStore')
+@observer
+class SummaryContainer extends Component {
+    render() {
+        const {history, searchStore} = this.props;
+        return (
+            <React.Fragment>
+                <Conditional if={searchStore.isSearchRoute}>
+                    <SummaryInfoBar history={history}/>
+                    <SummaryRouteTable history={history}/>
+                </Conditional>
+                <Conditional if={!searchStore.isSearchRoute}>
+                    <ErrorPage/>
+                </Conditional>
+            </React.Fragment>
+        );
+    }
 }
 
 export default SummaryContainer;

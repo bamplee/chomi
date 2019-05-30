@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card, Icon, Typography } from 'antd';
+import {Card, Icon, Typography} from 'antd';
 import {inject, observer} from 'mobx-react';
 
 import RouteInfoDescriptionRow from '../row/RouteInfoDescriptionRow';
