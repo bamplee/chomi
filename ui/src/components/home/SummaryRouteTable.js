@@ -12,7 +12,7 @@ class SummaryRouteTable extends Component {
           <List
             dataSource={routeStore.path}
             renderItem={(item, idx) => (
-              <List.Item onClick={() => this.props.history.push({pathname: '/route'})}>
+              <List.Item key={idx} onClick={() => this.props.history.push({pathname: '/route'})}>
                   <div className="summary_route_table">
                       <div className="header">
                           <span><Tag>경로 {idx + 1}</Tag></span>
