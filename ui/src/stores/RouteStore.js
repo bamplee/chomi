@@ -23,12 +23,12 @@ class RouteStore {
     };
 
     @asyncAction
-    async* route(departure, destination) {
+    async * route(departure, destination) {
         this.routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data.result);
     };
 
     @asyncAction
-    async* loadLane() {
+    async * loadLane() {
         let info = this.routeList.path[this.routeIndex].info;
         this.graph = yield api.graph(info.mapObj).then(res => res.data.result);
     };

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Tag, Typography } from 'antd';
+import {Tag, Typography} from 'antd';
 import {inject, observer} from 'mobx-react';
 
 @inject('routeStore')

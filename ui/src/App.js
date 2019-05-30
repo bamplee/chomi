@@ -12,11 +12,11 @@ class App extends Component {
         return (
             <React.Fragment>
                 <Route exact path="/" component={(props) => <SearchContainer location={props.location}
-                                                                              history={props.history}/>}/>
+                                                                             history={props.history}/>}/>
                 <Route exact path="/summary" component={(props) => <SummaryContainer location={props.location}
-                                                                              history={props.history}/>}/>
+                                                                                     history={props.history}/>}/>
                 <Route exact path="/search" component={(props) => <PlaceContainer location={props.location}
-                                                                                   history={props.history}/>}/>
+                                                                                  history={props.history}/>}/>
                 <Route exact path="/route" component={(props) => <RouteContainer location={props.location}
                                                                                  history={props.history}/>}/>
             </React.Fragment>

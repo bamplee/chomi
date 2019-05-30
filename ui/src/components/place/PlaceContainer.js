@@ -9,12 +9,12 @@ import './place.css';
 
 function PlaceContainer(props) {
     return (
-      <React.Fragment>
-          <PlaceDepartureBar history={props.history}/>
-          <PlaceDepartureTable history={props.history}/>
-          <PlaceDestinationBar history={props.history}/>
-          <PlaceDestinationTable history={props.history}/>
-      </React.Fragment>
+        <React.Fragment>
+            <PlaceDepartureBar history={props.history}/>
+            <PlaceDepartureTable history={props.history}/>
+            <PlaceDestinationBar history={props.history}/>
+            <PlaceDestinationTable history={props.history}/>
+        </React.Fragment>
     );
 }
 

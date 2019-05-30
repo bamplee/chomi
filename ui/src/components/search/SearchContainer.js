@@ -8,11 +8,11 @@ import './search.css';
 
 function SearchContainer(props) {
     return (
-      <React.Fragment>
-          <SearchDepartureBar history={props.history}/>
-          <SearchDestinationBar history={props.history}/>
-          <SearchParkingTable history={props.history}/>
-      </React.Fragment>
+        <React.Fragment>
+            <SearchDepartureBar history={props.history}/>
+            <SearchDestinationBar history={props.history}/>
+            <SearchParkingTable history={props.history}/>
+        </React.Fragment>
     );
 }
 
