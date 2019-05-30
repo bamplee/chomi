@@ -11,7 +11,7 @@ function RouteContainer(props) {
         <React.Fragment>
             <RouteInfoBar history={props.history}/>
             <RouteMapTable/>
-            <RouteInfoTable/>
+            <RouteInfoTable history={props.history}/>
         </React.Fragment>
     );
 }

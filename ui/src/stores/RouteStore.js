@@ -25,7 +25,6 @@ class RouteStore {
     @asyncAction
     async* route(departure, destination) {
         this.routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data.result);
-        this.loadLane();
     };
 
     @asyncAction

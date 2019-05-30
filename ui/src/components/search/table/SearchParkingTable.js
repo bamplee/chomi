@@ -25,7 +25,6 @@ class SearchParkingTable extends Component {
 
     handleSummary = () => {
         const {searchStore, routeStore} = this.props;
-        window.scrollTo(0, 0);
         routeStore.route(searchStore.departure, searchStore.destination);
         this.props.history.push({pathname: '/summary'});
     };

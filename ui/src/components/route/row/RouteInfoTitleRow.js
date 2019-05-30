@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
-import {Typography} from 'antd';
+import { Tag, Typography } from 'antd';
 import {inject, observer} from 'mobx-react';
 
 @inject('routeStore')
 @observer
-class RouteSummaryRow extends Component {
+class RouteInfoTitleRow extends Component {
     render() {
         const {routeStore} = this.props;
         return (
             <div className="route_result_title">
+                <div className="row">
+                    <Tag>경로 {routeStore.routeIndex + 1}</Tag>
+                </div>
                 <div className="row">
                     <Typography.Text type="danger">
                         {(routeStore.info.totalDistance / 1000)}
@@ -41,4 +44,4 @@ class RouteSummaryRow extends Component {
     }
 }
 
-export default RouteSummaryRow;
+export default RouteInfoTitleRow;

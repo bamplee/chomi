@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Card, Icon, Typography} from 'antd';
+import { Card, Icon, Typography } from 'antd';
 import {inject, observer} from 'mobx-react';
 
-import RouteDetailRow from '../row/RouteDetailRow';
-import RouteSummaryRow from '../row/RouteSummaryRow';
+import RouteInfoDescriptionRow from '../row/RouteInfoDescriptionRow';
+import RouteInfoTitleRow from '../row/RouteInfoTitleRow';
 
 @inject('routeStore')
 @observer
@@ -18,14 +18,22 @@ class RouteInfoTable extends Component {
                           {this.pagination(routeStore.routeIndex, routeStore.routeList)}
                       </Typography.Text>,
                       <Icon type="right" onClick={routeStore.increaseRouteIndex}/>]} bordered={true}>
-                <RouteSummaryRow/>
-                <RouteDetailRow/>
+                <RouteInfoTitleRow/>
+                <RouteInfoDescriptionRow/>
             </Card>
         )
     }
 
     pagination = (routeIndex, routeList) => {
         return (routeIndex * 1 + 1) + '/' + (routeList.subwayBusCount * 1 + routeList.busCount * 1 + routeList.subwayCount * 1);
+    };
+
+    decreaseRouteIndex = () => {
+        this.decreaseRouteIndex();
+    };
+
+    increaseRouteIndex = () => {
+        this.increaseRouteIndex();
     };
 }
 

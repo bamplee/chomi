@@ -29,7 +29,6 @@ class SummaryRouteTable extends Component {
     handleRouteDetail = (idx) => {
         const {routeStore} = this.props;
         routeStore.handleRouteIndex(idx);
-        window.scrollTo(0, 0);
         this.props.history.push({pathname: '/route'});
     };
 }

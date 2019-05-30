@@ -5,7 +5,7 @@ import {Conditional} from '../../common/Conditional';
 
 @inject('searchStore', 'routeStore')
 @observer
-class RouteDetailRow extends Component {
+class RouteInfoDescriptionRow extends Component {
     render() {
         const {searchStore, routeStore} = this.props;
         return (
@@ -72,4 +72,4 @@ class RouteDetailRow extends Component {
     };
 }
 
-export default RouteDetailRow;
+export default RouteInfoDescriptionRow;
