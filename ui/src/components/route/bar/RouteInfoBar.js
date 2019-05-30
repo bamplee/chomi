@@ -8,7 +8,7 @@ class RouteInfoBar extends Component {
     render() {
         const {searchStore} = this.props;
         return (
-            <div className="route_result_input">
+            <div className="route_info_bar">
                 <Button icon="arrow-left"
                         size="large"
                         type="default"

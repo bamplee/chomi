@@ -8,7 +8,7 @@ class SummaryInfoBar extends Component {
     render() {
         const {searchStore} = this.props;
         return (
-            <div className="route_result_input">
+            <div className="summary_info_bar">
                 <Button icon="arrow-left"
                         size="large"
                         type="default"
@@ -19,6 +19,12 @@ class SummaryInfoBar extends Component {
                     <Icon type="swap-right" className="icon"/>
                     <Typography.Text>{searchStore.destination.name}</Typography.Text>
                 </div>
+                <Button icon="ordered-list"
+                        size="large"
+                        type="default"
+                        className="right_button"
+                        onClick={() => {
+                        }}/>
             </div>
         )
     }
