@@ -31,16 +31,16 @@ class SearchStore {
     @asyncAction
     async* refreshDepartureSearch() {
         let query = this.departure.name;
+        this.lastSearchType = searchType.DEPARTURE;
         if (this.departure && query.length > 0) {
-            this.lastSearchType = searchType.DEPARTURE;
             this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
         }
     };
 
     @asyncAction
     async* departureSearch(query) {
+        this.lastSearchType = searchType.DEPARTURE;
         if (query.length > 0) {
-            this.lastSearchType = searchType.DEPARTURE;
             this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
         }
     };
@@ -48,16 +48,16 @@ class SearchStore {
     @asyncAction
     async* refreshDestinationSearch() {
         let query = this.destination.name;
+        this.lastSearchType = searchType.DESTINATION;
         if (this.destination && query.length > 0) {
-            this.lastSearchType = searchType.DESTINATION;
             this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
         }
     };
 
     @asyncAction
     async* destinationSearch(query) {
+        this.lastSearchType = searchType.DESTINATION;
         if (query.length > 0) {
-            this.lastSearchType = searchType.DESTINATION;
             this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
         }
     };
