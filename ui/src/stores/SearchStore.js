@@ -1,4 +1,4 @@
-import {observable, action} from 'mobx';
+import { observable, action, computed } from 'mobx';
 import {api} from '../api'
 import {asyncAction} from 'mobx-utils';
 
@@ -12,14 +12,17 @@ class SearchStore {
     @observable destination = '';
     @observable departureList = [];
     @observable destinationList = [];
+    @observable parkingList = [];
     @observable lastSearchType = searchType.DESTINATION;
 
     @action handleDeparture = (departure) => {
         this.departure = departure;
+        this.parkingList = this.dummyParkingList();
     };
 
     @action handleDestination = (destination) => {
         this.destination = destination;
+        this.parkingList = this.dummyParkingList();
     };
 
     @action swap = () => {
@@ -32,7 +35,7 @@ class SearchStore {
     async* refreshDepartureSearch() {
         let query = this.departure.name;
         this.lastSearchType = searchType.DEPARTURE;
-        if (this.departure && query.length > 0) {
+        if (this.departure) {
             this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
         }
     };
@@ -40,7 +43,7 @@ class SearchStore {
     @asyncAction
     async* departureSearch(query) {
         this.lastSearchType = searchType.DEPARTURE;
-        if (query.length > 0) {
+        if (query) {
             this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
         }
     };
@@ -49,7 +52,7 @@ class SearchStore {
     async* refreshDestinationSearch() {
         let query = this.destination.name;
         this.lastSearchType = searchType.DESTINATION;
-        if (this.destination && query.length > 0) {
+        if (this.destination && query) {
             this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
         }
     };
@@ -57,9 +60,14 @@ class SearchStore {
     @asyncAction
     async* destinationSearch(query) {
         this.lastSearchType = searchType.DESTINATION;
-        if (query.length > 0) {
+        if (query) {
             this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
         }
+    };
+
+    @computed
+    get isSearchRoute() {
+        return this.parkingList.length > 0;
     };
 
     dummyStartPoint = () => {
@@ -73,6 +81,17 @@ class SearchStore {
             x: '127.1054328',
             y: '37.3595963',
         };
+    };
+
+    dummyParkingList = () => {
+        return [
+            {name: '주차장1', road_address: '주소1'},
+            {name: '주차장2', road_address: '주소2'},
+            {name: '주차장3', road_address: '주소3'},
+            {name: '주차장4', road_address: '주소4'},
+            {name: '주차장5', road_address: '주소5'},
+            {name: '주차장6', road_address: '주소6'},
+        ];
     };
 }
 

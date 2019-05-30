@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {inject, observer} from 'mobx-react';
 import {Input, Button} from 'antd';
+import {inject, observer} from 'mobx-react';
 
 @inject('searchStore')
 @observer
@@ -9,27 +9,28 @@ class SearchDepartureBar extends Component {
         const {searchStore} = this.props;
         return (
             <div className="search_input">
-                <Button className="left_button"
-                        icon="arrow-left"
-                        size="large"
-                        type="default"
-                        onClick={() => this.props.history.push({pathname: '/'})}/>
                 <Input.Search
-                    ref={(input) => input && input.focus()}
                     size="large"
+                    addonBefore="출발"
                     placeholder="출발지 검색"
-                    defaultValue={searchStore.departure.name}
-                    onSearch={value => searchStore.departureSearch(value)}
+                    value={searchStore.departure.name}
+                    onClick={this.handleDepartureInput}
                 />
-                <Button className="right_button"
-                        icon="ordered-list"
+                <Button icon="more"
                         size="large"
                         type="default"
+                        className="icon_rotate_90 right_button"
                         onClick={() => {
                         }}/>
             </div>
         )
     }
+
+    handleDepartureInput = () => {
+        const {searchStore} = this.props;
+        searchStore.refreshDepartureSearch();
+        this.props.history.push({pathname: '/search'});
+    };
 }
 
 export default SearchDepartureBar;

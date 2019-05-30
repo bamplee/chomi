@@ -9,31 +9,26 @@ class SearchDestinationBar extends Component {
         const {searchStore} = this.props;
         return (
             <div className="search_input">
-                <Button className="left_button"
-                        icon="arrow-left"
-                        size="large"
-                        type="default"
-                        onClick={() => this.props.history.push({pathname: '/'})}/>
                 <Input.Search
-                    ref={(input) => input && input.focus()}
                     size="large"
+                    addonBefore="도착"
                     placeholder="목적지 검색"
-                    defaultValue={searchStore.destination.name}
-                    onSearch={value => searchStore.destinationSearch(value)}
+                    value={searchStore.destination.name}
+                    onClick={this.handleDestinationInput}
                 />
-                <Button className="right_button"
-                        icon="ordered-list"
+                <Button icon="swap"
                         size="large"
                         type="default"
-                        onClick={this.swap}/>
+                        className="icon_rotate_90 right_button"
+                        onClick={searchStore.swap}/>
             </div>
         )
     }
 
-    swap = () => {
-        const {searchStore, routeStore} = this.props;
-        searchStore.swap();
-        routeStore.route(searchStore.departure, searchStore.destination);
+    handleDestinationInput = () => {
+        const {searchStore} = this.props;
+        searchStore.refreshDestinationSearch();
+        this.props.history.push({pathname: '/search'})
     };
 }
 

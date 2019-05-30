@@ -1,10 +1,10 @@
 import React from 'react';
 import {List} from 'antd';
 
-function SearchTableRow(props) {
+function PlaceInfoRow(props) {
     return (
         <List.Item onClick={props.onClick}>
-            <div className="search_table_row">
+            <div className="place_table_row">
                 <List.Item.Meta
                     className="item_meta"
                     title={props.item.name}
@@ -15,4 +15,4 @@ function SearchTableRow(props) {
     )
 }
 
-export default SearchTableRow;
+export default PlaceInfoRow;

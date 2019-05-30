@@ -1,8 +1,8 @@
-.search_route_table {
-    margin: 5px !important;
-}
-
-.search_input {
+/*
+    SearchDepartureInput.js
+    SearchDestinationInput.js
+ */
+.place_input {
     display: flex;
     justify-content: space-between;
     padding-top: 5px;
@@ -10,12 +10,12 @@
     padding-right: 5px;
 }
 
-.search_input .left_button {
+.place_input .left_button {
     border: 1px solid transparent;
     margin-right: 5px;
 }
 
-.search_input .right_button {
+.place_input .right_button {
     border: 1px solid transparent;
     margin-left: 5px;
 }
@@ -26,3 +26,17 @@
     transform: rotate(90deg);
 }
 
+/*
+    table
+ */
+
+.place_table_row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.place_table_row .item_meta {
+    padding-left: 20px;
+    padding-right: 20px;
+}

@@ -4,7 +4,7 @@ import {inject, observer} from 'mobx-react';
 
 @inject('searchStore')
 @observer
-class RouteInfoBar extends Component {
+class SummaryInfoBar extends Component {
     render() {
         const {searchStore} = this.props;
         return (
@@ -13,7 +13,7 @@ class RouteInfoBar extends Component {
                         size="large"
                         type="default"
                         className="left_button"
-                        onClick={() => this.props.history.push({pathname: '/summary'})}/>
+                        onClick={() => this.props.history.push({pathname: '/'})}/>
                 <div className="text_div">
                     <Typography.Text>{searchStore.departure.name}</Typography.Text>
                     <Icon type="swap-right" className="icon"/>
@@ -24,4 +24,4 @@ class RouteInfoBar extends Component {
     }
 }
 
-export default RouteInfoBar;
+export default SummaryInfoBar;
