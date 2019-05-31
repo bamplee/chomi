@@ -1,3 +1,7 @@
+#root {
+    padding-bottom: 20px;
+}
+
 .ant-layout-header,
 .ant-layout-footer {
     background: #7dbcea;
