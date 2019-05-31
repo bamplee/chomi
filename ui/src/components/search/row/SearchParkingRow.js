@@ -1,16 +1,14 @@
 import React from 'react';
-import {List} from 'antd';
+import {Icon, List} from 'antd';
 
 function SearchParkingRow(props) {
     return (
-        <List.Item onClick={props.onClick}>
-            <div>
-                <List.Item.Meta
-                    className="item_meta"
-                    title={props.item.name}
-                    description={props.item.address}
-                />
-            </div>
+        <List.Item actions={[<Icon type="right" />]}
+                   onClick={props.onClick}>
+            <List.Item.Meta
+                title={props.item.name}
+                description={props.item.address}
+            />
         </List.Item>
     )
 }

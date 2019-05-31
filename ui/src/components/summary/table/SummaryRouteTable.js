@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Typography, List} from 'antd';
+import {Typography, List, Icon} from 'antd';
 import {inject, observer} from 'mobx-react';
-import SummaryRouteTitleRow from '../row/SummaryRouteTitleRow';
 import SummaryRouteDescriptionRow from '../row/SummaryRouteDescriptionRow';
 
 @inject('routeStore')
@@ -15,11 +14,8 @@ class SummaryRouteTable extends Component {
                   bordered
                   dataSource={routeStore.path}
                   renderItem={(item, idx) => (
-                      <List.Item key={idx} onClick={() => this.handleRouteDetail(idx)}>
-                          <div>
-                              <SummaryRouteTitleRow idx={idx} item={item}/>
-                              <SummaryRouteDescriptionRow item={item}/>
-                          </div>
+                      <List.Item actions={[<Icon type="right" />]} key={idx} onClick={() => this.handleRouteDetail(idx)}>
+                          <SummaryRouteDescriptionRow idx={idx} item={item}/>
                       </List.Item>
                   )}>
             </List>

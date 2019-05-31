@@ -26,17 +26,14 @@
     transform: rotate(90deg);
 }
 
+.place_info_row {
+    padding-left: 10px;
+}
+
 /*
     table
  */
-
-.place_table_row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.place_table_row .item_meta {
+.item_meta {
     padding-left: 20px;
     padding-right: 20px;
 }
