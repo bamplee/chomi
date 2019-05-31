@@ -22,7 +22,22 @@ public class SeoulOpenApiClientTest {
 
     @Test
     public void getParkInfo() {
-        GetParkInfoResponse result = seoulOpenApiClient.getParkInfo(key, "1", "1000");
+        int startIndex = 1;
+        int endIndex = 1000;
+        int pageSize = 1000;
+
+        GetParkInfoResponse result = seoulOpenApiClient.getParkInfo(key, String.valueOf(startIndex), String.valueOf(endIndex));
+        int totalSize = result.getParkInfo().getListTotalCount();
+        while(true) {
+            System.out.println(startIndex);
+            System.out.println(endIndex);
+            System.out.println(seoulOpenApiClient.getParkInfo(key, String.valueOf(startIndex), String.valueOf(endIndex)).getParkInfo().getRow().length);
+            System.out.println();
+            if(endIndex > totalSize) break;
+            startIndex += pageSize;
+            endIndex += pageSize;
+        }
+
         assertEquals(result.getParkInfo().getResult().getCode(), "INFO-000");
     }
 

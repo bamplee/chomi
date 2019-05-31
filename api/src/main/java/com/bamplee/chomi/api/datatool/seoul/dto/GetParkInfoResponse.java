@@ -187,9 +187,9 @@ public class GetParkInfoResponse {
             @JsonProperty("QUE_STATUS_NM")
             private String queStatusNm;
             @JsonProperty("CAPACITY")
-            private String capacity;
+            private Integer capacity;
             @JsonProperty("CUR_PARKING")
-            private String curParking;
+            private Integer curParking;
             @JsonProperty("CUR_PARKING_TIME")
             private String curParkingTime;
             @JsonProperty("PAY_YN")
@@ -227,27 +227,27 @@ public class GetParkInfoResponse {
             @JsonProperty("GRP_PARKNM")
             private String grpParkNm;
             @JsonProperty("RATES")
-            private String rates;
+            private Integer rates;
             @JsonProperty("TIME_RATE")
-            private String timeRate;
+            private Integer timeRate;
             @JsonProperty("ADD_RATES")
-            private String addRates;
+            private Integer addRates;
             @JsonProperty("ADD_TIME_RATE")
-            private String addTimeRate;
+            private Integer addTimeRate;
             @JsonProperty("BUS_RATES")
-            private String busRates;
+            private Integer busRates;
             @JsonProperty("BUS_TIME_RATE")
-            private String busTimeRate;
+            private Integer busTimeRate;
             @JsonProperty("BUS_ADD_TIME_RATE")
-            private String busAddTimeRate;
+            private Integer busAddTimeRate;
             @JsonProperty("BUS_ADD_RATES")
-            private String busAddRates;
+            private Integer busAddRates;
             @JsonProperty("DAY_MAXIMUM")
-            private String dayMaximum;
+            private Integer dayMaximum;
             @JsonProperty("LAT")
-            private String lat;
+            private Double lat;
             @JsonProperty("LNG")
-            private String lng;
+            private Double lng;
             @JsonProperty("ASSIGN_CODE")
             private String assignCode;
             @JsonProperty("ASSIGN_CODE_NM")
@@ -333,19 +333,19 @@ public class GetParkInfoResponse {
                 this.queStatusNm = queStatusNm;
             }
 
-            public String getCapacity() {
+            public Integer getCapacity() {
                 return capacity;
             }
 
-            public void setCapacity(String capacity) {
+            public void setCapacity(Integer capacity) {
                 this.capacity = capacity;
             }
 
-            public String getCurParking() {
+            public Integer getCurParking() {
                 return curParking;
             }
 
-            public void setCurParking(String curParking) {
+            public void setCurParking(Integer curParking) {
                 this.curParking = curParking;
             }
 
@@ -493,91 +493,91 @@ public class GetParkInfoResponse {
                 this.grpParkNm = grpParkNm;
             }
 
-            public String getRates() {
+            public Integer getRates() {
                 return rates;
             }
 
-            public void setRates(String rates) {
+            public void setRates(Integer rates) {
                 this.rates = rates;
             }
 
-            public String getTimeRate() {
+            public Integer getTimeRate() {
                 return timeRate;
             }
 
-            public void setTimeRate(String timeRate) {
+            public void setTimeRate(Integer timeRate) {
                 this.timeRate = timeRate;
             }
 
-            public String getAddRates() {
+            public Integer getAddRates() {
                 return addRates;
             }
 
-            public void setAddRates(String addRates) {
+            public void setAddRates(Integer addRates) {
                 this.addRates = addRates;
             }
 
-            public String getAddTimeRate() {
+            public Integer getAddTimeRate() {
                 return addTimeRate;
             }
 
-            public void setAddTimeRate(String addTimeRate) {
+            public void setAddTimeRate(Integer addTimeRate) {
                 this.addTimeRate = addTimeRate;
             }
 
-            public String getBusRates() {
+            public Integer getBusRates() {
                 return busRates;
             }
 
-            public void setBusRates(String busRates) {
+            public void setBusRates(Integer busRates) {
                 this.busRates = busRates;
             }
 
-            public String getBusTimeRate() {
+            public Integer getBusTimeRate() {
                 return busTimeRate;
             }
 
-            public void setBusTimeRate(String busTimeRate) {
+            public void setBusTimeRate(Integer busTimeRate) {
                 this.busTimeRate = busTimeRate;
             }
 
-            public String getBusAddTimeRate() {
+            public Integer getBusAddTimeRate() {
                 return busAddTimeRate;
             }
 
-            public void setBusAddTimeRate(String busAddTimeRate) {
+            public void setBusAddTimeRate(Integer busAddTimeRate) {
                 this.busAddTimeRate = busAddTimeRate;
             }
 
-            public String getBusAddRates() {
+            public Integer getBusAddRates() {
                 return busAddRates;
             }
 
-            public void setBusAddRates(String busAddRates) {
+            public void setBusAddRates(Integer busAddRates) {
                 this.busAddRates = busAddRates;
             }
 
-            public String getDayMaximum() {
+            public Integer getDayMaximum() {
                 return dayMaximum;
             }
 
-            public void setDayMaximum(String dayMaximum) {
+            public void setDayMaximum(Integer dayMaximum) {
                 this.dayMaximum = dayMaximum;
             }
 
-            public String getLat() {
+            public Double getLat() {
                 return lat;
             }
 
-            public void setLat(String lat) {
+            public void setLat(Double lat) {
                 this.lat = lat;
             }
 
-            public String getLng() {
+            public Double getLng() {
                 return lng;
             }
 
-            public void setLng(String lng) {
+            public void setLng(Double lng) {
                 this.lng = lng;
             }
 
