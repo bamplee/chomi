@@ -8,7 +8,7 @@ class SearchDepartureBar extends Component {
     render() {
         const {searchStore} = this.props;
         return (
-            <div className="search_input">
+            <div className="search_input top">
                 <Input.Search
                     size="large"
                     addonBefore="출발"

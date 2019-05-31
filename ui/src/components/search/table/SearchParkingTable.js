@@ -10,7 +10,7 @@ class SearchParkingTable extends Component {
         const {searchStore} = this.props;
         return (
             <List className="search_route_table"
-                  header={<Typography.Text strong>주차장</Typography.Text>}
+                  header={<Typography.Text>추천 경유 주차장</Typography.Text>}
                   bordered
                   dataSource={searchStore.parkingList}
                   renderItem={(item, idx) => (
@@ -24,6 +24,7 @@ class SearchParkingTable extends Component {
         const {searchStore, routeStore} = this.props;
         searchStore.handleParking(parking);
         routeStore.route(searchStore.departure, searchStore.destination);
+        window.scrollTo(0, 0);
         this.props.history.push({pathname: '/summary'});
     };
 }

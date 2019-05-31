@@ -3,9 +3,8 @@ import {Icon, List} from 'antd';
 
 function PlaceInfoRow(props) {
     return (
-        <List.Item actions={[<Icon type="right" />]} onClick={props.onClick}>
+        <List.Item className="place_info_row" onClick={props.onClick}>
             <List.Item.Meta
-                className="place_info_row"
                 title={props.item.name}
                 description={props.item.road_address}
             />

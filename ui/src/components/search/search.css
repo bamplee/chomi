@@ -3,11 +3,21 @@
 }
 
 .search_input {
+    background-color: #f5f5f5;
     display: flex;
     justify-content: space-between;
     padding-top: 5px;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.top {
+    padding-top: 6px;
+}
+
+.bottom {
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e8e8e8;
 }
 
 .search_input .left_button {
@@ -16,6 +26,7 @@
 }
 
 .search_input .right_button {
+    background-color: #f5f5f5;
     border: 1px solid transparent;
     margin-left: 5px;
 }

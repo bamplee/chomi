@@ -10,7 +10,7 @@ class SummaryRouteTable extends Component {
         const {routeStore} = this.props;
         return (
             <List className="summary_route_table"
-                  header={<Typography.Text strong>추천경로</Typography.Text>}
+                  header={<Typography.Text>추천 경유 대중교통 경로</Typography.Text>}
                   bordered
                   dataSource={routeStore.path}
                   renderItem={(item, idx) => (
@@ -25,6 +25,7 @@ class SummaryRouteTable extends Component {
     handleRouteDetail = (idx) => {
         const {routeStore} = this.props;
         routeStore.handleRouteIndex(idx);
+        window.scrollTo(0, 0);
         this.props.history.push({pathname: '/route'});
     };
 }

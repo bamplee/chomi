@@ -19,12 +19,12 @@ class SummaryInfoBar extends Component {
                     <Icon type="swap-right" className="icon"/>
                     <Typography.Text>{searchStore.destination.name}</Typography.Text>
                 </div>
-                <Button icon="ordered-list"
+                {/*<Button icon="ordered-list"
                         size="large"
                         type="default"
                         className="right_button"
                         onClick={() => {
-                        }}/>
+                        }}/>*/}
             </div>
         )
     }

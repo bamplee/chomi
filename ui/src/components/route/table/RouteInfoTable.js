@@ -13,11 +13,11 @@ class RouteInfoTable extends Component {
         return (
             <Card className="route_result_card"
                   actions={[
-                      <Icon type="left" onClick={routeStore.decreaseRouteIndex}/>,
+                      <Icon type="left" onClick={this.decreaseRouteIndex}/>,
                       <Typography.Text>
                           {this.pagination(routeStore.routeIndex, routeStore.routeList)}
                       </Typography.Text>,
-                      <Icon type="right" onClick={routeStore.increaseRouteIndex}/>]} bordered={true}>
+                      <Icon type="right" onClick={this.increaseRouteIndex}/>]} bordered={true}>
                 <RouteInfoTitleRow/>
                 <RouteInfoDescriptionRow/>
             </Card>
@@ -29,11 +29,15 @@ class RouteInfoTable extends Component {
     };
 
     decreaseRouteIndex = () => {
-        this.decreaseRouteIndex();
+        const {routeStore} = this.props;
+        window.scrollTo(0, 0);
+        routeStore.decreaseRouteIndex();
     };
 
     increaseRouteIndex = () => {
-        this.increaseRouteIndex();
+        const {routeStore} = this.props;
+        window.scrollTo(0, 0);
+        routeStore.increaseRouteIndex();
     };
 }
 

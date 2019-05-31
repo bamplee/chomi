@@ -8,7 +8,7 @@ class SearchDestinationBar extends Component {
     render() {
         const {searchStore} = this.props;
         return (
-            <div className="search_input">
+            <div className="search_input bottom">
                 <Input.Search
                     size="large"
                     addonBefore="도착"
