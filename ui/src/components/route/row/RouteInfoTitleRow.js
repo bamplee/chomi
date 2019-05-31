@@ -13,14 +13,6 @@ class RouteInfoTitleRow extends Component {
                     <Tag>경로 {routeStore.routeIndex + 1}</Tag>
                 </div>
                 <div className="row">
-                    <Typography.Text type="danger">
-                        {(routeStore.info.totalDistance / 1000)}
-                    </Typography.Text>
-                    <Typography.Text>
-                        km
-                    </Typography.Text>
-                </div>
-                <div className="row">
                     <Typography.Text>
                         약
                     </Typography.Text>
@@ -31,12 +23,20 @@ class RouteInfoTitleRow extends Component {
                         분
                     </Typography.Text>
                 </div>
-                <div>
+                <div className="row">
                     <Typography.Text type="danger">
                         {routeStore.info.payment}
                     </Typography.Text>
                     <Typography.Text>
                         원
+                    </Typography.Text>
+                </div>
+                <div>
+                    <Typography.Text type="danger">
+                        {(routeStore.info.totalDistance / 1000)}
+                    </Typography.Text>
+                    <Typography.Text>
+                        km
                     </Typography.Text>
                 </div>
             </div>
