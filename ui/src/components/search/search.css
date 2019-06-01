@@ -45,3 +45,25 @@
     -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
     transform: rotate(90deg);
 }
+
+.search_parking_row_description {
+    display: flex;
+    flex-direction: column;
+}
+
+.search_parking_row_description .price {
+    margin-top: 10px;
+    display: flex;
+}
+
+.search_parking_row_description .holiday {
+    display: flex;
+}
+
+.search_parking_row_description .price div:first-child {
+    margin-right: 4px;
+}
+
+.search_parking_row_description .holiday div:first-child{
+    margin-right: 4px;
+}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, List} from 'antd';
+import {Card, List, Typography} from 'antd';
 import {inject, observer} from 'mobx-react';
 
 @inject('searchStore')
@@ -18,15 +18,38 @@ class SummaryParkingBar extends Component {
                 <List.Item.Meta
                     title={searchStore.parking.PARKING_NAME}
                     description={
-                        <div>
-                            <div>
-                                {searchStore.parking.ADDR}
+                        <div className="summary_parking_bar_description">
+                            <Typography.Text type="secondary">{searchStore.parking.ADDR}</Typography.Text>
+                            <div className="price">
+                                <div>
+                                    <Typography.Text>시간당 </Typography.Text>
+                                    <Typography.Text type="danger">
+                                        {searchStore.parking.ADD_RATES * (60 / searchStore.parking.ADD_TIME_RATE)}
+                                    </Typography.Text>
+                                    <Typography.Text>원,</Typography.Text>
+                                </div>
+                                <div>
+                                    <Typography.Text>
+                                        {searchStore.parking.ADD_TIME_RATE}
+                                    </Typography.Text>
+                                    <Typography.Text>분당 </Typography.Text>
+                                    <Typography.Text type="danger">
+                                        {searchStore.parking.ADD_RATES}
+                                    </Typography.Text>
+                                    <Typography.Text>
+                                        원
+                                    </Typography.Text>
+                                </div>
                             </div>
-                            <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: 8}}>
-                                {searchStore.parking.ADD_RATES}원/{searchStore.parking.ADD_TIME_RATE}분
-                            </div>
-                            <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                                주말 {searchStore.parking.SATURDAY_PAY_NM}, 공휴일 {searchStore.parking.HOLIDAY_PAY_NM}
+                            <div className="holiday">
+                                <div>
+                                    <Typography.Text>주말 </Typography.Text>
+                                    <Typography.Text>{searchStore.parking.SATURDAY_PAY_NM},</Typography.Text>
+                                </div>
+                                <div>
+                                    <Typography.Text>공휴일 </Typography.Text>
+                                    <Typography.Text>{searchStore.parking.HOLIDAY_PAY_NM}</Typography.Text>
+                                </div>
                             </div>
                         </div>}
                 />

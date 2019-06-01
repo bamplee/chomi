@@ -70,10 +70,7 @@
 }
 
 .summary_parking_bar {
-    margin-top: 10px;
-    margin-right: 5px;
-    margin-left: 5px;
-    margin-bottom: 5px;
+    margin: 10px 5px 5px;
 }
 
 .summary_parking_bar .image {
@@ -81,4 +78,26 @@
     justify-content: center;
     margin-bottom: 10px;
     width: 100%;
+}
+
+.summary_parking_bar_description {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary_parking_bar_description .price {
+    margin-top: 10px;
+    display: flex;
+}
+
+.summary_parking_bar_description .holiday {
+    display: flex;
+}
+
+.summary_parking_bar_description .price div:first-child {
+    margin-right: 4px;
+}
+
+.summary_parking_bar_description .holiday div:first-child{
+    margin-right: 4px;
 }
