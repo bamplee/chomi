@@ -12,7 +12,7 @@ class SummaryRouteTable extends Component {
             <Card className="summary_parking_bar" size="small"
                   title="추천 대중교통 경유 경로">
                 <Tabs type="card">
-                    <Tabs.TabPane tab={`버스+지하철 (${routeStore.path.length})`} key="1">
+                    <Tabs.TabPane tab={`추천 (${routeStore.path.length})`} key="1">
                         <List dataSource={routeStore.path}
                               renderItem={(item, idx) => (
                                   <List.Item actions={[<Icon type="right"/>]} key={idx}
