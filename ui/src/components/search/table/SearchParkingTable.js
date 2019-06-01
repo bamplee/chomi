@@ -10,7 +10,7 @@ class SearchParkingTable extends Component {
         const {searchStore} = this.props;
         return (
             <List className="search_route_table"
-                  header={<Typography.Text>추천 경유 주차장</Typography.Text>}
+                  header={<Typography.Text style={{color : 'black'}}>추천 경유 주차장</Typography.Text>}
                   bordered
                   dataSource={searchStore.parkingList}
                   renderItem={(item, idx) => (

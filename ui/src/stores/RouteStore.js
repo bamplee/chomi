@@ -25,7 +25,6 @@ class RouteStore {
     @asyncAction
     async * route(departure, destination) {
         let routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data.result);
-        console.log(routeList);
         this.routeList = routeList;
     };
 
@@ -37,7 +36,6 @@ class RouteStore {
 
     @computed
     get path() {
-        console.log(this.routeList.path);
         return this.routeList.path ? this.routeList.path : [];
     };
 

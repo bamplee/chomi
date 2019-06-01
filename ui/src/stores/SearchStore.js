@@ -72,7 +72,6 @@ class SearchStore {
 
     @computed
     get isSearchRoute() {
-        console.log(this.parkingList);
         return this.parkingList.length > 0;
     };
 

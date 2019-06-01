@@ -12,6 +12,14 @@
     margin-bottom: 6px;
 }
 
+.summary_route_title_row {
+    display: flex;
+}
+
+.summary_route_title_row div {
+    margin-right: 6px;
+}
+
 .summary_route_table .header .content {
     margin-right: 10px;
 }
@@ -32,8 +40,8 @@
     margin-right: 6px;
 }
 
-.summary_route_table .label {
-    width: 50px;
+.summary_parking_bar .description .label {
+    min-width: 50px;
     text-align: center;
 }
 
