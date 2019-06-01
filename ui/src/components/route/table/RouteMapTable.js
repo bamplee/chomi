@@ -56,20 +56,11 @@ class RouteMap extends Component {
                     key={idx}
                     path={x.section[0].graphPos.map(y => ({lat: y.y, lng: y.x}))}
                     // clickable // 사용자 인터랙션을 받기 위해 clickable을 true로 설정합니다.
-                    strokeColor={this.getRandomColor()}
+                    strokeColor="#1883FB"
                     strokeWeight={5}
                 />)
         })
     };
-
-    getRandomColor = () => {
-        var letters = '0123456789ABCDEF';
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
 }
 
 export default (RouteMap);
