@@ -24,7 +24,9 @@ class RouteStore {
 
     @asyncAction
     async * route(departure, destination) {
-        this.routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data.result);
+        let routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data.result);
+        console.log(routeList);
+        this.routeList = routeList;
     };
 
     @asyncAction
@@ -35,7 +37,18 @@ class RouteStore {
 
     @computed
     get path() {
+        console.log(this.routeList.path);
         return this.routeList.path ? this.routeList.path : [];
+    };
+
+    @computed
+    get busPath() {
+        return this.routeList.path ? this.routeList.path.filter(x => x.info.subwayStationCount === 0) : [];
+    };
+
+    @computed
+    get subwayPath() {
+        return this.routeList.path ? this.routeList.path.filter(x => x.info.busStationCount === 0) : [];
     };
 
     @computed

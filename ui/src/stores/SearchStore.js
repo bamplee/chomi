@@ -37,7 +37,7 @@ class SearchStore {
     };
 
     @asyncAction
-    async * refreshDepartureSearch() {
+    async* refreshDepartureSearch() {
         let query = this.departure.name;
         this.lastSearchType = searchType.DEPARTURE;
         if (this.departure) {
@@ -46,7 +46,7 @@ class SearchStore {
     };
 
     @asyncAction
-    async * departureSearch(query) {
+    async* departureSearch(query) {
         this.lastSearchType = searchType.DEPARTURE;
         if (query) {
             this.departureList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
@@ -54,7 +54,7 @@ class SearchStore {
     };
 
     @asyncAction
-    async * refreshDestinationSearch() {
+    async* refreshDestinationSearch() {
         let query = this.destination.name;
         this.lastSearchType = searchType.DESTINATION;
         if (this.destination && query) {
@@ -63,7 +63,7 @@ class SearchStore {
     };
 
     @asyncAction
-    async * destinationSearch(query) {
+    async* destinationSearch(query) {
         this.lastSearchType = searchType.DESTINATION;
         if (query) {
             this.destinationList = yield api.search(query).then(res => res.data.places).then(placeList => placeList);
