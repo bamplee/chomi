@@ -76,6 +76,9 @@
     margin-bottom: 5px;
 }
 
-.summary_parking_bar .title {
-    padding-left: 12px;
+.summary_parking_bar .image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    width: 100%;
 }

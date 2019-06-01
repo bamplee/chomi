@@ -9,15 +9,15 @@ class SummaryParkingBar extends Component {
         const {searchStore} = this.props;
         return (
             <Card className="summary_parking_bar" size="small"
-                  title={<Typography.Text className="title">{searchStore.parking.PARKING_NAME}</Typography.Text>}>
-                <div style={{display: 'flex', justifyContent: 'center', marginBottom: 10, width: '100%'}}>
-                    <img height={150}
-                         alt="logo"
-                         src={'http://101.101.161.132/api/v1/maps/image?x=' + searchStore.parking.LNG + '&y=' + searchStore.parking.LAT}
-                    />
-                </div>
+                  title="경유할 주차장">
+                <img className="image"
+                     height={150}
+                     alt="logo"
+                     src={'http://101.101.161.132/api/v1/maps/image?x=' + searchStore.parking.LNG + '&y=' + searchStore.parking.LAT}
+                />
+                <Typography.Text>{searchStore.parking.PARKING_NAME}</Typography.Text>
                 <p>{searchStore.parking.address}</p>
-                <div style={{marginLeft: 12}}>
+                <div>
                     <div>
                         {searchStore.parking.ADDR}
                     </div>

@@ -5,12 +5,11 @@ function SearchParkingRow(props) {
     return (
         <List.Item actions={[<Icon type="right"/>]}
                    onClick={props.onClick}>
-            <div style={{display: 'flex', justifyContent: 'center', marginBottom: 10, width: '100%'}}>
-                <img height={150}
-                     alt="logo"
-                     src={'http://101.101.161.132/api/v1/maps/image?x=' + props.item.LNG + '&y=' + props.item.LAT}
-                />
-            </div>
+            <img  style={{display: 'flex', justifyContent: 'center', marginBottom: 10, width: '100%'}}
+                  height={150}
+                  alt="logo"
+                  src={'http://101.101.161.132/api/v1/maps/image?x=' + props.item.LNG + '&y=' + props.item.LAT}
+            />
             <List.Item.Meta
                 title={props.item.PARKING_NAME}
                 description={
