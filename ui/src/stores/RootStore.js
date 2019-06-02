@@ -56,7 +56,6 @@ class RootStore {
             return x;
         });
         this.routeList = routeList;
-        console.log(this.routeList);
         this.loadLane();
     };
 

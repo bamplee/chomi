@@ -10,7 +10,7 @@ class ListTable extends Component {
         const {rootStore} = this.props;
         return (
             <React.Fragment>
-                <Card className="list-table-card" actions={[<Typography.Text>전체목록</Typography.Text>, <Typography.Text>상세보기</Typography.Text>]}
+                <Card className="list-table-card" actions={[<Typography.Text>전체목록</Typography.Text>, <Typography.Text onClick={() => this.props.history.push({pathname: '/detail'})}>상세보기</Typography.Text>]}
                 >
                     <Skeleton loading={false} avatar active>
 {/*                        <Card.Meta

@@ -8,7 +8,6 @@ import DetailTableTitleRow from "./DetailTableTitleRow";
 @observer
 class DetailTable extends Component {
     render() {
-        const {rootStore} = this.props;
         return (
             <Card className="detail_result_card">
                 <DetailTableTitleRow/>
