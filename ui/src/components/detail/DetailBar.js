@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Icon, Input, Typography} from 'antd';
+import {Button, Icon, Typography} from 'antd';
 import {inject, observer} from 'mobx-react';
 
 @inject('rootStore')

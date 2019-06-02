@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
-import {Input, Button} from 'antd';
+import {Button, Input} from 'antd';
 
 @inject('rootStore')
 @observer

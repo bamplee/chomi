@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Avatar, Typography, Card, Icon, List, Skeleton} from 'antd';
+import {Card, List, Skeleton, Typography} from 'antd';
 import {inject, observer} from 'mobx-react';
 import ListTableRow from "./ListTableRow";
 

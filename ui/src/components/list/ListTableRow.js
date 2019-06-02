@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {inject, observer} from "mobx-react";
-import {Typography, List, Tag} from 'antd';
+import {List, Typography} from 'antd';
 import {Conditional} from "../common/Conditional";
 
 @inject('rootStore')

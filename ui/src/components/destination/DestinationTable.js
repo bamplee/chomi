@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {List} from 'antd';
 import {inject, observer} from 'mobx-react';
 import DestinationTableRow from "./DestinationTableRow";
-import * as Mobx from "mobx";
 
 @inject('rootStore')
 @observer

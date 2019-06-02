@@ -1,4 +1,4 @@
-import {observable, action, computed} from 'mobx';
+import {action, computed, observable} from 'mobx';
 import {api} from '../api'
 import {asyncAction} from 'mobx-utils';
 

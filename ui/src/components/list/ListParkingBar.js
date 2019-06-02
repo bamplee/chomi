@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Icon, List, Tag, Typography} from 'antd';
+import {Icon, List, Typography} from 'antd';
 import {inject, observer} from "mobx-react";
-import ListTableRow from "./ListTableRow";
 import {Conditional} from "../common/Conditional";
 
 @inject('rootStore')
