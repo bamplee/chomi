@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Card} from 'antd';
 import {inject, observer} from 'mobx-react';
 import DetailTableRow from "./DetailTableRow";
+import DetailTableTitleRow from "./DetailTableTitleRow";
+import {Card} from "antd";
 
 @inject('rootStore')
 @observer
@@ -9,6 +10,7 @@ class DetailTable extends Component {
     render() {
         return (
             <Card className="detail_result_card">
+                <DetailTableTitleRow/>
                 <DetailTableRow/>
             </Card>
         )

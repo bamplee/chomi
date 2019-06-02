@@ -11,8 +11,7 @@ function DetailContainer(props) {
     return (
         <React.Fragment>
             <DetailBar history={props.history}/>
-            <CommonMap/>
-            <DetailTableTitleRow/>
+            <CommonMap height={window.innerHeight - 347}/>
             <DetailTable history={props.history}/>
         </React.Fragment>
     );

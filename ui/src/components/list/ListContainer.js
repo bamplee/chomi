@@ -10,7 +10,7 @@ function ListContainer(props) {
     return (
         <React.Fragment>
             <ListBar history={props.history}/>
-            <CommonMap/>
+            <CommonMap height={window.innerHeight - 347}/>
             <ListTable history={props.history}/>
         </React.Fragment>
     );

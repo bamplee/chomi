@@ -19,7 +19,7 @@ class CommonMap extends Component {
                         mapDivId={'maps-getting-started-uncontrolled'} // default: react-naver-map
                         style={{
                             width: '100%',
-                            height: window.innerHeight - 347,
+                            height: this.props.height,
                         }}
                         center={this.getDistanceFromLatLonInKm(rootStore.departure.y, rootStore.departure.x, rootStore.destination.y, rootStore.destination.x)}
                         defaultZoom={5}

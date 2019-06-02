@@ -32,6 +32,14 @@
 
 }
 
+.detail_result_card .ant-card-body {
+    padding: 0 !important;
+}
+
+.detail_result_card .ant-timeline {
+    padding: 25px;
+}
+
 .detail-table {
 }
 
