@@ -1,5 +1,18 @@
 #root {
-    padding-bottom: 35px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+
+.common-map {
+
+}
+
+.icon_rotate_90 {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
 }
 
 .ant-layout-header,

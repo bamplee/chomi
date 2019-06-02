@@ -1,0 +1,102 @@
+.list-input {
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    padding: 5px;
+}
+
+.list-input .row {
+    display: flex;
+}
+
+.list-input .row .path {
+    display: flex;
+    align-items: center;
+}
+
+.list-input .row .path span {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.list-input .row:nth-child(n+2) {
+    margin-top: 5px;
+}
+
+.list-input .row button {
+    background-color: #f5f5f5;
+    border: 1px solid transparent;
+}
+
+.list-table-card {
+    position: fixed !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 100%;
+}
+
+.list-table-card .ant-card-body{
+    padding: 0 !important;
+    min-height: 203px;
+}
+
+.list-table {
+}
+
+.list-table .row {
+    display: flex;
+    padding-left: 25px;
+}
+
+.list-table .row span:first-child {
+    min-width: 30px;
+}
+
+.list-table .row .left {
+    flex: 1;
+}
+
+.list-table .row .left .title {
+    margin-top: -6px;
+    margin-bottom: -4px;
+}
+
+.list-table .row .left .title span:first-child {
+    font-size: 0.7rem;
+    margin-right: 5px;
+}
+
+.list-table .row .left .title span:nth-child(n+2) {
+    font-size: 0.1rem;
+    margin-right: 5px;
+}
+
+.list-table .row .left .time {
+    font-size: 1.5rem;
+}
+
+.list-table .row .left .summary {
+    font-size: 0.6rem;
+}
+
+.list-table .row .left .summary span {
+    margin-right: 5px;
+}
+
+.list-table .row .right {
+    font-size: 0.7rem;
+    margin-top: 3px;
+    padding-right: 20px;
+}
+
+.list-table .row .right .parking {
+    font-size: 0.8rem;
+}
+
+.list-table .row .right-row span:first-child {
+    margin-right: 6px;
+}
+
+.list-table .row .right-row span {
+    min-width: 30px;
+}
