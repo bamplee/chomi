@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Input} from 'antd';
+import {Button, Icon, Input} from 'antd';
 import {inject, observer} from 'mobx-react';
 
 @inject('rootStore')
@@ -14,7 +14,11 @@ class ListBar extends Component {
                             size="large"
                             type="default"
                             onClick={() => this.props.history.push('/')}/>
-                    <Input.Search
+                    <Input
+/*
+                        suffix={<Icon type="car" onClick={() => message.success('차량 출발 경로를 탐색합니다')}/>}
+*/
+                        suffix={<Icon type="car" onClick={() => alert('개발중')}/>}
                         size="large"
                         addonBefore="출발"
                         placeholder="출발지 검색"
@@ -23,13 +27,13 @@ class ListBar extends Component {
                     />
                 </div>
                 <div className="row">
-                    <Button className="icon_rotate_90"
+                    <Button onClick={rootStore.swap}
+                            className="icon_rotate_90"
                             style={{display: 'block'}}
                             icon="swap"
                             size="large"
-                            type="default"
-                            onClick={rootStore.swap}/>
-                    <Input.Search
+                            type="default"/>
+                    <Input
                         size="large"
                         addonBefore="도착"
                         placeholder="목적지 검색"

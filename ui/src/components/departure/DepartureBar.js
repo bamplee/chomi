@@ -15,6 +15,7 @@ class DepartureBar extends Component {
                             type="default"
                             onClick={() => this.props.history.goBack()}/>
                     <Input.Search
+                        allowClear
                         ref={(input) => input && input.focus()}
                         size="large"
                         placeholder="출발지 검색"

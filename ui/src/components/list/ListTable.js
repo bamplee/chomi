@@ -10,10 +10,11 @@ class ListTable extends Component {
         const {rootStore} = this.props;
         return (
             <React.Fragment>
-                <Card className="list-table-card" actions={[<Typography.Text>전체목록</Typography.Text>, <Typography.Text onClick={() => this.props.history.push({pathname: '/detail'})}>상세보기</Typography.Text>]}
+                <Card className="list-table-card" actions={[<Typography.Text onClick={() => alert('개발중')}>목록전체</Typography.Text>, <Typography.Text
+                    onClick={() => this.props.history.push({pathname: '/detail'})}>경로안내</Typography.Text>]}
                 >
                     <Skeleton loading={false} avatar active>
-{/*                        <Card.Meta
+                        {/*                        <Card.Meta
                             avatar={
                                 <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                             }
@@ -30,13 +31,13 @@ class ListTable extends Component {
                         />
                     </Skeleton>
                 </Card>
-{/*
+                {/*
                 <div style={{display: 'flex', justifyContent: 'center', padding: 5, borderTop: '1px solid #e8e8e8', borderBottom: '1px solid #e8e8e8', backgroundColor: '#f5f5f5'}}>
                     <Icon type="caret-up" />
                 </div>
 */}
 
-{/*
+                {/*
                 <div style={{display: 'flex', justifyContent: 'center', padding: 5, backgroundColor: '#f5f5f5'}}>
                     <Radio.Group buttonStyle="solid" defaultValue="a">
                         <Radio.Button value="a">추천</Radio.Button>

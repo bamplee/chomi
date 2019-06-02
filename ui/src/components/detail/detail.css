@@ -31,3 +31,64 @@
 .detail_result_card {
 
 }
+
+.detail-table {
+}
+
+.detail-table .row {
+    display: flex;
+    padding-left: 25px;
+}
+
+.detail-table .row span:first-child {
+    min-width: 30px;
+}
+
+.detail-table .row .left {
+    flex: 1;
+}
+
+.detail-table .row .left .title {
+    margin-top: -6px;
+    margin-bottom: -4px;
+}
+
+.detail-table .row .left .title span:first-child {
+    font-size: 0.7rem;
+    margin-right: 5px;
+}
+
+.detail-table .row .left .title span:nth-child(n+2) {
+    font-size: 0.1rem;
+    margin-right: 5px;
+}
+
+.detail-table .row .left .time {
+    font-size: 1.5rem;
+}
+
+.detail-table .row .left .summary {
+    font-size: 0.6rem;
+}
+
+.detail-table .row .left .summary span {
+    margin-right: 5px;
+}
+
+.detail-table .row .right {
+    font-size: 0.7rem;
+    margin-top: 3px;
+    padding-right: 20px;
+}
+
+.detail-table .row .right .parking {
+    font-size: 0.8rem;
+}
+
+.detail-table .row .right-row span:first-child {
+    margin-right: 6px;
+}
+
+.detail-table .row .right-row span {
+    min-width: 30px;
+}

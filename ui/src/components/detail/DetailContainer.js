@@ -5,12 +5,14 @@ import DetailBar from "./DetailBar";
 import './detail.css';
 import DetailTable from "./DetailTable";
 import CommonMap from "../common/CommonMap";
+import DetailTableTitleRow from "./DetailTableTitleRow";
 
 function DetailContainer(props) {
     return (
         <React.Fragment>
             <DetailBar history={props.history}/>
             <CommonMap/>
+            <DetailTableTitleRow/>
             <DetailTable history={props.history}/>
         </React.Fragment>
     );

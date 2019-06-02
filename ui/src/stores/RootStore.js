@@ -30,6 +30,7 @@ class RootStore {
         let temp = this.departure;
         this.departure = this.destination;
         this.destination = temp;
+        this.calculateRoute();
     };
 
     @asyncAction
