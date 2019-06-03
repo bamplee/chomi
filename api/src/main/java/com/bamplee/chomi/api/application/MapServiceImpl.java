@@ -1,6 +1,7 @@
 package com.bamplee.chomi.api.application;
 
 import com.bamplee.chomi.api.datatool.naver.NaverMapsClient;
+import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGcResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
 import com.bamplee.chomi.api.datatool.odsay.OdSayClient;
 import com.bamplee.chomi.api.datatool.odsay.dto.OdSayLoadLaneResponse;
@@ -36,6 +37,13 @@ public class MapServiceImpl implements MapService {
     @Override
     public OdSayLoadLaneResponse graph(String mapObject) {
         return odSayClient.loadLane(odsayKey, "0:0@" + mapObject, null, null);
+    }
+
+    @Cacheable(value = "gc")
+    @Override
+    public NaverMapsGcResponse gc(Double lng, Double lat) {
+        String coords = lng + "," + lat;
+        return naverMapsClient.gc(coords, null, null, null, "legalcode,admcode,addr,roadaddr", "json");
     }
 
     @Override

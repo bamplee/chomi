@@ -27,22 +27,22 @@ public class GetParkInfoResponse {
         }
         GetParkInfoResponse that = (GetParkInfoResponse) o;
         return new EqualsBuilder()
-            .append(parkInfo, that.parkInfo)
-            .isEquals();
+                .append(parkInfo, that.parkInfo)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-            .append(parkInfo)
-            .toHashCode();
+                .append(parkInfo)
+                .toHashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-            .append("parkInfo", parkInfo)
-            .toString();
+                .append("parkInfo", parkInfo)
+                .toString();
     }
 
     public static class ParkInfo {
@@ -87,28 +87,28 @@ public class GetParkInfoResponse {
             }
             ParkInfo parkInfo = (ParkInfo) o;
             return new EqualsBuilder()
-                .append(listTotalCount, parkInfo.listTotalCount)
-                .append(result, parkInfo.result)
-                .append(row, parkInfo.row)
-                .isEquals();
+                    .append(listTotalCount, parkInfo.listTotalCount)
+                    .append(result, parkInfo.result)
+                    .append(row, parkInfo.row)
+                    .isEquals();
         }
 
         @Override
         public int hashCode() {
             return new HashCodeBuilder(17, 37)
-                .append(listTotalCount)
-                .append(result)
-                .append(row)
-                .toHashCode();
+                    .append(listTotalCount)
+                    .append(result)
+                    .append(row)
+                    .toHashCode();
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                .append("listTotalCount", listTotalCount)
-                .append("result", result)
-                .append("row", row)
-                .toString();
+                    .append("listTotalCount", listTotalCount)
+                    .append("result", result)
+                    .append("row", row)
+                    .toString();
         }
 
         public static class Result {
@@ -143,25 +143,25 @@ public class GetParkInfoResponse {
                 }
                 Result result = (Result) o;
                 return new EqualsBuilder()
-                    .append(code, result.code)
-                    .append(message, result.message)
-                    .isEquals();
+                        .append(code, result.code)
+                        .append(message, result.message)
+                        .isEquals();
             }
 
             @Override
             public int hashCode() {
                 return new HashCodeBuilder(17, 37)
-                    .append(code)
-                    .append(message)
-                    .toHashCode();
+                        .append(code)
+                        .append(message)
+                        .toHashCode();
             }
 
             @Override
             public String toString() {
                 return new ToStringBuilder(this)
-                    .append("code", code)
-                    .append("message", message)
-                    .toString();
+                        .append("code", code)
+                        .append("message", message)
+                        .toString();
             }
         }
 
@@ -650,148 +650,148 @@ public class GetParkInfoResponse {
                 }
                 Row row = (Row) o;
                 return new EqualsBuilder()
-                    .append(parkingCode, row.parkingCode)
-                    .append(parkingName, row.parkingName)
-                    .append(addr, row.addr)
-                    .append(parkingType, row.parkingType)
-                    .append(parkingTypeNm, row.parkingTypeNm)
-                    .append(operationRule, row.operationRule)
-                    .append(operationRuleNm, row.operationRuleNm)
-                    .append(tel, row.tel)
-                    .append(queStatus, row.queStatus)
-                    .append(queStatusNm, row.queStatusNm)
-                    .append(capacity, row.capacity)
-                    .append(curParking, row.curParking)
-                    .append(curParkingTime, row.curParkingTime)
-                    .append(payYn, row.payYn)
-                    .append(payNm, row.payNm)
-                    .append(nightFreeOpen, row.nightFreeOpen)
-                    .append(nightFreeOpenNm, row.nightFreeOpenNm)
-                    .append(weekdayBeginTime, row.weekdayBeginTime)
-                    .append(weekdayEndTime, row.weekdayEndTime)
-                    .append(weekendBeginTime, row.weekendBeginTime)
-                    .append(weekendEndTime, row.weekendEndTime)
-                    .append(holidayBeginTime, row.holidayBeginTime)
-                    .append(holidayEndTime, row.holidayEndTime)
-                    .append(syncTime, row.syncTime)
-                    .append(saturdayPayYn, row.saturdayPayYn)
-                    .append(saturdayPayNm, row.saturdayPayNm)
-                    .append(holidayPayYn, row.holidayPayYn)
-                    .append(holidayPayNm, row.holidayPayNm)
-                    .append(fullTimeMonthly, row.fullTimeMonthly)
-                    .append(grpParkNm, row.grpParkNm)
-                    .append(rates, row.rates)
-                    .append(timeRate, row.timeRate)
-                    .append(addRates, row.addRates)
-                    .append(addTimeRate, row.addTimeRate)
-                    .append(busRates, row.busRates)
-                    .append(busTimeRate, row.busTimeRate)
-                    .append(busAddTimeRate, row.busAddTimeRate)
-                    .append(busAddRates, row.busAddRates)
-                    .append(dayMaximum, row.dayMaximum)
-                    .append(lat, row.lat)
-                    .append(lng, row.lng)
-                    .append(assignCode, row.assignCode)
-                    .append(assignCodeNm, row.assignCodeNm)
-                    .isEquals();
+                        .append(parkingCode, row.parkingCode)
+                        .append(parkingName, row.parkingName)
+                        .append(addr, row.addr)
+                        .append(parkingType, row.parkingType)
+                        .append(parkingTypeNm, row.parkingTypeNm)
+                        .append(operationRule, row.operationRule)
+                        .append(operationRuleNm, row.operationRuleNm)
+                        .append(tel, row.tel)
+                        .append(queStatus, row.queStatus)
+                        .append(queStatusNm, row.queStatusNm)
+                        .append(capacity, row.capacity)
+                        .append(curParking, row.curParking)
+                        .append(curParkingTime, row.curParkingTime)
+                        .append(payYn, row.payYn)
+                        .append(payNm, row.payNm)
+                        .append(nightFreeOpen, row.nightFreeOpen)
+                        .append(nightFreeOpenNm, row.nightFreeOpenNm)
+                        .append(weekdayBeginTime, row.weekdayBeginTime)
+                        .append(weekdayEndTime, row.weekdayEndTime)
+                        .append(weekendBeginTime, row.weekendBeginTime)
+                        .append(weekendEndTime, row.weekendEndTime)
+                        .append(holidayBeginTime, row.holidayBeginTime)
+                        .append(holidayEndTime, row.holidayEndTime)
+                        .append(syncTime, row.syncTime)
+                        .append(saturdayPayYn, row.saturdayPayYn)
+                        .append(saturdayPayNm, row.saturdayPayNm)
+                        .append(holidayPayYn, row.holidayPayYn)
+                        .append(holidayPayNm, row.holidayPayNm)
+                        .append(fullTimeMonthly, row.fullTimeMonthly)
+                        .append(grpParkNm, row.grpParkNm)
+                        .append(rates, row.rates)
+                        .append(timeRate, row.timeRate)
+                        .append(addRates, row.addRates)
+                        .append(addTimeRate, row.addTimeRate)
+                        .append(busRates, row.busRates)
+                        .append(busTimeRate, row.busTimeRate)
+                        .append(busAddTimeRate, row.busAddTimeRate)
+                        .append(busAddRates, row.busAddRates)
+                        .append(dayMaximum, row.dayMaximum)
+                        .append(lat, row.lat)
+                        .append(lng, row.lng)
+                        .append(assignCode, row.assignCode)
+                        .append(assignCodeNm, row.assignCodeNm)
+                        .isEquals();
             }
 
             @Override
             public int hashCode() {
                 return new HashCodeBuilder(17, 37)
-                    .append(parkingCode)
-                    .append(parkingName)
-                    .append(addr)
-                    .append(parkingType)
-                    .append(parkingTypeNm)
-                    .append(operationRule)
-                    .append(operationRuleNm)
-                    .append(tel)
-                    .append(queStatus)
-                    .append(queStatusNm)
-                    .append(capacity)
-                    .append(curParking)
-                    .append(curParkingTime)
-                    .append(payYn)
-                    .append(payNm)
-                    .append(nightFreeOpen)
-                    .append(nightFreeOpenNm)
-                    .append(weekdayBeginTime)
-                    .append(weekdayEndTime)
-                    .append(weekendBeginTime)
-                    .append(weekendEndTime)
-                    .append(holidayBeginTime)
-                    .append(holidayEndTime)
-                    .append(syncTime)
-                    .append(saturdayPayYn)
-                    .append(saturdayPayNm)
-                    .append(holidayPayYn)
-                    .append(holidayPayNm)
-                    .append(fullTimeMonthly)
-                    .append(grpParkNm)
-                    .append(rates)
-                    .append(timeRate)
-                    .append(addRates)
-                    .append(addTimeRate)
-                    .append(busRates)
-                    .append(busTimeRate)
-                    .append(busAddTimeRate)
-                    .append(busAddRates)
-                    .append(dayMaximum)
-                    .append(lat)
-                    .append(lng)
-                    .append(assignCode)
-                    .append(assignCodeNm)
-                    .toHashCode();
+                        .append(parkingCode)
+                        .append(parkingName)
+                        .append(addr)
+                        .append(parkingType)
+                        .append(parkingTypeNm)
+                        .append(operationRule)
+                        .append(operationRuleNm)
+                        .append(tel)
+                        .append(queStatus)
+                        .append(queStatusNm)
+                        .append(capacity)
+                        .append(curParking)
+                        .append(curParkingTime)
+                        .append(payYn)
+                        .append(payNm)
+                        .append(nightFreeOpen)
+                        .append(nightFreeOpenNm)
+                        .append(weekdayBeginTime)
+                        .append(weekdayEndTime)
+                        .append(weekendBeginTime)
+                        .append(weekendEndTime)
+                        .append(holidayBeginTime)
+                        .append(holidayEndTime)
+                        .append(syncTime)
+                        .append(saturdayPayYn)
+                        .append(saturdayPayNm)
+                        .append(holidayPayYn)
+                        .append(holidayPayNm)
+                        .append(fullTimeMonthly)
+                        .append(grpParkNm)
+                        .append(rates)
+                        .append(timeRate)
+                        .append(addRates)
+                        .append(addTimeRate)
+                        .append(busRates)
+                        .append(busTimeRate)
+                        .append(busAddTimeRate)
+                        .append(busAddRates)
+                        .append(dayMaximum)
+                        .append(lat)
+                        .append(lng)
+                        .append(assignCode)
+                        .append(assignCodeNm)
+                        .toHashCode();
             }
 
             @Override
             public String toString() {
                 return new ToStringBuilder(this)
-                    .append("parkingCode", parkingCode)
-                    .append("parkingName", parkingName)
-                    .append("addr", addr)
-                    .append("parkingType", parkingType)
-                    .append("parkingTypeNm", parkingTypeNm)
-                    .append("operationRule", operationRule)
-                    .append("operationRuleNm", operationRuleNm)
-                    .append("tel", tel)
-                    .append("queStatus", queStatus)
-                    .append("queStatusNm", queStatusNm)
-                    .append("capacity", capacity)
-                    .append("curParking", curParking)
-                    .append("curParkingTime", curParkingTime)
-                    .append("payYn", payYn)
-                    .append("payNm", payNm)
-                    .append("nightFreeOpen", nightFreeOpen)
-                    .append("nightFreeOpenNm", nightFreeOpenNm)
-                    .append("weekdayBeginTime", weekdayBeginTime)
-                    .append("weekdayEndTime", weekdayEndTime)
-                    .append("weekendBeginTime", weekendBeginTime)
-                    .append("weekendEndTime", weekendEndTime)
-                    .append("holidayBeginTime", holidayBeginTime)
-                    .append("holidayEndTime", holidayEndTime)
-                    .append("syncTime", syncTime)
-                    .append("saturdayPayYn", saturdayPayYn)
-                    .append("saturdayPayNm", saturdayPayNm)
-                    .append("holidayPayYn", holidayPayYn)
-                    .append("holidayPayNm", holidayPayNm)
-                    .append("fullTimeMonthly", fullTimeMonthly)
-                    .append("grpParkNm", grpParkNm)
-                    .append("rates", rates)
-                    .append("timeRate", timeRate)
-                    .append("addRates", addRates)
-                    .append("addTimeRate", addTimeRate)
-                    .append("busRates", busRates)
-                    .append("busTimeRate", busTimeRate)
-                    .append("busAddTimeRate", busAddTimeRate)
-                    .append("busAddRates", busAddRates)
-                    .append("dayMaximum", dayMaximum)
-                    .append("lat", lat)
-                    .append("lng", lng)
-                    .append("assignCode", assignCode)
-                    .append("assignCodeNm", assignCodeNm)
-                    .toString();
+                        .append("parkingCode", parkingCode)
+                        .append("parkingName", parkingName)
+                        .append("addr", addr)
+                        .append("parkingType", parkingType)
+                        .append("parkingTypeNm", parkingTypeNm)
+                        .append("operationRule", operationRule)
+                        .append("operationRuleNm", operationRuleNm)
+                        .append("tel", tel)
+                        .append("queStatus", queStatus)
+                        .append("queStatusNm", queStatusNm)
+                        .append("capacity", capacity)
+                        .append("curParking", curParking)
+                        .append("curParkingTime", curParkingTime)
+                        .append("payYn", payYn)
+                        .append("payNm", payNm)
+                        .append("nightFreeOpen", nightFreeOpen)
+                        .append("nightFreeOpenNm", nightFreeOpenNm)
+                        .append("weekdayBeginTime", weekdayBeginTime)
+                        .append("weekdayEndTime", weekdayEndTime)
+                        .append("weekendBeginTime", weekendBeginTime)
+                        .append("weekendEndTime", weekendEndTime)
+                        .append("holidayBeginTime", holidayBeginTime)
+                        .append("holidayEndTime", holidayEndTime)
+                        .append("syncTime", syncTime)
+                        .append("saturdayPayYn", saturdayPayYn)
+                        .append("saturdayPayNm", saturdayPayNm)
+                        .append("holidayPayYn", holidayPayYn)
+                        .append("holidayPayNm", holidayPayNm)
+                        .append("fullTimeMonthly", fullTimeMonthly)
+                        .append("grpParkNm", grpParkNm)
+                        .append("rates", rates)
+                        .append("timeRate", timeRate)
+                        .append("addRates", addRates)
+                        .append("addTimeRate", addTimeRate)
+                        .append("busRates", busRates)
+                        .append("busTimeRate", busTimeRate)
+                        .append("busAddTimeRate", busAddTimeRate)
+                        .append("busAddRates", busAddRates)
+                        .append("dayMaximum", dayMaximum)
+                        .append("lat", lat)
+                        .append("lng", lng)
+                        .append("assignCode", assignCode)
+                        .append("assignCodeNm", assignCodeNm)
+                        .toString();
             }
         }
     }

@@ -1,3 +1,32 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    database: h2
+    showSql: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
+      hibernate.format_sql: true
+      hibernate.use_sql_comments: true
+
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:chomi;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
+    username: sa
+    password:
+    initialization-mode: EMBEDDED
+
+    hikari:
+      maximum-pool-size: 200
+      connection-timeout: 2000
+      connection-test-query: SELECT 1
+      validation-timeout: 5000
+
 # feign
 feign:
   client:

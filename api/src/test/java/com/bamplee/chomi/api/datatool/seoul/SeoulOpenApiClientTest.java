@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -27,6 +29,10 @@ public class SeoulOpenApiClientTest {
         int pageSize = 1000;
 
         GetParkInfoResponse result = seoulOpenApiClient.getParkInfo(key, String.valueOf(startIndex), String.valueOf(endIndex));
+        Arrays.stream(result.getParkInfo().getRow()).forEach(x -> {
+            System.out.println(x.toString());
+        });
+/*
         int totalSize = result.getParkInfo().getListTotalCount();
         while(true) {
             System.out.println(startIndex);
@@ -38,6 +44,7 @@ public class SeoulOpenApiClientTest {
             endIndex += pageSize;
         }
 
+*/
         assertEquals(result.getParkInfo().getResult().getCode(), "INFO-000");
     }
 
