@@ -3,6 +3,7 @@ package com.bamplee.chomi.api.datatool.naver;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGcResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGeocodingResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
+import com.bamplee.chomi.api.datatool.naver.dto.NavreMapsDirectionDrivingResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,4 +40,9 @@ public interface NaverMapsClient {
                   @RequestParam(value = "maptype", required = false) String maptype,
                   @RequestParam(value = "format", required = false) String format,
                   @RequestParam(value = "scale", required = false) String scale);
+
+    @GetMapping(value = "map-direction/v1/driving")
+    NavreMapsDirectionDrivingResponse direction5Driving(@RequestParam(value = "start") String start,
+                                                        @RequestParam(value = "goal") String goal,
+                                                        @RequestParam(value = "option") String option);
 }

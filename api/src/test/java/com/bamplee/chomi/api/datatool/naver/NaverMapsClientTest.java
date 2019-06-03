@@ -3,11 +3,14 @@ package com.bamplee.chomi.api.datatool.naver;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGcResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGeocodingResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
+import com.bamplee.chomi.api.datatool.naver.dto.NavreMapsDirectionDrivingResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,5 +36,11 @@ public class NaverMapsClientTest {
     @Test
     public void raster() {
         byte[] result = naverMapsClient.raster(300, 300, "127.1054221,37.3591614", 16, null, null, null, null, null);
+    }
+
+    @Test
+    public void direction5Driving() {
+        NavreMapsDirectionDrivingResponse result = naverMapsClient.direction5Driving("127.1058342,37.359708", "129.075986,35.179470", "t");
+        System.out.println(result);
     }
 }
