@@ -52,8 +52,8 @@ public class NavreMapsDirectionDrivingResponse {
         }
 
         public static class Summary {
-            private Map<String, Object> start;
-            private Map<String, Object> goal;
+            private Start start;
+            private Goal goal;
             private Integer distance;
             private Integer duration;
             private List<Double[]> bbox;
@@ -61,19 +61,19 @@ public class NavreMapsDirectionDrivingResponse {
             private Integer taxiFare;
             private Integer fuelPrice;
 
-            public Map<String, Object> getStart() {
+            public Start getStart() {
                 return start;
             }
 
-            public void setStart(Map<String, Object> start) {
+            public void setStart(Start start) {
                 this.start = start;
             }
 
-            public Map<String, Object> getGoal() {
+            public Goal getGoal() {
                 return goal;
             }
 
-            public void setGoal(Map<String, Object> goal) {
+            public void setGoal(Goal goal) {
                 this.goal = goal;
             }
 
@@ -126,26 +126,26 @@ public class NavreMapsDirectionDrivingResponse {
             }
 
             public static class Start {
-                private List<Double[]> location;
+                private List<Double> location;
 
-                public List<Double[]> getLocation() {
+                public List<Double> getLocation() {
                     return location;
                 }
 
-                public void setLocation(List<Double[]> location) {
+                public void setLocation(List<Double> location) {
                     this.location = location;
                 }
             }
 
             public static class Goal {
-                private List<Double[]> location;
+                private List<Double> location;
                 private Integer dir;
 
-                public List<Double[]> getLocation() {
+                public List<Double> getLocation() {
                     return location;
                 }
 
-                public void setLocation(List<Double[]> location) {
+                public void setLocation(List<Double> location) {
                     this.location = location;
                 }
 
