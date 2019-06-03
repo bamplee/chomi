@@ -166,90 +166,133 @@ public class GetParkInfoResponse {
         }
 
         public static class Row {
+            // 주차장코드
             @JsonProperty("PARKING_CODE")
             private String parkingCode;
+            // 주차장명
             @JsonProperty("PARKING_NAME")
             private String parkingName;
+            // 주소
             @JsonProperty("ADDR")
             private String addr;
+            // 주차장 종류
             @JsonProperty("PARKING_TYPE")
             private String parkingType;
+            // 주차장 종류명
             @JsonProperty("PARKING_TYPE_NM")
             private String parkingTypeNm;
+            // 운영구분
             @JsonProperty("OPERATION_RULE")
             private String operationRule;
+            // 운영구분명
             @JsonProperty("OPERATION_RULE_NM")
             private String operationRuleNm;
+            // 전화번호
             @JsonProperty("TEL")
             private String tel;
+            // 주차현황 정보 제공여부
             @JsonProperty("QUE_STATUS")
             private String queStatus;
+            // 주차현황 정보 제공여부명
             @JsonProperty("QUE_STATUS_NM")
             private String queStatusNm;
+            // 주차 면(주차 가능 차량 수)
             @JsonProperty("CAPACITY")
             private Integer capacity;
+            // 현재 주차중인 대수
             @JsonProperty("CUR_PARKING")
             private Integer curParking;
+            // 현재 주차 차량 업데이트 시간
             @JsonProperty("CUR_PARKING_TIME")
             private String curParkingTime;
+            // 유무료구분
             @JsonProperty("PAY_YN")
             private String payYn;
+            // 유무료구분명
             @JsonProperty("PAY_NM")
             private String payNm;
+            // 야간무료개방여부
             @JsonProperty("NIGHT_FREE_OPEN")
             private String nightFreeOpen;
+            // 야간무료개방여부명
             @JsonProperty("NIGHT_FREE_OPEN_NM")
             private String nightFreeOpenNm;
+            // 평일 운영 시작시각(HHMM)
             @JsonProperty("WEEKDAY_BEGIN_TIME")
             private String weekdayBeginTime;
+            // 평일 운영 종료시각(HHMM)
             @JsonProperty("WEEKDAY_END_TIME")
             private String weekdayEndTime;
+            // 주말 운영 시작시각(HHMM)
             @JsonProperty("WEEKEND_BEGIN_TIME")
             private String weekendBeginTime;
+            // 주말 운영 종료시각(HHMM)
             @JsonProperty("WEEKEND_END_TIME")
             private String weekendEndTime;
+            // 공휴일 운영 시작시각(HHMM)
             @JsonProperty("HOLIDAY_BEGIN_TIME")
             private String holidayBeginTime;
+            // 공휴일 운영 종료시각(HHMM)
             @JsonProperty("HOLIDAY_END_TIME")
             private String holidayEndTime;
+            // 최종데이터 동기화 시간
             @JsonProperty("SYNC_TIME")
             private String syncTime;
+            // 토요일 유,무료 구분
             @JsonProperty("SATURDAY_PAY_YN")
             private String saturdayPayYn;
+            // 토요일 유,무료 구분명
             @JsonProperty("SATURDAY_PAY_NM")
             private String saturdayPayNm;
+            // 공휴일 유,무료 구분
             @JsonProperty("HOLIDAY_PAY_YN")
             private String holidayPayYn;
+            // 공휴일 유,무료 구분명
             @JsonProperty("HOLIDAY_PAY_NM")
             private String holidayPayNm;
+            // 월 정기권 금액
             @JsonProperty("FULLTIME_MONTHLY")
             private String fullTimeMonthly;
+            // 노상 주차장 관리그룹번호
             @JsonProperty("GRP_PARKNM")
             private String grpParkNm;
+            // 기본 주차 요금
             @JsonProperty("RATES")
             private Integer rates;
+            // 기본 주차 시간(분 단위)
             @JsonProperty("TIME_RATE")
             private Integer timeRate;
+            // 추가 단위 요금
             @JsonProperty("ADD_RATES")
             private Integer addRates;
+            // 추가 단위 시간(분 단위)
             @JsonProperty("ADD_TIME_RATE")
             private Integer addTimeRate;
+            // 버스 기본 주차 요금
             @JsonProperty("BUS_RATES")
             private Integer busRates;
+            // 버스 기본 주차 시간(분 단위)
             @JsonProperty("BUS_TIME_RATE")
             private Integer busTimeRate;
+            // 버스 추가 단위 시간(분 단위)
             @JsonProperty("BUS_ADD_TIME_RATE")
             private Integer busAddTimeRate;
+            // 버스 추가 단위 요금
             @JsonProperty("BUS_ADD_RATES")
             private Integer busAddRates;
+            // 일 최대 요금
             @JsonProperty("DAY_MAXIMUM")
             private Integer dayMaximum;
+            // 주차장 위치 좌표 위도
             @JsonProperty("LAT")
             private Double lat;
+            // 주차장 위치 좌표 경도
             @JsonProperty("LNG")
             private Double lng;
+            // 배정코드
             @JsonProperty("ASSIGN_CODE")
             private String assignCode;
+            // 배정코드명
             @JsonProperty("ASSIGN_CODE_NM")
             private String assignCodeNm;
 
