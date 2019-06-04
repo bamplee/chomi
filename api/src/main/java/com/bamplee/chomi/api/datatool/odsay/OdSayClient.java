@@ -2,12 +2,14 @@ package com.bamplee.chomi.api.datatool.odsay;
 
 import com.bamplee.chomi.api.datatool.odsay.dto.OdSayLoadLaneResponse;
 import com.bamplee.chomi.api.datatool.odsay.dto.OdSaySearchPubTransPathResponse;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "odsay", url = "https://api.odsay.com", fallback = OdSayClientFallbackFactory.class)
 public interface OdSayClient {
+    @Cacheable(value = "getDirection5Driving")
     @GetMapping("v1/api/searchPubTransPath")
     OdSaySearchPubTransPathResponse searchPubTransPath(@RequestParam("apiKey") String apiKey,
                                                        @RequestParam("SX") String startX,
@@ -18,6 +20,7 @@ public interface OdSayClient {
                                                        @RequestParam("SearchType") String searchType,
                                                        @RequestParam("SearchPathType") String searchPathType);
 
+    @Cacheable(value = "getDirection5Driving")
     @GetMapping("v1/api/loadLane")
     OdSayLoadLaneResponse loadLane(@RequestParam("apiKey") String apiKey,
                                    @RequestParam("mapObject") String mapObject,

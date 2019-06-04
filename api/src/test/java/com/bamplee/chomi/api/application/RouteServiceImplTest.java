@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RouteServiceImplTest {
@@ -16,6 +14,6 @@ public class RouteServiceImplTest {
 
     @Test
     public void route() {
-        routeService.route(127.1058342, 37.359708, 126.9726394, 37.5531431);
+        routeService.route("127.1058342", "37.359708", "126.9573151", "37.4962518");
     }
 }

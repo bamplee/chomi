@@ -1,14 +1,12 @@
 package com.bamplee.chomi.api.datatool.naver;
 
 import com.bamplee.chomi.api.datatool.common.LoggingFallbackFactory;
+import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsDirectionDrivingResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGcResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGeocodingResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsSearchPlacesResponse;
-import com.bamplee.chomi.api.datatool.naver.dto.NavreMapsDirectionDrivingResponse;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
-
-import java.util.Map;
 
 @Component
 public class NaverMapsClientFallbackFactory implements LoggingFallbackFactory<NaverMapsClient> {
@@ -54,7 +52,7 @@ public class NaverMapsClientFallbackFactory implements LoggingFallbackFactory<Na
         }
 
         @Override
-        public NavreMapsDirectionDrivingResponse direction5Driving(String start, String goal, String option) {
+        public NaverMapsDirectionDrivingResponse direction5Driving(String start, String goal, String option) {
             return null;
         }
     }

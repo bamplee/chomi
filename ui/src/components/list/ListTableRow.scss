@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  font-size: 0.7rem;
+
+  .row {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+
+    .font-title {
+      font-size: 1rem;
+    }
+
+    .font-sub-title {
+      font-size: 0.6rem;
+      span {
+        color: #8c8c8c;
+      }
+      span:nth-child(n+2) {
+        margin-left: 10px;
+        padding-left: 10px;
+        border-left: 1px solid #bfbfbf;
+      }
+    }
+
+    .path {
+
+    }
+
+    .description {
+
+    }
+  }
+}

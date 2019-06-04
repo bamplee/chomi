@@ -8,6 +8,7 @@ import com.bamplee.chomi.api.infrastructure.persistence.jpa.repository.ParkingIn
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -71,8 +72,17 @@ public class ParkingSyncServiceImpl implements ParkingSyncService {
         this.clearParkingInfoCache();
     }
 
+    @Cacheable(value = "getParkingInfoList")
+    @Override
+    public List<ParkingInfo> getParkingInfoList() {
+        System.out.println("getParkingInfoList cache");
+        return parkingInfoRepository.findAll();
+    }
+
     @CacheEvict(value = "getParkingInfoList")
+    @Override
     public void clearParkingInfoCache() {
+        System.out.println("getParkingInfoList cache clear..");
     }
 
     private ParkingInfo setRegionInfo(ParkingInfo parkingInfo) {

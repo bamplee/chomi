@@ -1,0 +1,59 @@
+.list-table {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  border: none;
+
+  .ant-card-body {
+    padding: 0;
+  }
+}
+
+/*
+.list-table-row {
+  padding-left: 20px;
+  padding-right: 5px;
+
+  .row {
+    display: flex;
+    width: 100%;
+
+
+
+    .font-title {
+      font-size: 0.6rem;
+    }
+
+    .font-time {
+      font-size: 1rem;
+    }
+
+    .font-summary {
+      font-size: 0.6rem;
+      .name {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .left {
+      width: 25%;
+    }
+
+    .center {
+      display: flex;
+      justify-content: center;
+      width: 50%;
+    }
+
+    .right {
+      display: flex;
+      justify-content: flex-end;
+      width: 25%;
+
+    }
+
+    .footer {
+      margin-top: 10px;
+    }
+  }
+}*/
