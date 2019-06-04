@@ -1,5 +1,6 @@
 package com.bamplee.chomi.api.application;
 
+import com.bamplee.chomi.api.application.RouteResponse.Path.SubPathInfo;
 import com.bamplee.chomi.api.datatool.naver.NaverMapsClient;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsDirectionDrivingResponse;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsGcResponse;
@@ -43,7 +44,7 @@ public class RouteServiceImpl implements RouteService {
         List<RouteResponse.Path> pathList = Lists.newArrayList();
         for (Path p : searchPubTransPath.getResult()
                                         .getPathList()) {
-            List<ImmutablePair<SubPath, List<ImmutablePair<NaverMapsDirectionDrivingResponse, ParkingInfo>>>> tempList =
+            List<SubPathInfo> tempList =
                 Lists.newArrayList();
             RouteResponse.Path routeResponse = new RouteResponse.Path();
             routeResponse.setInfo(p.getInfo());
@@ -51,25 +52,36 @@ public class RouteServiceImpl implements RouteService {
             List<SubPath> subPathList = p.getSubPathList();
             for (SubPath subPath : subPathList) {
                 if (subPath.getTrafficType() == 3) {
-                    tempList.add(ImmutablePair.of(subPath, Lists.newArrayList()));
+                    SubPathInfo subPathInfo = new SubPathInfo();
+                    subPathInfo.setSubPath(subPath);
+                    subPathInfo.setParkingRouteInfoList(Lists.newArrayList());
+                    tempList.add(subPathInfo);
                 } else {
                     NaverMapsGcResponse geocode = this.getGeocode(subPath.getStartX(), subPath.getStartY());
-                    List<ImmutablePair<NaverMapsDirectionDrivingResponse, ParkingInfo>>
-                        collect = this.transform(geocode.getResults()[0].getRegion())
-                                      .stream()
-                                      .filter(x -> x.getCurParking() == 1)
-                                      .sorted(Comparator.comparing(x -> distance(
-                                          subPath.getStartX(),
-                                          subPath.getStartY(),
-                                          x.getLng(),
-                                          x.getLat())))
-                                      .map(x -> ImmutablePair.of(this.getDirection5Driving(
-                                          departureX,
-                                          departureY,
-                                          String.valueOf(x.getLng()),
-                                          String.valueOf(x.getLat())), x))
-                                      .collect(Collectors.toList());
-                    tempList.add(ImmutablePair.of(subPath, collect));
+                    List<SubPathInfo.ParkingRouteInfo> collect = this.transform(geocode.getResults()[0].getRegion())
+                                                                     .stream()
+                                                                     .filter(x -> x.getCurParking() == 1)
+                                                                     .sorted(Comparator.comparing(x -> distance(
+                                                                         subPath.getStartX(),
+                                                                         subPath.getStartY(),
+                                                                         x.getLng(),
+                                                                         x.getLat())))
+                                                                     .map(x -> {
+                                                                         SubPathInfo.ParkingRouteInfo parkingRouteInfo =
+                                                                             new SubPathInfo.ParkingRouteInfo();
+                                                                         parkingRouteInfo.setSubPathRoute(this.getDirection5Driving(
+                                                                             departureX,
+                                                                             departureY,
+                                                                             String.valueOf(x.getLng()),
+                                                                             String.valueOf(x.getLat())));
+                                                                         parkingRouteInfo.setParkingInfo(x);
+                                                                         return parkingRouteInfo;
+                                                                     })
+                                                                     .collect(Collectors.toList());
+                    SubPathInfo subPathInfo = new SubPathInfo();
+                    subPathInfo.setSubPath(subPath);
+                    subPathInfo.setParkingRouteInfoList(collect);
+                    tempList.add(subPathInfo);
                 }
             }
             routeResponse.setSubPathList(tempList);
@@ -78,7 +90,7 @@ public class RouteServiceImpl implements RouteService {
         pathList = pathList.stream()
                            .filter(x -> x.getSubPathList()
                                          .stream()
-                                         .map(y -> y.getRight()
+                                         .map(y -> y.getParkingRouteInfoList()
                                                     .size())
                                          .reduce(Integer::sum)
                                          .orElse(0) > 0
