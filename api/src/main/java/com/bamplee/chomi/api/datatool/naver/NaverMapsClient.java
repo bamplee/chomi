@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "naver-maps", url = "https://naveropenapi.apigw.ntruss.com", fallback = NaverMapsClientFallbackFactory.class)
 public interface NaverMapsClient {
-    @Cacheable(value = "getDirection5Driving")
+    @Cacheable(value = "search")
     @GetMapping("map-place/v1/search")
     NaverMapsSearchPlacesResponse search(@RequestParam("query") String query, @RequestParam("coordinate") String coordinate, @RequestParam(value = "orderBy", required = false) String orderBy);
 
-    @Cacheable(value = "getDirection5Driving")
+    @Cacheable(value = "geocode")
     @GetMapping("map-geocode/v2/geocode")
     NaverMapsGeocodingResponse geocode(@RequestParam("query") String query,
                                        @RequestParam(value = "coordinate", required = false) String coordinate,
@@ -25,7 +25,7 @@ public interface NaverMapsClient {
                                        @RequestParam(value = "count", required = false) String count);
 
     // https://apidocs.ncloud.com/ko/ai-naver/maps_reverse_geocoding/gc/#요청-파라미터
-    @Cacheable(value = "getDirection5Driving")
+    @Cacheable(value = "gc")
     @GetMapping("map-reversegeocode/v2/gc")
     NaverMapsGcResponse gc(@RequestParam("coords") String coords,
                            @RequestParam(value = "request", required = false) String request,
@@ -34,7 +34,7 @@ public interface NaverMapsClient {
                            @RequestParam(value = "orders", required = false) String orders,
                            @RequestParam(value = "output", required = false) String output);
 
-    @Cacheable(value = "getDirection5Driving")
+    @Cacheable(value = "raster")
     @GetMapping(value = "map-static/v2/raster", produces = MediaType.IMAGE_JPEG_VALUE)
     byte[] raster(@RequestParam("w") Integer w,
                   @RequestParam("h") Integer h,
@@ -46,7 +46,7 @@ public interface NaverMapsClient {
                   @RequestParam(value = "format", required = false) String format,
                   @RequestParam(value = "scale", required = false) String scale);
 
-    @Cacheable(value = "getDirection5Driving")
+    @Cacheable(value = "direction5Driving")
     @GetMapping(value = "map-direction/v1/driving")
     NaverMapsDirectionDrivingResponse direction5Driving(@RequestParam(value = "start") String start,
                                                         @RequestParam(value = "goal") String goal,
