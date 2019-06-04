@@ -16,6 +16,6 @@ public class RouteServiceImplTest {
 
     @Test
     public void route() {
-        routeService.route(127.1058342, 37.359708, 129.075986, 35.179470);
+        routeService.route(127.1058342, 37.359708, 126.9726394, 37.5531431);
     }
 }

@@ -5,19 +5,25 @@ import com.bamplee.chomi.api.datatool.seoul.SeoulOpenApiClient;
 import com.bamplee.chomi.api.datatool.seoul.dto.GetParkInfoResponse;
 import com.bamplee.chomi.api.infrastructure.persistence.jpa.entity.ParkingInfo;
 import com.bamplee.chomi.api.infrastructure.persistence.jpa.repository.ParkingInfoRepository;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ParkingSyncServiceImpl implements ParkingSyncService {
     @Value("${seoul-openapi.key}")
     String key;
-
     private final MapService mapService;
     private final SeoulOpenApiClient seoulOpenApiClient;
     private final ParkingInfoRepository parkingInfoRepository;
@@ -29,42 +35,58 @@ public class ParkingSyncServiceImpl implements ParkingSyncService {
         this.parkingInfoRepository = parkingInfoRepository;
     }
 
+    @Scheduled(fixedDelay = 100000000)
     @Override
     public void syncParkingInfoList() {
         int startIndex = 1;
         int endIndex = 1000;
         int pageSize = 1000;
-
         GetParkInfoResponse result = seoulOpenApiClient.getParkInfo(key, String.valueOf(startIndex), String.valueOf(endIndex));
-        int totalSize = result.getParkInfo().getListTotalCount();
+        int totalSize = result.getParkInfo()
+                              .getListTotalCount();
+        List<ParkingInfo> parkingInfoList = Lists.newArrayList();
         while (true) {
-            System.out.println(startIndex);
-            System.out.println(endIndex);
-
             GetParkInfoResponse response = seoulOpenApiClient.getParkInfo(key, String.valueOf(startIndex), String.valueOf(endIndex));
-            List<ParkingInfo> parkingInfoList = Arrays.stream(response.getParkInfo().getRow())
-                                                      .map(this::transform)
-                                                      .collect(Collectors.toList());
-
-            for (int i = 0; i < parkingInfoList.size(); i++) {
-                ParkingInfo parkingInfo = parkingInfoList.get(i);
-                NaverMapsGcResponse na = mapService.gc(parkingInfo.getLng(), parkingInfo.getLat());
-                if (na.getResults().length > 0) {
-                    NaverMapsGcResponse.Result.Region region = na.getResults()[0].getRegion();
-                    parkingInfo.setSidoName(region.getArea1().getName());
-                    parkingInfo.setGunguName(region.getArea2().getName());
-                    parkingInfo.setDongName(region.getArea3().getName());
-                }
-                parkingInfo.setId((long) (i + startIndex));
-            }
-            parkingInfoRepository.saveAll(parkingInfoList);
+            parkingInfoList = Stream.concat(parkingInfoList.stream(),
+                                            Arrays.stream(response.getParkInfo()
+                                                                  .getRow())
+                                                  .filter(distinctByKey(GetParkInfoResponse.ParkInfo.Row::getParkingCode))
+                                                  .map(this::transform))
+                                    .collect(Collectors.toList());
             if (endIndex > totalSize) {
                 break;
             }
             startIndex += pageSize;
             endIndex += pageSize;
         }
+        parkingInfoList = parkingInfoList.stream()
+                                         .filter(distinctByKey(ParkingInfo::getParkingCode))
+                                         .map(this::setRegionInfo)
+                                         .collect(Collectors.toList());
+        System.out.println(parkingInfoRepository.findAll().size());
+        parkingInfoRepository.deleteAll();
+        System.out.println(parkingInfoRepository.findAll().size());
+        parkingInfoRepository.saveAll(parkingInfoList);
+        System.out.println(parkingInfoRepository.findAll().size());
+        this.clearParkingInfoCache();
+    }
 
+    @CacheEvict(value = "getParkingInfoList")
+    public void clearParkingInfoCache() {
+    }
+
+    private ParkingInfo setRegionInfo(ParkingInfo parkingInfo) {
+        NaverMapsGcResponse na = mapService.gc(parkingInfo.getLng(), parkingInfo.getLat());
+        if (na.getResults().length > 0) {
+            NaverMapsGcResponse.Result.Region region = na.getResults()[0].getRegion();
+            parkingInfo.setSidoName(region.getArea1()
+                                          .getName());
+            parkingInfo.setGunguName(region.getArea2()
+                                           .getName());
+            parkingInfo.setDongName(region.getArea3()
+                                          .getName());
+        }
+        return parkingInfo;
     }
 
     private ParkingInfo transform(GetParkInfoResponse.ParkInfo.Row row) {
@@ -113,5 +135,10 @@ public class ParkingSyncServiceImpl implements ParkingSyncService {
         parkingInfo.setAssignCode(row.getAssignCode());
         parkingInfo.setAssignCodeNm(row.getAssignCodeNm());
         return parkingInfo;
+    }
+
+    public static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
+        Map<Object, Boolean> map = new HashMap<>();
+        return t -> map.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
 }

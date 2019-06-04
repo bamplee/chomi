@@ -32,19 +32,18 @@ public class SeoulOpenApiClientTest {
         Arrays.stream(result.getParkInfo().getRow()).forEach(x -> {
             System.out.println(x.toString());
         });
-/*
         int totalSize = result.getParkInfo().getListTotalCount();
+        int count = 0;
         while(true) {
             System.out.println(startIndex);
             System.out.println(endIndex);
-            System.out.println(seoulOpenApiClient.getParkInfo(key, String.valueOf(startIndex), String.valueOf(endIndex)).getParkInfo().getRow().length);
+            count += seoulOpenApiClient.getParkInfo(key, String.valueOf(startIndex), String.valueOf(endIndex)).getParkInfo().getRow().length;
             System.out.println();
             if(endIndex > totalSize) break;
             startIndex += pageSize;
             endIndex += pageSize;
         }
-
-*/
+        System.out.println(count);
         assertEquals(result.getParkInfo().getResult().getCode(), "INFO-000");
     }
 

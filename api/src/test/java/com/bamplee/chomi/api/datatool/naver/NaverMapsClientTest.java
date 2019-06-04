@@ -20,7 +20,7 @@ public class NaverMapsClientTest {
 
     @Test
     public void search() {
-        NaverMapsSearchPlacesResponse result = naverMapsClient.search("서울", "126.986,37.541", null);
+        NaverMapsSearchPlacesResponse result = naverMapsClient.search("서울역", "126.986,37.541", null);
     }
 
     @Test

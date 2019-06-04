@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "parking_info")
+@Table(name = "parking_info", uniqueConstraints = {@UniqueConstraint(columnNames = {"PARKING_CODE"})})
 public class ParkingInfo extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -529,12 +529,13 @@ public class ParkingInfo extends BaseEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) { return true; }
-
-        if (o == null || getClass() != o.getClass()) { return false; }
-
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ParkingInfo that = (ParkingInfo) o;
-
         return new EqualsBuilder()
             .append(id, that.id)
             .append(parkingCode, that.parkingCode)
