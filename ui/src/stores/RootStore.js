@@ -51,7 +51,8 @@ class RootStore {
     async* calculateRoute() {
         let departure = this.departure;
         let destination = this.destination;
-        let routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data.result);
+        let routeList = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data);
+        console.log(routeList);
         routeList.path = routeList.path.map(x => {
             x.parking = this.dummyParking();
             return x;

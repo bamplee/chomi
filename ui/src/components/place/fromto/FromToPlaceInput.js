@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 import {Button, Icon, Input} from 'antd';
 import {inject, observer} from 'mobx-react';
 
-import './SearchResultBar.scss';
-import {Link} from "react-router-dom";
+import './FromToPlaceInput.scss';
 
-@inject('rootStore')
+@inject('searchStore')
 @observer
-class SearchResultBar extends Component {
+class FromToPlaceInput extends Component {
     render() {
-        const {rootStore} = this.props;
+        const {searchStore} = this.props;
         const {history} = this.props;
         return (
             <div className="search-result-bar">
@@ -21,11 +21,11 @@ class SearchResultBar extends Component {
                                 type="default"/>
                     </Link>
                     <Input onClick={() => history.push('/departure/search')}
-                           suffix={<Icon type="swap" onClick={rootStore.swap}/>}
+                           suffix={<Icon type="swap" onClick={searchStore.swap}/>}
                            size="large"
                            addonBefore="출발"
                            placeholder="출발지 검색"
-                           value={rootStore.departure.name}
+                           value={searchStore.departure.name}
                     />
                 </div>
                 <div className="row">
@@ -38,11 +38,11 @@ class SearchResultBar extends Component {
                            size="large"
                            addonBefore="도착"
                            placeholder="목적지 검색"
-                           value={rootStore.destination.name}/>
+                           value={searchStore.destination.name}/>
                 </div>
             </div>
         )
     }
 }
 
-export default SearchResultBar;
+export default FromToPlaceInput;

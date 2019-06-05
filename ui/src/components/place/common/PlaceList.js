@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {List} from 'antd';
 
-import './SearchPlaceTable.scss'
+import './PlaceList.scss'
 
-function SearchPlaceTable(props) {
+function PlaceList(props) {
     return (
-        <List className="search-place-table"
-              dataSource={props.itemList}
+        <List dataSource={props.itemList}
               renderItem={(item, idx) => (
-                  <List.Item className="row"
+                  <List.Item key={idx}
+                             className="place-list-row"
                              onClick={() => props.handleSearchTableRow(item)}>
                       <List.Item.Meta
                           title={item.name}
@@ -20,4 +20,4 @@ function SearchPlaceTable(props) {
     );
 }
 
-export default SearchPlaceTable;
+export default PlaceList;
