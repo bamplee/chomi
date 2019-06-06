@@ -1,3 +1,4 @@
+/*
 import React, {Component} from 'react';
 import {Icon, List, Typography} from 'antd';
 import {inject, observer} from "mobx-react";
@@ -48,3 +49,4 @@ class ListParkingBar extends Component {
 }
 
 export default ListParkingBar;
+*/

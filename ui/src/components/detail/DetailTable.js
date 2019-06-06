@@ -1,3 +1,4 @@
+/*
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
 import DetailTableRow from "./DetailTableRow";
@@ -30,3 +31,4 @@ class DetailTable extends Component {
 }
 
 export default DetailTable;
+*/

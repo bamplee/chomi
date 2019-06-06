@@ -1,12 +1,12 @@
 import React from 'react';
 import SearchInputBar from "../search/bar/SearchInputBar";
-import TimeBar from "../common/TimeBar";
+import RouteListTimeBar from "../route/TimeBar";
 
 function MainContainer(props) {
     return (
         <React.Fragment>
             <SearchInputBar history={props.history}/>
-            <TimeBar/>
+            <RouteListTimeBar/>
         </React.Fragment>
     );
 }

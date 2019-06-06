@@ -1,10 +1,14 @@
 import React from 'react';
-import ListTable from "../list/ListTable";
+
+import '../list/list.css';
+import FromToPlaceInput from "../place/fromto/FromToPlaceInput";
+import RouteList from "../route/RouteList";
 
 function ListContainer(props) {
     return (
         <React.Fragment>
-            <ListTable history={props.history}/>
+            <FromToPlaceInput history={props.history}/>
+            <RouteList history={props.history}/>
         </React.Fragment>
     );
 }

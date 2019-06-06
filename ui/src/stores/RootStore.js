@@ -1,3 +1,4 @@
+/*
 import {action, computed, observable} from 'mobx';
 import {asyncAction} from 'mobx-utils';
 import {api} from "../api";
@@ -158,3 +159,4 @@ class RootStore {
 }
 
 export default new RootStore();
+*/

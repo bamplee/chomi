@@ -1,0 +1,59 @@
+.route-list-item {
+  padding-left: 15px;
+  padding-righT: 15px;
+  margin-bottom: -15px;
+
+  .ant-timeline-item {
+    padding: 0 !important;
+  }
+
+  .title {
+    display: flex;
+    justify-content: flex-start;
+
+    span {
+      font-size: 1.1rem;
+    }
+
+    span:first-child {
+      margin-right: 6px;
+    }
+  }
+
+  .time-bar {
+    display: flex;
+    justify-content: center;
+    padding: 8px 12px 20px;
+  }
+
+  .path {
+    display: flex;
+    justify-content: space-between;
+
+    .walk {
+      color: #DADAE0;
+    }
+
+    .bus {
+      color: #389e0d;
+    }
+
+    .subway {
+      color: #096dd9;
+    }
+
+    .parking {
+      color: #d4380d;
+    }
+
+    .ant-timeline {
+      width: 100%;
+    }
+
+    .ant-timeline {
+      .ant-timeline-item-last {
+        margin-bottom: -15px;
+      }
+    }
+  }
+}

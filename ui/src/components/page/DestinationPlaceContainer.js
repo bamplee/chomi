@@ -1,6 +1,6 @@
 import React from 'react';
-import DestinationPlaceInput from "./DestinationPlaceInput";
-import DestinationPlaceList from "./DestinationPlaceList";
+import DestinationPlaceInput from "../place/destination/DestinationPlaceInput";
+import DestinationPlaceList from "../place/destination/DestinationPlaceList";
 
 function DestinationPlaceContainer(props) {
     return (

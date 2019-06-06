@@ -1,3 +1,4 @@
+/*
 import React, {Component} from 'react';
 import {List, Typography} from 'antd';
 import {inject, observer} from 'mobx-react';
@@ -15,9 +16,9 @@ class DetailTableTitleRow extends Component {
                       renderItem={(item, idx) => (
                           <List.Item className="row"
                                      style={{backgroundColor : '#e6f7ff'}}
-                              /*
+                              /!*
                                                      actions={[<Tag onClick={() => history.push({pathname: '/detail'})}>상세</Tag>]}
-                              */
+                              *!/
                                      onClick={() => {
                                      }}>
                               <div className="left">
@@ -88,10 +89,11 @@ class DetailTableTitleRow extends Component {
     handleDetail = (item, idx) => {
         const {rootStore} = this.props;
         rootStore.handleRouteIndex(idx);
-        /*
+        /!*
                 history.push({pathname: '/list'})
-        */
+        *!/
     };
 }
 
 export default DetailTableTitleRow;
+*/

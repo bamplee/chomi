@@ -1,3 +1,4 @@
+/*
 import React, {Component} from 'react';
 import {Card, Icon, Tag, Timeline, Typography} from 'antd';
 import {inject, observer} from 'mobx-react';
@@ -67,3 +68,4 @@ class DetailTableRow extends Component {
 }
 
 export default DetailTableRow;
+*/

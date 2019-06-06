@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 
 import DetailBar from "./DetailBar";
@@ -18,3 +19,4 @@ function DetailContainer(props) {
 }
 
 export default DetailContainer;
+*/

@@ -1,3 +1,4 @@
+/*
 import React, {Component} from 'react';
 import {Button, Icon, Input} from 'antd';
 import {inject, observer} from 'mobx-react';
@@ -15,9 +16,9 @@ class ListBar extends Component {
                             type="default"
                             onClick={() => this.props.history.push('/')}/>
                     <Input
-/*
+/!*
                         suffix={<Icon type="car" onClick={() => message.success('차량 출발 경로를 탐색합니다')}/>}
-*/
+*!/
                         suffix={<Icon type="car" onClick={() => alert('개발중')}/>}
                         size="large"
                         addonBefore="출발"
@@ -47,3 +48,4 @@ class ListBar extends Component {
 }
 
 export default ListBar;
+*/

@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Marker, NaverMap, Polyline, RenderAfterNavermapsLoaded} from 'react-naver-maps'
 
-@inject('rootStore')
+@inject('routeStore')
 @observer
 class CommonMap extends Component {
     render() {
-        const {rootStore} = this.props;
+        const {routeStore} = this.props;
         return (
             <div className="common-map">
                 <RenderAfterNavermapsLoaded
@@ -21,15 +21,15 @@ class CommonMap extends Component {
                             width: '100%',
                             height: this.props.height,
                         }}
-                        center={this.getDistanceFromLatLonInKm(rootStore.departure.y, rootStore.departure.x, rootStore.destination.y, rootStore.destination.x)}
+                        center={this.getDistanceFromLatLonInKm(routeStore.departure.y, routeStore.departure.x, routeStore.destination.y, routeStore.destination.x)}
                         defaultZoom={5}
                     >
                         <Marker
                             title={'abcd'}
-                            position={{lat: rootStore.departure.y, lng: rootStore.departure.x}}
+                            position={{lat: routeStore.departure.y, lng: routeStore.departure.x}}
                         />
                         <Marker
-                            position={{lat: rootStore.destination.y, lng: rootStore.destination.x}}
+                            position={{lat: routeStore.destination.y, lng: routeStore.destination.x}}
                         />
                         {
                             this.getGraph()
@@ -45,11 +45,11 @@ class CommonMap extends Component {
     };
 
     getGraph = () => {
-        const {rootStore} = this.props;
-        if (!Object.keys(rootStore.graph).length > 0) {
+        const {routeStore} = this.props;
+        if (!Object.keys(routeStore.graph).length > 0) {
             return;
         }
-        return rootStore.graph.lane.map((x, idx) => {
+        return routeStore.graph.lane.map((x, idx) => {
             return (
                 <Polyline
                     key={idx}

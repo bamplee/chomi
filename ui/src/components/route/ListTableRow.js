@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {inject, observer} from "mobx-react";
+import {inject, observer} from "mobx-react/index";
 import {List, Typography} from 'antd';
 import {Conditional} from "../common/Conditional";
 

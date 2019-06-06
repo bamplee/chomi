@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import './styles/styles.css';
+import DevTools from 'mobx-react-devtools';
 
-import MainContainer from "./components/main/MainContainer";
-import ListContainer from "./components/list/ListContainer";
 import DetailContainer from "./components/detail/DetailContainer";
-import DeparturePlaceContainer from "./components/place/departure/DeparturePlaceContainer";
-import DestinationPlaceContainer from "./components/place/destination/DestinationPlaceContainer";
+import DeparturePlaceContainer from "./components/page/DeparturePlaceContainer";
+import DestinationPlaceContainer from "./components/page/DestinationPlaceContainer";
+import FromToPlaceInput from "./components/place/fromto/FromToPlaceInput";
+import ListContainer from "./components/page/ListContainer";
 
 class App extends Component {
     render() {
         return (
             <React.Fragment>
-                <Route exact path="/" component={(props) => <MainContainer history={props.history}/>}/>
+                {process.env.NODE_ENV === 'development' && <DevTools />}
+
+                <Route exact path="/" component={(props) => <FromToPlaceInput history={props.history}/>}/>
                 <Route exact path="/departure/search"
                        component={(props) => <DeparturePlaceContainer history={props.history}/>}/>
                 <Route exact path="/destination/search"

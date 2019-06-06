@@ -1,3 +1,4 @@
+/*
 import React, {Component} from 'react';
 import {Button, Icon, Typography} from 'antd';
 import {inject, observer} from 'mobx-react';
@@ -26,3 +27,4 @@ class DetailBar extends Component {
 }
 
 export default DetailBar;
+*/

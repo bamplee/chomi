@@ -1,33 +1,33 @@
-import {action, computed, observable} from 'mobx';
+import {action, autorun, observable} from 'mobx';
 import {asyncAction} from 'mobx-utils';
 import {api} from "../api";
 
-class SearchStore {
+export default class SearchStore {
     @observable departure = this.dummyStartPoint();
     @observable destination = this.dummyEndPoint();
     @observable departureList = [];
     @observable destinationList = [];
 
+    constructor(root) {
+        this.root = root;
+    }
+
     @action handleDeparture = (departure) => {
         this.departure = departure;
-        this.calculateRoute();
     };
 
     @action handleDestination = (destination) => {
         this.destination = destination;
-        this.calculateRoute();
     };
 
     @action handleRouteIndex = (index) => {
         this.routeIndex = index;
-        this.loadLane();
     };
 
     @action swap = () => {
         let temp = this.departure;
         this.departure = this.destination;
         this.destination = temp;
-        this.calculateRoute();
     };
 
     @asyncAction
@@ -69,6 +69,10 @@ class SearchStore {
             y: '37.4855438'
         };
     };
-}
 
-export default new SearchStore();
+    route = autorun(() => {
+        if (this.departure && this.destination) {
+            this.root.routeStore.course();
+        }
+    });
+}
