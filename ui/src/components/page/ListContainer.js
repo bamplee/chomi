@@ -7,8 +7,8 @@ import RouteList from "../route/RouteList";
 function ListContainer(props) {
     return (
         <React.Fragment>
-            <FromToPlaceInput history={props.history}/>
-            <RouteList history={props.history}/>
+                <FromToPlaceInput history={props.history}/>
+                <RouteList history={props.history}/>
         </React.Fragment>
     );
 }

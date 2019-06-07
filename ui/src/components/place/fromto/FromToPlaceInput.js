@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import {Button, Icon, Input} from 'antd';
+import {Button, Input} from 'antd';
 import {inject, observer} from 'mobx-react';
 
 import './FromToPlaceInput.scss';
@@ -16,12 +16,11 @@ class FromToPlaceInput extends Component {
                 <div className="row">
                     <Link to="/">
                         <Button className="btn"
-                                icon="arrow-left"
+                                icon="home"
                                 size="large"
                                 type="default"/>
                     </Link>
                     <Input onClick={() => history.push('/departure/search')}
-                           suffix={<Icon type="swap" onClick={searchStore.swap}/>}
                            size="large"
                            addonBefore="출발"
                            placeholder="출발지 검색"
@@ -29,9 +28,10 @@ class FromToPlaceInput extends Component {
                     />
                 </div>
                 <div className="row">
-                    <Button className="btn"
+                    <Button onClick={searchStore.swap}
+                            className="btn"
                             style={{display: 'block'}}
-                            icon="ellipsis"
+                            icon="swap"
                             size="large"
                             type="default"/>
                     <Input onClick={() => history.push('/destination/search')}
