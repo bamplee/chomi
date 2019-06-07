@@ -38,11 +38,11 @@ function RouteListItem(props) {
                                             type="warning">{props.item.subPathList[0].parkingRouteInfoList[0].parkingInfo.rates * (60 / props.item.subPathList[0].parkingRouteInfoList[0].parkingInfo.timeRate)}</Typography.Text>원/시간
                                         </Typography.Text>
                                         :
-                                        <Typography.Text className="price" type="warning">
-                                            무료
+                                        <Typography.Text className="price" type="danger">
+                                            주차 무료
                                         </Typography.Text>
-                                    : <Typography.Text className="price" type="warning">
-                                        주말무료
+                                    : <Typography.Text className="price" type="danger">
+                                        주차 주말 무료
                                     </Typography.Text>
                             }
                         </div>
@@ -108,7 +108,7 @@ function RouteListItem(props) {
                                                                         fontSize: '0.8rem',
                                                                         color: '#002766'
                                                                     }}>{props.item.subPathList[0].parkingRouteInfoList[0].parkingInfo.capacity}</Typography.Text>면
-                                                                    (최근 20분 내)
+
                                                                 </Typography.Text>
                                                             </div>
                                                         </div>
