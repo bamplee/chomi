@@ -3,6 +3,7 @@ import {List, Spin} from 'antd';
 import {inject, observer} from 'mobx-react/index';
 import RouteListItem from "./RouteListItem";
 import RouteListTabs from "./RouteListTabs";
+import RouteDriveBar from "./RouteDriveBar";
 
 @inject('routeStore')
 @observer
@@ -13,6 +14,7 @@ class RouteList extends Component {
             <React.Fragment>
                 <Spin spinning={routeStore.loading} tip="Loading...">
                     <RouteListTabs/>
+                    <RouteDriveBar/>
                     <List dataSource={routeStore.getPathList}
                           renderItem={(item, idx) => (
                               <RouteListItem key={idx} loading={routeStore.loading} item={item}/>

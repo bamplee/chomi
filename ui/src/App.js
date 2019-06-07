@@ -15,12 +15,14 @@ class App extends Component {
             <React.Fragment>
                 {process.env.NODE_ENV === 'development' && <DevTools />}
 
+{/*
                 <Route exact path="/" component={(props) => <FromToPlaceInput history={props.history}/>}/>
+*/}
                 <Route exact path="/departure/search"
                        component={(props) => <DeparturePlaceContainer history={props.history}/>}/>
                 <Route exact path="/destination/search"
                        component={(props) => <DestinationPlaceContainer history={props.history}/>}/>
-                <Route exact path="/list" component={(props) => <ListContainer history={props.history}/>}/>
+                <Route exact path="/" component={(props) => <ListContainer history={props.history}/>}/>
                 <Route exact path="/detail" component={(props) => <DetailContainer history={props.history}/>}/>
 
             </React.Fragment>

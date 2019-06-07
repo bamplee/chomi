@@ -25,9 +25,18 @@ export default class SearchStore {
     };
 
     @action swap = () => {
-        let temp = this.departure;
-        this.departure = this.destination;
-        this.destination = temp;
+        alert('개발중');
+        /*
+                let temp = this.departure;
+                this.departure = this.destination;
+                this.destination = temp;
+        */
+    };
+
+    @action course = () => {
+        if (this.departure && this.destination) {
+            this.root.routeStore.course();
+        }
     };
 
     @asyncAction
@@ -59,20 +68,18 @@ export default class SearchStore {
 
     dummyEndPoint = () => {
         return {
-            distance: 12117.830189421165,
-            jibun_address: '서울특별시 강남구 수서동 214-3',
-            name: '수서역 수서평택고속선',
-            phone_number: '1800-1472',
-            road_address: '서울특별시 강남구 밤고개로 99 수서역사',
-            sessionId: '0E_D72oBe9kwkY1_OQRw',
-            x: '127.1043773',
-            y: '37.4855438'
+            "name": "노원역 4호선",
+            "x": "127.0634931",
+            "y": "37.6563525",
+            "distance": 14520.59037026419,
+            "sessionId": "QygbHmsBOAUY6uUlN9l0",
+            "road_address": "서울특별시 노원구 상계로 69-1",
+            "jibun_address": "서울특별시 노원구 상계동 602-5",
+            "phone_number": "02-6110-4111"
         };
     };
 
     route = autorun(() => {
-        if (this.departure && this.destination) {
-            this.root.routeStore.course();
-        }
+        this.course();
     });
 }

@@ -18,7 +18,7 @@ class DestinationPlaceList extends Component {
         const {searchStore} = this.props;
         const {history} = this.props;
         searchStore.handleDestination(item);
-        history.push('/list');
+        history.goBack();
     };
 }
 

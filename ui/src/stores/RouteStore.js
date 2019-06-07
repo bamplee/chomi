@@ -49,6 +49,11 @@ export default class RouteStore {
         return this.pathList.filter(x => x.info.subwayStationCount <= 0).length;
     }
 
+    @computed
+    get getTraoptimal() {
+        return this.driveRoute.route ? this.driveRoute.route.traoptimal[0] ? this.driveRoute.route.traoptimal[0] : null : null;
+    };
+
     @asyncAction
     async* course() {
         let departure = this.root.searchStore.departure;
@@ -56,9 +61,24 @@ export default class RouteStore {
         this.loading = true;
         let result = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data);
         this.routeType = yield 'TOTAL';
-        console.log(result.pathList);
+        result.pathList.forEach(path => {
+            for (let i in path.subPathList) {
+                if (path.subPathList[i].parkingRouteInfoList.length > 0) {
+                    path.subPathList = path.subPathList.slice(i, path.subPathList.length);
+/*
+                    let parkingInfo = path.subPathList[0].parkingRouteInfoList[0].parkingInfo;
+*/
+                    let traoptimal = path.subPathList[0].parkingRouteInfoList[0].subPathRoute.route.traoptimal[0];
+                    path.info.totalTime = path.subPathList.map(x => x.subPath.sectionTime).reduce((a, b) => a + b) + Math.floor(traoptimal.summary.duration / 60000);
+/*
+                    path.info.payment += traoptimal.summary.fuelPrice;
+*/
+                    break;
+                }
+            }
+        });
         this.driveRoute = result.driveRoute;
-        this.pathList = result.pathList;
+        this.pathList = result.pathList.sort((a, b) => a.info.totalTime < b.info.totalTime ? -1 : 1);
         this.loading = yield false;
     };
 }

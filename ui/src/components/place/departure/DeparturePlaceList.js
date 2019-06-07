@@ -18,7 +18,7 @@ class DeparturePlaceList extends Component {
         const {searchStore} = this.props;
         const {history} = this.props;
         searchStore.handleDeparture(item);
-        history.push('/list');
+        history.goBack();
     };
 }
 

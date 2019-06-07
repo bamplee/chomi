@@ -6,17 +6,20 @@
 
     .ant-timeline-item {
       padding: 0 !important;
+      padding-bottom: 10px !important;
     }
 
     .title {
       display: flex;
       justify-content: flex-start;
 
-      span {
-        font-size: 1.1rem;
+      .price {
+        font-size: 0.7rem;
+        margin-right: 6px;
       }
 
-      span:first-child {
+      .minute {
+        font-size: 1.1rem;
         margin-right: 6px;
       }
     }
