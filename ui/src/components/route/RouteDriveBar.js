@@ -16,7 +16,7 @@ class RouteDriveBar extends Component {
                         <Card>
                             <div>
                                 <Icon type="car" theme="twoTone"/>
-                                <Typography.Text style={{fontSize: '0.7rem'}} type="primary"> 자동차
+                                <Typography.Text style={{fontSize: '0.7rem', paddingLeft: 4, paddingRight: 4}} type="primary">자동차
                                     이용시</Typography.Text>
                             </div>
                             <div>
