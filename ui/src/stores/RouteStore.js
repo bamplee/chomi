@@ -55,6 +55,12 @@ export default class RouteStore {
     };
 
     @asyncAction
+    async * loadLane() {
+        let info = this.routeList.path[this.routeIndex].info;
+        this.graph = yield api.graph(info.mapObj).then(res => res.data.result);
+    };
+
+    @asyncAction
     async* course() {
         let departure = this.root.searchStore.departure;
         let destination = this.root.searchStore.destination;

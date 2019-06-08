@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {Card, Icon, Typography} from 'antd';
 import {inject, observer} from 'mobx-react/index';
 
-import './RouteDriveBar.scss';
+import './RouteListCarItem.scss';
 
 @inject('routeStore')
 @observer
-class RouteDriveBar extends Component {
+class RouteListCarItem extends Component {
     render() {
         const {routeStore} = this.props;
         return (
@@ -16,15 +16,16 @@ class RouteDriveBar extends Component {
                         <Card>
                             <div>
                                 <Icon type="car" theme="twoTone"/>
-                                <Typography.Text style={{fontSize: '0.7rem', paddingLeft: 4, paddingRight: 4}} type="primary">자동차
+                                <Typography.Text style={{fontSize: '0.7rem', paddingLeft: 4, paddingRight: 4}}
+                                                 type="primary">자동차
                                     이용시</Typography.Text>
                             </div>
                             <div>
                                 <Typography.Text strong style={{fontSize: '1.1rem', marginRight: 5}}
-                                                 type="primary">{this.millisToMinutesAndSeconds(routeStore.getTraoptimal.summary.duration)*1.5}분</Typography.Text>
+                                                 type="primary">{this.millisToMinutesAndSeconds(routeStore.getTraoptimal.summary.duration) * 1.5}분</Typography.Text>
                                 <Typography.Text style={{fontSize: '0.7rem'}}
                                                  type="secondary">유류비 <Typography.Text
-                                    type="warning">{Math.round((routeStore.getTraoptimal.summary.fuelPrice + routeStore.getTraoptimal.summary.tollFare)*1.5)}</Typography.Text>원</Typography.Text>
+                                    type="warning">{Math.round((routeStore.getTraoptimal.summary.fuelPrice + routeStore.getTraoptimal.summary.tollFare) * 1.5)}</Typography.Text>원</Typography.Text>
                             </div>
                         </Card> : ''
                 }
@@ -37,4 +38,4 @@ class RouteDriveBar extends Component {
     }
 }
 
-export default RouteDriveBar;
+export default RouteListCarItem;

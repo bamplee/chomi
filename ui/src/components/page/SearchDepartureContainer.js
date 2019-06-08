@@ -3,7 +3,7 @@ import React from 'react';
 import DeparturePlaceInput from "../place/departure/DeparturePlaceInput";
 import DeparturePlaceList from "../place/departure/DeparturePlaceList";
 
-function DeparturePlaceContainer(props) {
+function SearchDepartureContainer(props) {
     return (
         <React.Fragment>
             <DeparturePlaceInput history={props.history}/>
@@ -12,4 +12,4 @@ function DeparturePlaceContainer(props) {
     );
 }
 
-export default DeparturePlaceContainer;
+export default SearchDepartureContainer;

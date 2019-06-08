@@ -26,7 +26,7 @@ class FromToPlaceInput extends Component {
                                 type="default"/>
                     </Link>
 */}
-                    <Input onClick={() => history.push('/departure/search')}
+                    <Input onClick={() => history.push('/search/departure')}
                            size="large"
                         /*
                                                    addonBefore="출발"
@@ -47,7 +47,7 @@ class FromToPlaceInput extends Component {
                             size="large"
                             type="default"/>
 */}
-                    <Input onClick={() => history.push('/destination/search')}
+                    <Input onClick={() => history.push('/search/destination')}
                            size="large"
                         /*
                                                    addonBefore="도착"

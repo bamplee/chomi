@@ -1,0 +1,14 @@
+.title {
+  display: flex;
+  justify-content: flex-start;
+
+  .price {
+    font-size: 0.7rem;
+    margin-right: 6px;
+  }
+
+  .minute {
+    font-size: 1.1rem;
+    margin-right: 6px;
+  }
+}

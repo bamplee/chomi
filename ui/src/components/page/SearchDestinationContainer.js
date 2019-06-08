@@ -2,7 +2,7 @@ import React from 'react';
 import DestinationPlaceInput from "../place/destination/DestinationPlaceInput";
 import DestinationPlaceList from "../place/destination/DestinationPlaceList";
 
-function DestinationPlaceContainer(props) {
+function SearchDestinationContainer(props) {
     return (
         <React.Fragment>
             <DestinationPlaceInput history={props.history}/>
@@ -11,4 +11,4 @@ function DestinationPlaceContainer(props) {
     );
 }
 
-export default DestinationPlaceContainer;
+export default SearchDestinationContainer;
