@@ -55,7 +55,6 @@ public class ParkingSyncServiceImpl implements ParkingSyncService {
                                                 Arrays.stream(response.getParkInfo()
                                                                       .getRow())
                                                       .filter(distinctByKey(GetParkInfoResponse.ParkInfo.Row::getParkingCode))
-                                                      .filter(x -> "1".equals(x.getQueStatus()))
                                                       .map(this::transform))
                                         .collect(Collectors.toList());
             }
