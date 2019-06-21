@@ -6,6 +6,8 @@ import com.bamplee.chomi.api.datatool.seoul.dto.GetParkInfoResponse;
 import com.bamplee.chomi.api.infrastructure.persistence.jpa.entity.ParkingInfo;
 import com.bamplee.chomi.api.infrastructure.persistence.jpa.repository.ParkingInfoRepository;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -36,7 +38,7 @@ public class ParkingSyncServiceImpl implements ParkingSyncService {
         this.parkingInfoRepository = parkingInfoRepository;
     }
 
-    @Scheduled(fixedDelay = 100000000)
+    @Scheduled(fixedRate = 600000)
     @Override
     public void syncParkingInfoList() {
         int startIndex = 1;
@@ -48,12 +50,15 @@ public class ParkingSyncServiceImpl implements ParkingSyncService {
         List<ParkingInfo> parkingInfoList = Lists.newArrayList();
         while (true) {
             GetParkInfoResponse response = seoulOpenApiClient.getParkInfo(key, String.valueOf(startIndex), String.valueOf(endIndex));
-            parkingInfoList = Stream.concat(parkingInfoList.stream(),
-                                            Arrays.stream(response.getParkInfo()
-                                                                  .getRow())
-                                                  .filter(distinctByKey(GetParkInfoResponse.ParkInfo.Row::getParkingCode))
-                                                  .map(this::transform))
-                                    .collect(Collectors.toList());
+            if(ObjectUtils.isNotEmpty(response.getParkInfo())) {
+                parkingInfoList = Stream.concat(parkingInfoList.stream(),
+                                                Arrays.stream(response.getParkInfo()
+                                                                      .getRow())
+                                                      .filter(distinctByKey(GetParkInfoResponse.ParkInfo.Row::getParkingCode))
+                                                      .filter(x -> "1".equals(x.getQueStatus()))
+                                                      .map(this::transform))
+                                        .collect(Collectors.toList());
+            }
             if (endIndex > totalSize) {
                 break;
             }
@@ -63,6 +68,7 @@ public class ParkingSyncServiceImpl implements ParkingSyncService {
         parkingInfoList = parkingInfoList.stream()
                                          .filter(distinctByKey(ParkingInfo::getParkingCode))
                                          .map(this::setRegionInfo)
+                                         .filter(x -> StringUtils.isNotEmpty(x.getSidoName()) || StringUtils.isNotEmpty(x.getGunguName()))
                                          .collect(Collectors.toList());
         System.out.println(parkingInfoRepository.findAll().size());
         parkingInfoRepository.deleteAll();

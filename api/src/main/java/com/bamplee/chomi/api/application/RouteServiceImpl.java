@@ -60,7 +60,6 @@ public class RouteServiceImpl implements RouteService {
                     NaverMapsGcResponse geocode = this.getGeocode(subPath.getStartX(), subPath.getStartY());
                     List<SubPathInfo.ParkingRouteInfo> collect = this.transform(geocode.getResults()[0].getRegion())
                                                                      .stream()
-                                                                     .filter(x -> x.getCurParking() == 1)
                                                                      .sorted(Comparator.comparing(x -> distance(
                                                                          subPath.getStartX(),
                                                                          subPath.getStartY(),
