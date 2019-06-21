@@ -40,16 +40,16 @@ function PathRow(props) {
                             </div>
                             <div>
                                 <Typography.Text style={{fontSize: '0.8rem'}}
-                                                 type="secondary">
+                                                 type="secondary"
+                                code>
                                     잔여<Typography.Text
-                                    style={{fontSize: '0.8rem'}}
-                                    type="danger">{props.item.subPathList[0].parkingRouteInfoList[0].parkingInfo.capacity - props.item.subPathList[0].parkingRouteInfoList[0].parkingInfo.curParking}</Typography.Text>면
+                                    style={{fontSize: '0.7rem'}}
+                                    type="danger"> {props.item.subPathList[0].parkingRouteInfoList[0].parkingInfo.capacity - props.item.subPathList[0].parkingRouteInfoList[0].parkingInfo.curParking}</Typography.Text>면
                                     / 총<Typography.Text
                                     style={{
-                                        fontSize: '0.8rem',
+                                        fontSize: '0.7rem',
                                         color: '#002766'
-                                    }}>{props.item.subPathList[0].parkingRouteInfoList[0].parkingInfo.capacity}</Typography.Text>면
-
+                                    }}> {props.item.subPathList[0].parkingRouteInfoList[0].parkingInfo.capacity}</Typography.Text>면
                                 </Typography.Text>
                             </div>
                         </div>
