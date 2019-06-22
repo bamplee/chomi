@@ -13,6 +13,7 @@ import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -34,6 +35,7 @@ public class RouteServiceImpl implements RouteService {
         this.odSayClient = odSayClient;
     }
 
+    @Cacheable(value = "route")
     @Override
     public RouteResponse route(String departureX, String departureY, String destinationX, String destinationY) {
         // 대중교통 경로부터 찾기
