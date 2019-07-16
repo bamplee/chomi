@@ -38,7 +38,7 @@ public class ParkingSyncServiceImpl implements ParkingSyncService {
         this.parkingInfoRepository = parkingInfoRepository;
     }
 
-    @Scheduled(cron = "0 0 0/1 * * *")
+    @Scheduled(cron = "0 0 0/10 * * *")
     @Override
     public void syncParkingInfoList() {
         int startIndex = 1;
