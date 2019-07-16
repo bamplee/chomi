@@ -35,7 +35,6 @@ public class RouteServiceImpl implements RouteService {
         this.odSayClient = odSayClient;
     }
 
-    @Cacheable(value = "route")
     @Override
     public RouteResponse route(String departureX, String departureY, String destinationX, String destinationY) {
         // 대중교통 경로부터 찾기
@@ -43,6 +42,7 @@ public class RouteServiceImpl implements RouteService {
                                                                                         departureY,
                                                                                         destinationX,
                                                                                         destinationY);
+        List<ParkingInfo> parkingInfoList = parkingSyncService.getParkingInfoList();
         List<RouteResponse.Path> pathList = Lists.newArrayList();
         for (Path p : searchPubTransPath.getResult()
                                         .getPathList()) {
@@ -60,25 +60,28 @@ public class RouteServiceImpl implements RouteService {
                     tempList.add(subPathInfo);
                 } else {
                     NaverMapsGcResponse geocode = this.getGeocode(subPath.getStartX(), subPath.getStartY());
-                    List<SubPathInfo.ParkingRouteInfo> collect = this.transform(geocode.getResults()[0].getRegion())
-                                                                     .stream()
-                                                                     .sorted(Comparator.comparing(x -> distance(
-                                                                         subPath.getStartX(),
-                                                                         subPath.getStartY(),
-                                                                         x.getLng(),
-                                                                         x.getLat())))
-                                                                     .map(x -> {
-                                                                         SubPathInfo.ParkingRouteInfo parkingRouteInfo =
-                                                                             new SubPathInfo.ParkingRouteInfo();
-                                                                         parkingRouteInfo.setSubPathRoute(this.getDirection5Driving(
-                                                                             departureX,
-                                                                             departureY,
-                                                                             String.valueOf(x.getLng()),
-                                                                             String.valueOf(x.getLat())));
-                                                                         parkingRouteInfo.setParkingInfo(x);
-                                                                         return parkingRouteInfo;
-                                                                     })
-                                                                     .collect(Collectors.toList());
+                    List<SubPathInfo.ParkingRouteInfo> collect = parkingInfoList
+                        .stream()
+                        .filter(parkingInfo -> this.isMatchGunguName(parkingInfo,
+                                                                     geocode.getResults()[0]
+                                                                         .getRegion()))
+                        .sorted(Comparator.comparing(x -> distance(
+                            subPath.getStartX(),
+                            subPath.getStartY(),
+                            x.getLng(),
+                            x.getLat())))
+                        .map(x -> {
+                            SubPathInfo.ParkingRouteInfo parkingRouteInfo =
+                                new SubPathInfo.ParkingRouteInfo();
+                            parkingRouteInfo.setSubPathRoute(this.getDirection5Driving(
+                                departureX,
+                                departureY,
+                                String.valueOf(x.getLng()),
+                                String.valueOf(x.getLat())));
+                            parkingRouteInfo.setParkingInfo(x);
+                            return parkingRouteInfo;
+                        })
+                        .collect(Collectors.toList());
                     SubPathInfo subPathInfo = new SubPathInfo();
                     subPathInfo.setSubPath(subPath);
                     subPathInfo.setParkingRouteInfoList(collect);
@@ -132,7 +135,8 @@ public class RouteServiceImpl implements RouteService {
                                         .getName())
             && parkingInfo.getGunguName()
                           .equals(region.getArea2()
-                                        .getName());
+                                        .getName())
+            && parkingInfo.getDongName().equals(region.getArea3().getName());
     }
 
     OdSaySearchPubTransPathResponse getSearchPubTransPath(String startX, String startY, String endX, String endY) {
