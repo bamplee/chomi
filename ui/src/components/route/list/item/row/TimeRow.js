@@ -4,12 +4,12 @@ import {Col} from 'antd';
 import './TimeRow.scss';
 
 function TimeRow(props) {
-    const parkingRowSpan = Math.round(Math.floor(props.item.subPathList[0].parkingRouteInfoList[0].subPathRoute.route.traoptimal[0].summary.duration / 60000) / props.item.info.totalTime * 24);
+    const parkingRowSpan = Math.round(Math.floor(props.item.subPathList[0].parkingRouteInfo.subPathRoute.route.traoptimal[0].summary.duration / 60000) / props.item.info.totalTime * 24);
     return (
         <div className="time-bar">
             <Col span={parkingRowSpan < 2 ? 0 : parkingRowSpan}
                  className="parking">
-                {Math.floor(props.item.subPathList[0].parkingRouteInfoList[0].subPathRoute.route.traoptimal[0].summary.duration / 60000)}분
+                {Math.floor(props.item.subPathList[0].parkingRouteInfo.subPathRoute.route.traoptimal[0].summary.duration / 60000)}분
             </Col>
             {
                 props.item.subPathList.map((x, idx) => {

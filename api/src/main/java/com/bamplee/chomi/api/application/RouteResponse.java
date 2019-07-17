@@ -3,8 +3,8 @@ package com.bamplee.chomi.api.application;
 import com.bamplee.chomi.api.datatool.naver.dto.NaverMapsDirectionDrivingResponse;
 import com.bamplee.chomi.api.datatool.odsay.dto.OdSaySearchPubTransPathResponse.Result.Info;
 import com.bamplee.chomi.api.datatool.odsay.dto.OdSaySearchPubTransPathResponse.Result.Path.SubPath;
+import com.bamplee.chomi.api.infrastructure.persistence.jpa.entity.BikeParkingInfo;
 import com.bamplee.chomi.api.infrastructure.persistence.jpa.entity.ParkingInfo;
-import com.google.common.collect.Lists;
 
 import java.util.List;
 
@@ -59,7 +59,8 @@ public class RouteResponse {
 
         public static class SubPathInfo {
             private SubPath subPath;
-            private List<ParkingRouteInfo> parkingRouteInfoList;
+            private ParkingRouteInfo parkingRouteInfo;
+            private BikeParkingRouteInfo bikeParkingRouteInfo;
 
             public SubPath getSubPath() {
                 return subPath;
@@ -69,12 +70,20 @@ public class RouteResponse {
                 this.subPath = subPath;
             }
 
-            public List<ParkingRouteInfo> getParkingRouteInfoList() {
-                return parkingRouteInfoList;
+            public ParkingRouteInfo getParkingRouteInfo() {
+                return parkingRouteInfo;
             }
 
-            public void setParkingRouteInfoList(List<ParkingRouteInfo> parkingRouteInfoList) {
-                this.parkingRouteInfoList = parkingRouteInfoList;
+            public void setParkingRouteInfo(ParkingRouteInfo parkingRouteInfo) {
+                this.parkingRouteInfo = parkingRouteInfo;
+            }
+
+            public BikeParkingRouteInfo getBikeParkingRouteInfo() {
+                return bikeParkingRouteInfo;
+            }
+
+            public void setBikeParkingRouteInfo(BikeParkingRouteInfo bikeParkingRouteInfo) {
+                this.bikeParkingRouteInfo = bikeParkingRouteInfo;
             }
 
             public static class ParkingRouteInfo {
@@ -95,6 +104,36 @@ public class RouteResponse {
 
                 public void setParkingInfo(ParkingInfo parkingInfo) {
                     this.parkingInfo = parkingInfo;
+                }
+            }
+
+            public static class BikeParkingRouteInfo {
+                private NaverMapsDirectionDrivingResponse subPathRoute;
+                private BikeParkingInfo startBikeParkingInfo;
+                private BikeParkingInfo endBikeParkingInfo;
+
+                public NaverMapsDirectionDrivingResponse getSubPathRoute() {
+                    return subPathRoute;
+                }
+
+                public void setSubPathRoute(NaverMapsDirectionDrivingResponse subPathRoute) {
+                    this.subPathRoute = subPathRoute;
+                }
+
+                public BikeParkingInfo getStartBikeParkingInfo() {
+                    return startBikeParkingInfo;
+                }
+
+                public void setStartBikeParkingInfo(BikeParkingInfo startBikeParkingInfo) {
+                    this.startBikeParkingInfo = startBikeParkingInfo;
+                }
+
+                public BikeParkingInfo getEndBikeParkingInfo() {
+                    return endBikeParkingInfo;
+                }
+
+                public void setEndBikeParkingInfo(BikeParkingInfo endBikeParkingInfo) {
+                    this.endBikeParkingInfo = endBikeParkingInfo;
                 }
             }
         }

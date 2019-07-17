@@ -69,12 +69,12 @@ export default class RouteStore {
         this.routeType = yield 'TOTAL';
         result.pathList.forEach(path => {
             for (let i in path.subPathList) {
-                if (path.subPathList[i].parkingRouteInfoList.length > 0) {
+                if (path.subPathList[i].parkingRouteInfo) {
                     path.subPathList = path.subPathList.slice(i, path.subPathList.length);
 /*
-                    let parkingInfo = path.subPathList[0].parkingRouteInfoList[0].parkingInfo;
+                    let parkingInfo = path.subPathList[0].parkingRouteInfo.parkingInfo;
 */
-                    let traoptimal = path.subPathList[0].parkingRouteInfoList[0].subPathRoute.route.traoptimal[0];
+                    let traoptimal = path.subPathList[0].parkingRouteInfo.subPathRoute.route.traoptimal[0];
                     path.info.totalTime = path.subPathList.map(x => x.subPath.sectionTime).reduce((a, b) => a + b) + Math.floor(traoptimal.summary.duration / 60000);
 /*
                     path.info.payment += traoptimal.summary.fuelPrice;
