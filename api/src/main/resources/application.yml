@@ -71,3 +71,9 @@ odsay:
   ribbon:
     IsSecure: true
     MaxAutoRetries: 5
+
+openweathermap:
+  key: '{cipher}abd9283410a595c57c1f70e4916010c10ebf63a8af7b677140f7bde17d1c17dce0cabb3a03d26d590c82a4de432eee2feb4118e7c5ba87231b17bc5ad98c3404'
+  ribbon:
+    listOfServers: api.openweathermap.org
+    MaxAutoRetries: 5

@@ -3,6 +3,7 @@ package com.bamplee.chomi.api.datatool;
 import com.bamplee.chomi.api.datatool.naver.NaverClientInterceptor;
 import com.bamplee.chomi.api.datatool.naver.NaverMapsClient;
 import com.bamplee.chomi.api.datatool.odsay.OdSayClient;
+import com.bamplee.chomi.api.datatool.openweathermap.OpenWeatherMapClient;
 import com.bamplee.chomi.api.datatool.seoul.SeoulOpenApiClient;
 import com.bamplee.chomi.api.datatool.seoul.SeoulSWOpenApiClient;
 import com.bamplee.chomi.api.datatool.tmoney.TMoneyOpenApiClient;
@@ -71,4 +72,14 @@ public class DataToolConfig {
                     .retryer(new Retryer.Default())
                     .target(OdSayClient.class, "odsay");
     }
+
+    @Bean
+    public OpenWeatherMapClient openWeatherMapClient() {
+        return Feign.builder()
+                    .decoder(new JacksonDecoder())
+                    .contract(new SpringMvcContract())
+                    .retryer(new Retryer.Default())
+                    .target(OpenWeatherMapClient.class, "openweathermap");
+    }
+
 }
