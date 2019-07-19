@@ -26,6 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -265,9 +266,12 @@ public class RouteServiceImpl implements RouteService {
                 .filter(x -> LocalDateTime.now().atZone(ZoneId.of("Asia/Seoul"))
                                           .isAfter(LocalDateTime.parse(x.getDtTxt(),
                                                                        DateTimeFormatter.ofPattern(
-                                                                           "yyyy-MM-dd HH:mm:ss")).atZone(ZoneId.of("Asia/Seoul"))))
+                                                                           "yyyy-MM-dd HH:mm:ss").withLocale(Locale.KOREA)).atZone(ZoneId.of("Asia/Seoul"))))
                 .min((a, b) -> b.getDt().compareTo(a.getDt()))
                 .ifPresent(routeResponse::setForecast);
+        if(routeResponse.getForecast() == null) {
+            forecast.getList().stream().min((a, b) -> b.getDt() - a.getDt()).ifPresent(routeResponse::setForecast);
+        }
         return routeResponse;
     }
 
