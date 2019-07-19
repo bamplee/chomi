@@ -75,25 +75,28 @@ class RouteListTabs extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div style={{width: '50px', textAlign: 'center', fontSize: '0.8rem', marginRight: 2}}>
-                                <div style={{paddingRight: 3, marginTop: 2}}>
-                                    {
-                                        routeStore.forecast.rain ?
-                                            <img src="https://cl.ly/c2c6ecfaf9d1/rain.png" alt={"rain"}
-                                                 style={{width: 30, height: 30}}/>
-                                            :
-                                            <img src="https://cl.ly/8aef639e26f4/normal.png" alt={"normal"}
-                                                 style={{width: 30, height: 30}}/>
-                                    }
-                                </div>
-                                <div>
-                                    <Typography.Text type="secondary">
+                            {
+                                routeStore.forecast &&
+                                <div style={{width: '50px', textAlign: 'center', fontSize: '0.8rem', marginRight: 2}}>
+                                    <div style={{paddingRight: 3, marginTop: 2}}>
                                         {
-                                            ((routeStore.forecast.main && routeStore.forecast.main.temp - 273.15) * 1).toFixed(1) + '°'
+                                            routeStore.forecast.rain ?
+                                                <img src="https://cl.ly/c2c6ecfaf9d1/rain.png" alt={"rain"}
+                                                     style={{width: 30, height: 30}}/>
+                                                :
+                                                <img src="https://cl.ly/8aef639e26f4/normal.png" alt={"normal"}
+                                                     style={{width: 30, height: 30}}/>
                                         }
-                                    </Typography.Text>
+                                    </div>
+                                    <div>
+                                        <Typography.Text type="secondary">
+                                            {
+                                                ((routeStore.forecast.main && routeStore.forecast.main.temp - 273.15) * 1).toFixed(1) + '°'
+                                            }
+                                        </Typography.Text>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                         <div style={{textAlign: 'right', marginTop: 6}}>
                             <div>
