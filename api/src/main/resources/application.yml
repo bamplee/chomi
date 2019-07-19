@@ -69,8 +69,8 @@ naver-maps:
 odsay:
   key: '{cipher}ae078e0e2a988e413fd787b6b18c5dd50d8c5f23f152d1ccfeb609330b9a1de975e745d4de8b68ee4e1c1e52fb33ec4f15404a585f5fd1b84e1137c42d891a9b'
   ribbon:
+    IsSecure: false
     MaxAutoRetries: 5
-    listOfServers: api.odsay.com:443
 
 openweathermap:
   key: '{cipher}abd9283410a595c57c1f70e4916010c10ebf63a8af7b677140f7bde17d1c17dce0cabb3a03d26d590c82a4de432eee2feb4118e7c5ba87231b17bc5ad98c3404'

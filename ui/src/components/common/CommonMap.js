@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Marker, NaverMap, Polyline, RenderAfterNavermapsLoaded} from 'react-naver-maps'
 
-@inject('routeStore')
+@inject('routeStore', 'searchStore')
 @observer
 class CommonMap extends Component {
     render() {
-        const {routeStore} = this.props;
+        const {searchStore} = this.props;
         return (
             <div className="common-map">
                 <RenderAfterNavermapsLoaded
@@ -19,18 +19,24 @@ class CommonMap extends Component {
                         mapDivId={'maps-getting-started-uncontrolled'} // default: react-naver-map
                         style={{
                             width: '100%',
-                            height: this.props.height,
+                            height: '350px',
                         }}
-                        center={this.getDistanceFromLatLonInKm(routeStore.departure.y, routeStore.departure.x, routeStore.destination.y, routeStore.destination.x)}
+                        center={this.getDistanceFromLatLonInKm(searchStore.departure.y, searchStore.departure.x, searchStore.destination.y, searchStore.destination.x)}
                         defaultZoom={5}
                     >
                         <Marker
                             title={'abcd'}
-                            position={{lat: routeStore.departure.y, lng: routeStore.departure.x}}
+                            position={{lat: searchStore.departure.y, lng: searchStore.departure.x}}
                         />
                         <Marker
-                            position={{lat: routeStore.destination.y, lng: routeStore.destination.x}}
+                            position={{lat: searchStore.destination.y, lng: searchStore.destination.x}}
                         />
+                        {
+                            this.getParkingPoint()
+                        }
+                        {
+                            this.getBikeParkingPoint()
+                        }
                         {
                             this.getGraph()
                         }
@@ -44,9 +50,45 @@ class CommonMap extends Component {
         return {lat: ((lat1 * 1 + lat2 * 1) / 2), lng: ((lng1 * 1 + lng2 * 1) / 2)}
     };
 
+    getParkingPoint = () => {
+        const {routeStore} = this.props;
+        if(!routeStore.detailPath) {
+            return;
+        }
+        let parkingRouteInfoList = routeStore.detailPath.subPathList.filter(x => x.parkingRouteInfo !== null);
+        if(parkingRouteInfoList.length > 0) {
+            return <React.Fragment>
+            <Marker
+                title={'parking'}
+                position={{lat: parkingRouteInfoList[0].parkingRouteInfo.parkingInfo.lat, lng: parkingRouteInfoList[0].parkingRouteInfo.parkingInfo.lng}}
+            />
+            </React.Fragment>
+        }
+    };
+
+    getBikeParkingPoint = () => {
+        const {routeStore} = this.props;
+        if(!routeStore.detailPath) {
+            return;
+        }
+        let bikeParkingRouteInfoList = routeStore.detailPath.subPathList.filter(x => x.bikeParkingRouteInfo !== null);
+        if(bikeParkingRouteInfoList.length > 0) {
+            return <React.Fragment>
+            <Marker
+                title={'bikeParkingStart'}
+                position={{lat: bikeParkingRouteInfoList[0].bikeParkingRouteInfo.startBikeParkingInfo.stationLatitude, lng: bikeParkingRouteInfoList[0].bikeParkingRouteInfo.startBikeParkingInfo.stationLongitude}}
+            />
+            <Marker
+                title={'bikeParkingEnd'}
+                position={{lat: bikeParkingRouteInfoList[0].bikeParkingRouteInfo.endBikeParkingInfo.stationLatitude, lng: bikeParkingRouteInfoList[0].bikeParkingRouteInfo.endBikeParkingInfo.stationLongitude}}
+            />
+            </React.Fragment>
+        }
+    };
+
     getGraph = () => {
         const {routeStore} = this.props;
-        if (!Object.keys(routeStore.graph).length > 0) {
+        if(!routeStore.graph) {
             return;
         }
         return routeStore.graph.lane.map((x, idx) => {

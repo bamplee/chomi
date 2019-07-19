@@ -1,19 +1,66 @@
 import {Icon, Timeline, Typography} from "antd";
 import React from "react";
 
-import './PathRow.scss';
+import './DetailRow.scss';
 
-function PathRow(props) {
+function DetailRow(props) {
     return (
-        <div className="path">
+        <div className="detail-row">
             <Timeline>
+                {/*<Timeline.Item color="#d4380d">
+
+                                                            time={Math.floor(.route.traoptimal[0].summary.duration / 60000)}
+                                                            totalTime={props.item.info.totalTime}/>
+
+
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between'
+                    }}>
+                        <div style={{flex: 1}}>
+                            <Typography.Text strong
+                                             style={{
+                                                 color: '#d4380d',
+                                                 fontSize: '0.8rem',
+                                                 marginRight: 5
+                                             }}>
+                                자동차
+                            </Typography.Text>
+                        </div>
+                        <div style={{
+                            flex: 3,
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}>
+                            <div>
+                                <Typography.Text style={{fontSize: '0.8rem'}}>
+                                    {x.parkingRouteInfo.parkingInfo.parkingName} 주차장으로
+                                    <Typography.Text type="secondary">출발</Typography.Text>
+                                </Typography.Text>
+                            </div>
+                            <div>
+                                <Typography.Text style={{fontSize: '0.8rem'}}
+                                                 type="secondary"
+                                code>
+                                    잔여<Typography.Text
+                                    style={{fontSize: '0.7rem'}}
+                                    type="danger"> {x.parkingRouteInfo.parkingInfo.capacity - x.parkingRouteInfo.parkingInfo.curParking}</Typography.Text>면
+                                    / 총<Typography.Text
+                                    style={{
+                                        fontSize: '0.7rem',
+                                        color: '#002766'
+                                    }}> {x.parkingRouteInfo.parkingInfo.capacity}</Typography.Text>면
+                                </Typography.Text>
+                            </div>
+                        </div>
+                    </div>
+                </Timeline.Item>*/}
                 {
                     props.item.subPathList.map((x, idx) => {
                             if (x.subPath !== null) {
                                 return x.subPath.trafficType === 3 ?
                                     x.subPath.distance > 0 &&
-                                    ''
-                                    /*<Timeline.Item
+                                    <Timeline.Item
                                         key={idx}
                                         color="#9A9A9E">
                                         <div style={{
@@ -33,7 +80,7 @@ function PathRow(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                    </Timeline.Item>*/ :
+                                    </Timeline.Item> :
                                     <Timeline.Item
                                         key={idx}
                                         color={x.subPath.trafficType === 1 ? '#096dd9' : '#FCB82B'}>
@@ -63,7 +110,9 @@ function PathRow(props) {
                                                 <div>
                                                     <Typography.Text
                                                         style={{fontSize: '0.8rem'}}>
-                                                        {x.subPath.startName} - {x.subPath.endName}
+                                                        <Typography.Text type="secondary">출발</Typography.Text> - {x.subPath.startName}
+                                                        <br/>
+                                                        <Typography.Text type="secondary">도착</Typography.Text> - {x.subPath.endName}
                                                     </Typography.Text>
                                                 </div>
                                             </div>
@@ -71,7 +120,7 @@ function PathRow(props) {
                                     </Timeline.Item>
                             }
                             if (x.parkingRouteInfo !== null) {
-                                return <Timeline.Item key={idx} color="#d4380d">
+                                return <Timeline.Item color="#d4380d">
                                     <div style={{
                                         display: 'flex',
                                         justifyContent: 'space-between'
@@ -92,8 +141,8 @@ function PathRow(props) {
                                             flexDirection: 'column',
                                         }}>
                                             <div>
-                                                <Typography.Text style={{fontSize: '0.8rem'}} >
-                                                    <Typography.Text type="secondary">도착 주차장</Typography.Text> - {x.parkingRouteInfo.parkingInfo.parkingName}
+                                                <Typography.Text style={{fontSize: '0.8rem'}}>
+                                                    <Typography.Text type="secondary">도착</Typography.Text> - {x.parkingRouteInfo.parkingInfo.parkingName}
                                                 </Typography.Text>
                                             </div>
                                             <div>
@@ -115,7 +164,7 @@ function PathRow(props) {
                                 </Timeline.Item>
                             }
                             if (x.bikeParkingRouteInfo !== null) {
-                                return <React.Fragment key={idx} >
+                                return <React.Fragment>
                                     <Timeline.Item color="#19AA56">
                                         <div style={{
                                             display: 'flex',
@@ -138,7 +187,7 @@ function PathRow(props) {
                                             }}>
                                                 <div>
                                                     <Typography.Text style={{fontSize: '0.8rem'}}>
-                                                        <Typography.Text type="secondary">출발 대여소</Typography.Text> - {x.bikeParkingRouteInfo.startBikeParkingInfo.stationName}
+                                                        <Typography.Text type="secondary">출발</Typography.Text> - {x.bikeParkingRouteInfo.startBikeParkingInfo.stationName}
                                                     </Typography.Text>
                                                 </div>
                                                 <div>
@@ -180,7 +229,7 @@ function PathRow(props) {
                                             }}>
                                                 <div>
                                                     <Typography.Text style={{fontSize: '0.8rem'}}>
-                                                        <Typography.Text type="secondary">도착 대여소</Typography.Text> - {x.bikeParkingRouteInfo.endBikeParkingInfo.stationName}
+                                                        <Typography.Text type="secondary">도착</Typography.Text> - {x.bikeParkingRouteInfo.endBikeParkingInfo.stationName}
                                                     </Typography.Text>
                                                 </div>
                                                 <div>
@@ -210,4 +259,4 @@ function PathRow(props) {
     )
 }
 
-export default PathRow;
+export default DetailRow;

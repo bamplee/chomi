@@ -1,0 +1,19 @@
+.route-list-item {
+  padding: 15px 15px 0;
+  background-color: white;
+  margin-bottom: 6px;
+
+  .ant-list-item-meta {
+
+    .ant-timeline-item {
+      padding: 0 !important;
+      padding-bottom: 10px !important;
+    }
+
+    .time-bar {
+      display: flex;
+      justify-content: center;
+      padding: 8px 12px 20px;
+    }
+  }
+}

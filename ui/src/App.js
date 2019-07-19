@@ -6,6 +6,7 @@ import DevTools from 'mobx-react-devtools';
 import SearchDepartureContainer from "./components/page/SearchDepartureContainer";
 import SearchDestinationContainer from "./components/page/SearchDestinationContainer";
 import RouteListContainer from "./components/page/RouteListContainer";
+import RouteDetail from "./components/route/detail/RouteDetail";
 
 class App extends Component {
     render() {
@@ -21,6 +22,7 @@ class App extends Component {
                 <Route exact path="/search/destination"
                        component={(props) => <SearchDestinationContainer history={props.history}/>}/>
                 <Route exact path="/" component={(props) => <RouteListContainer history={props.history}/>}/>
+                <Route exact path="/detail" component={(props) => <RouteDetail history={props.history}/>}/>
             </React.Fragment>
         )
     }

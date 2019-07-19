@@ -145,6 +145,8 @@ public class RouteServiceImpl implements RouteService {
                 info.setSubwayStationCount(x.getInfo().getSubwayStationCount());
                 info.setSubwayTransitCount(x.getInfo().getSubwayTransitCount());
                 info.setTotalTime(duration);
+                info.setMapObj(x.getInfo().getMapObj());
+                info.setPayment(x.getInfo().getPayment());
                 path.setUseBus(x.getUseBus());
                 path.setUseSubway(x.getUseSubway());
                 path.setInfo(info);
@@ -206,6 +208,8 @@ public class RouteServiceImpl implements RouteService {
                 info.setSubwayStationCount(x.getInfo().getSubwayStationCount());
                 info.setSubwayTransitCount(x.getInfo().getSubwayTransitCount());
                 info.setTotalTime(duration);
+                info.setMapObj(x.getInfo().getMapObj());
+                info.setPayment(x.getInfo().getPayment());
                 path.setUseBus(x.getUseBus());
                 path.setUseSubway(x.getUseSubway());
                 path.setInfo(info);
@@ -222,12 +226,16 @@ public class RouteServiceImpl implements RouteService {
         }).collect(Collectors.toList());
 
         pathList = Stream.concat(Stream.concat(pathList.stream(), parkingRouteList.stream()), bikeParkingRouteList.stream())
+                         .filter(Objects::nonNull)
                          .peek(x -> {
-                             x.setUseBus(x.getSubPathList().stream().anyMatch(y -> y.getSubPath() != null ? y.getSubPath().getTrafficType() == 2 : false));
-                             x.setUseSubway(x.getSubPathList().stream().anyMatch(y -> y.getSubPath() != null ? y.getSubPath().getTrafficType() == 1 : false));
+                             x.setUseBus(x.getSubPathList().stream().anyMatch(y -> y.getSubPath() != null && y.getSubPath()
+                                                                                                              .getTrafficType() == 2));
+                             x.setUseSubway(x.getSubPathList().stream().anyMatch(y -> y.getSubPath() != null && y.getSubPath()
+                                                                                                                 .getTrafficType() == 1));
                              x.setUseBike(x.getSubPathList().stream().anyMatch(y -> y.getBikeParkingRouteInfo() != null));
                              x.setUseCar(x.getSubPathList().stream().anyMatch(y -> y.getParkingRouteInfo() != null));
                          })
+                         .filter(x -> !(!x.getUseBus() && !x.getUseSubway() && !x.getUseBike() && x.getUseCar()))
                          .collect(Collectors.toList());
 /*
         pathList = pathList.stream()

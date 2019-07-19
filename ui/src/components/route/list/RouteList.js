@@ -14,11 +14,17 @@ class RouteList extends Component {
             <List className="route-list"
                   dataSource={routeStore.getPathList}
                   renderItem={(item, idx) => (
-                      <RouteListItem key={idx} item={item}/>
+                      <RouteListItem loadLane={() => this.loadLane(idx)} key={idx} item={item}/>
                   )}
             />
         )
     }
+
+    loadLane = (idx) => {
+        const {history, routeStore} = this.props;
+        routeStore.loadLane(idx);
+        history.push('/detail');
+    };
 }
 
 export default RouteList;

@@ -11,7 +11,7 @@ class DestinationPlaceInput extends Component {
         const {history} = this.props;
         return (
             <PlaceInput history={history}
-                        name={searchStore.destination.name}
+                        name={searchStore.destination && searchStore.destination.name}
                         search={(query) => searchStore.destinationSearch(query)}/>
         );
     }

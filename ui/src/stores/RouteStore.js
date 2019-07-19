@@ -5,8 +5,12 @@ import {api} from "../api";
 export default class RouteStore {
     @observable routeType = "TOTAL";
     @observable loading = false;
+    @observable graph;
+    @observable detailPath;
     @observable driveRoute = {};
     @observable pathList = [];
+    @observable forecast = {};
+    @observable forecastWarning = {};
     @observable useAll = true;
     @observable useBus = false;
     @observable useSubway = false;
@@ -29,18 +33,27 @@ export default class RouteStore {
     handleUseBus = () => {
         this.useAll = false;
         this.useBus = !this.useBus;
+        if(!this.useBus && !this.useSubway && !this.useBike) {
+            this.useAll = true;
+        }
     };
 
     @action
     handleUseSubway = () => {
         this.useAll = false;
         this.useSubway = !this.useSubway;
+        if(!this.useBus && !this.useSubway && !this.useBike) {
+            this.useAll = true;
+        }
     };
 
     @action
     handleUseBike = () => {
         this.useAll = false;
         this.useBike = !this.useBike;
+        if(!this.useBus && !this.useSubway && !this.useBike) {
+            this.useAll = true;
+        }
     };
 
     @action
@@ -105,9 +118,11 @@ export default class RouteStore {
     };
 
     @asyncAction
-    async * loadLane() {
-        let info = this.routeList.path[this.routeIndex].info;
-        this.graph = yield api.graph(info.mapObj).then(res => res.data.result);
+    async * loadLane(idx) {
+        let mapObj = this.getPathList[idx].info.mapObj;
+        this.detailPath = this.getPathList[idx];
+        console.log(this.getPathList[idx]);
+        this.graph = yield api.graph(mapObj).then(res => res.data.result);
     };
 
     @asyncAction
@@ -137,6 +152,8 @@ export default class RouteStore {
 */
         this.driveRoute = result.driveRoute;
         this.pathList = result.pathList.sort((a, b) => a.info.totalTime < b.info.totalTime ? -1 : 1);
+        this.forecastWarning = result.forecastWarning;
+        this.forecast = result.forecast;
         this.loading = yield false;
     };
 }

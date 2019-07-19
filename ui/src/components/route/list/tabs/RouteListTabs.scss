@@ -2,6 +2,8 @@
   background-color: white;
   padding: 16px;
   border-bottom: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: space-between;
 
   .ant-tabs-bar {
     padding-left: 15px;
@@ -31,5 +33,18 @@
 
   button {
     margin-right: 10px;
+  }
+}
+
+.route-list-footer {
+  background-color: white;
+  margin-bottom: 6px;
+  padding: 10px 16px;
+  .top {
+    display: flex;
+    justify-content: space-between;
+  }
+  .bottom {
+    text-align: right;
   }
 }

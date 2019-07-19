@@ -9,7 +9,7 @@ import './RouteListItem.scss';
 function RouteListItem(props) {
     return (
         <List.Item className="route-list-item"
-                   onClick={() => alert('개발중')}>
+                   onClick={props.loadLane}>
             <Skeleton loading={props.loading} active>
                 <List.Item.Meta title={
                     <TitleRow item={props.item}/>

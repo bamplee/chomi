@@ -20,8 +20,11 @@ class RouteListContainer extends Component {
                 <FromToPlaceInput history={this.props.history}/>
                 <Spin spinning={routeStore.loading} tip="Loading...">
                     <RouteListTabs/>
-                    <RouteListCarItem/>
-                    <RouteList/>
+                    {
+                        routeStore.useCar &&
+                        <RouteListCarItem/>
+                    }
+                    <RouteList history={this.props.history}/>
                 </Spin>
             </React.Fragment>
         )
