@@ -20,7 +20,7 @@ class RouteListTabs extends Component {
                         <Typography.Text style={{marginLeft: 10, marginRight: 6}}>자동차로 출발하시나요?</Typography.Text>
                     </div>
                     <div>
-                        <Checkbox onChange={routeStore.handleUseCar} defaultChecked={routeStore.useCar}/>
+                        <Checkbox onChange={routeStore.handleUseCar} defaultChecked={routeStore.useCar}>주차장 경유 경로</Checkbox>
                     </div>
                 </div>
                 <div className="route-list-tabs">
