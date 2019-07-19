@@ -49,9 +49,45 @@ public class RouteResponse {
     }
 
     public static class Path {
+        private Boolean useBus;
+        private Boolean useSubway;
+        private Boolean useBike;
+        private Boolean useCar;
         private Integer pathType;
         private List<SubPathInfo> subPathList;
         private Info info;
+
+        public Boolean getUseBus() {
+            return useBus;
+        }
+
+        public void setUseBus(Boolean useBus) {
+            this.useBus = useBus;
+        }
+
+        public Boolean getUseSubway() {
+            return useSubway;
+        }
+
+        public void setUseSubway(Boolean useSubway) {
+            this.useSubway = useSubway;
+        }
+
+        public Boolean getUseBike() {
+            return useBike;
+        }
+
+        public void setUseBike(Boolean useBike) {
+            this.useBike = useBike;
+        }
+
+        public Boolean getUseCar() {
+            return useCar;
+        }
+
+        public void setUseCar(Boolean useCar) {
+            this.useCar = useCar;
+        }
 
         public Integer getPathType() {
             return pathType;

@@ -83,7 +83,7 @@ function PathRow(props) {
                                     </Timeline.Item> :
                                     <Timeline.Item
                                         key={idx}
-                                        color={x.subPath.trafficType === 1 ? '#096dd9' : '#389e0d'}>
+                                        color={x.subPath.trafficType === 1 ? '#096dd9' : '#FCB82B'}>
                                         <div style={{
                                             display: 'flex',
                                             justifyContent: 'space-between'
@@ -91,7 +91,7 @@ function PathRow(props) {
                                             <div style={{flex: 1}}>
                                                 <Typography.Text strong
                                                                  style={{
-                                                                     color: x.subPath.trafficType === 1 ? '#096dd9' : '#389e0d',
+                                                                     color: x.subPath.trafficType === 1 ? '#096dd9' : '#FCB82B',
                                                                      fontSize: '0.8rem',
                                                                      marginRight: 5
                                                                  }}>
@@ -174,7 +174,7 @@ function PathRow(props) {
                             }
                             if (x.bikeParkingRouteInfo !== null) {
                                 return <React.Fragment>
-                                    <Timeline.Item color="#d4380d">
+                                    <Timeline.Item color="#19AA56">
                                         <div style={{
                                             display: 'flex',
                                             justifyContent: 'space-between'
@@ -182,7 +182,7 @@ function PathRow(props) {
                                             <div style={{flex: 1}}>
                                                 <Typography.Text strong
                                                                  style={{
-                                                                     color: '#d4380d',
+                                                                     color: '#19AA56',
                                                                      fontSize: '0.8rem',
                                                                      marginRight: 5
                                                                  }}>
@@ -216,7 +216,7 @@ function PathRow(props) {
                                             </div>
                                         </div>
                                     </Timeline.Item>
-                                    <Timeline.Item color="#d4380d">
+                                    <Timeline.Item color="#19AA56">
                                         <div style={{
                                             display: 'flex',
                                             justifyContent: 'space-between'
@@ -224,7 +224,7 @@ function PathRow(props) {
                                             <div style={{flex: 1}}>
                                                 <Typography.Text strong
                                                                  style={{
-                                                                     color: '#d4380d',
+                                                                     color: '#19AA56',
                                                                      fontSize: '0.8rem',
                                                                      marginRight: 5
                                                                  }}>

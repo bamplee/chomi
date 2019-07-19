@@ -22,10 +22,10 @@ class RouteListCarItem extends Component {
                             </div>
                             <div>
                                 <Typography.Text strong style={{fontSize: '1.1rem', marginRight: 5}}
-                                                 type="primary">{Math.floor(this.millisToMinutesAndSeconds(routeStore.getTraoptimal.summary.duration) * 1.45)}분</Typography.Text>
+                                                 type="primary">{Math.floor(this.millisToMinutesAndSeconds(routeStore.getTraoptimal.summary.duration) * 1.2)}분</Typography.Text>
                                 <Typography.Text style={{fontSize: '0.7rem'}}
                                                  type="secondary">유류비 <Typography.Text
-                                    type="warning">{Math.round((routeStore.getTraoptimal.summary.fuelPrice + routeStore.getTraoptimal.summary.tollFare) * 1.2)}</Typography.Text>원</Typography.Text>
+                                    type="warning">{Math.round((routeStore.getTraoptimal.summary.fuelPrice + routeStore.getTraoptimal.summary.tollFare))}</Typography.Text>원</Typography.Text>
                             </div>
                         </Card> : ''
                 }

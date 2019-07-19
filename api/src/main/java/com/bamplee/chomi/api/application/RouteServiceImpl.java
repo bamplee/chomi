@@ -72,6 +72,19 @@ public class RouteServiceImpl implements RouteService {
         List<RouteResponse.Path> pathList = Lists.newArrayList();
         for (Path p : searchPubTransPath.getResult()
                                         .getPathList()) {
+            // 결과 종류, 1-지하철, 2-버스, 3-버스+지하철
+/*
+            if(p.getPathType() == 1) {
+                useSubway = true;
+            }
+            else if(p.getPathType() == 2) {
+                useBus = true;
+            }
+            else if(p.getPathType() == 3) {
+                useSubway = true;
+                useBus = true;
+            }
+*/
             List<SubPathInfo> tempList = Lists.newArrayList();
             RouteResponse.Path routeResponse = new RouteResponse.Path();
             routeResponse.setInfo(p.getInfo());
@@ -93,7 +106,7 @@ public class RouteServiceImpl implements RouteService {
             for (SubPathInfo originSubPathInfo : x.getSubPathList()) {
                 SubPathInfo subPathInfo = new SubPathInfo();
                 SubPath originSubPath = originSubPathInfo.getSubPath();
-                if (originSubPath.getTrafficType() != 3 && !isChecked) {
+                if (originSubPath.getTrafficType() != 3 && !isChecked && !originSubPath.getStartX().equals(originSubPath.getEndX()) && !originSubPath.getStartY().equals(originSubPath.getEndY())) {
                     Optional<ParkingRouteInfo> parkingRouteInfo = this.getParkingRouteInfo(Double.valueOf(departureX),
                                                                                            Double.valueOf(departureY),
                                                                                            originSubPath.getEndX(),
@@ -132,6 +145,8 @@ public class RouteServiceImpl implements RouteService {
                 info.setSubwayStationCount(x.getInfo().getSubwayStationCount());
                 info.setSubwayTransitCount(x.getInfo().getSubwayTransitCount());
                 info.setTotalTime(duration);
+                path.setUseBus(x.getUseBus());
+                path.setUseSubway(x.getUseSubway());
                 path.setInfo(info);
                 path.setPathType(x.getPathType());
                 path.setSubPathList(tempList.stream().peek(y -> {
@@ -143,7 +158,7 @@ public class RouteServiceImpl implements RouteService {
             } else {
                 return null;
             }
-        }).filter(Objects::nonNull).collect(Collectors.toList());
+        }).collect(Collectors.toList());
 
         List<RouteResponse.Path> bikeParkingRouteList = pathList.stream().map(x -> {
             Boolean isChecked = false;
@@ -152,7 +167,7 @@ public class RouteServiceImpl implements RouteService {
             for (RouteResponse.Path.SubPathInfo originSubPathInfo : x.getSubPathList()) {
                 SubPathInfo subPathInfo = new SubPathInfo();
                 SubPath originSubPath = originSubPathInfo.getSubPath();
-                if (originSubPath.getTrafficType() == 2 && !isChecked) {
+                if (originSubPath.getTrafficType() != 3 && !isChecked && !originSubPath.getStartX().equals(originSubPath.getEndX()) && !originSubPath.getStartY().equals(originSubPath.getEndY())) {
                     Optional<BikeParkingRouteInfo> bikeParkingRouteInfo = this.getBikeParkingRouteInfo(originSubPath.getStartX(),
                                                                                                        originSubPath.getStartY(),
                                                                                                        originSubPath.getEndX(),
@@ -191,6 +206,8 @@ public class RouteServiceImpl implements RouteService {
                 info.setSubwayStationCount(x.getInfo().getSubwayStationCount());
                 info.setSubwayTransitCount(x.getInfo().getSubwayTransitCount());
                 info.setTotalTime(duration);
+                path.setUseBus(x.getUseBus());
+                path.setUseSubway(x.getUseSubway());
                 path.setInfo(info);
                 path.setPathType(x.getPathType());
                 path.setSubPathList(tempList.stream().peek(y -> {
@@ -202,9 +219,15 @@ public class RouteServiceImpl implements RouteService {
             } else {
                 return null;
             }
-        }).filter(Objects::nonNull).collect(Collectors.toList());
+        }).collect(Collectors.toList());
 
         pathList = Stream.concat(Stream.concat(pathList.stream(), parkingRouteList.stream()), bikeParkingRouteList.stream())
+                         .peek(x -> {
+                             x.setUseBus(x.getSubPathList().stream().anyMatch(y -> y.getSubPath() != null ? y.getSubPath().getTrafficType() == 2 : false));
+                             x.setUseSubway(x.getSubPathList().stream().anyMatch(y -> y.getSubPath() != null ? y.getSubPath().getTrafficType() == 1 : false));
+                             x.setUseBike(x.getSubPathList().stream().anyMatch(y -> y.getBikeParkingRouteInfo() != null));
+                             x.setUseCar(x.getSubPathList().stream().anyMatch(y -> y.getParkingRouteInfo() != null));
+                         })
                          .collect(Collectors.toList());
 /*
         pathList = pathList.stream()
@@ -270,6 +293,9 @@ public class RouteServiceImpl implements RouteService {
             BikeParkingInfo endBikeParkingInfo = endBikeParkingInfoList.stream()
                                                                        .findFirst()
                                                                        .get();
+            if(startBikeParkingInfo.getStationName().equals(endBikeParkingInfo.getStationName())) {
+                return Optional.empty();
+            }
             BikeParkingRouteInfo bikeParkingRouteInfo = new BikeParkingRouteInfo();
             bikeParkingRouteInfo.setStartBikeParkingInfo(startBikeParkingInfo);
             bikeParkingRouteInfo.setEndBikeParkingInfo(endBikeParkingInfo);

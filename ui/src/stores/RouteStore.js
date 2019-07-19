@@ -7,10 +7,46 @@ export default class RouteStore {
     @observable loading = false;
     @observable driveRoute = {};
     @observable pathList = [];
+    @observable useAll = true;
+    @observable useBus = false;
+    @observable useSubway = false;
+    @observable useBike = false;
+    @observable useCar = false;
 
     constructor(root) {
         this.root = root;
     }
+
+    @action
+    handleUseAll = () => {
+        this.useAll = true;
+        this.useBus = false;
+        this.useSubway = false;
+        this.useBike = false;
+    };
+
+    @action
+    handleUseBus = () => {
+        this.useAll = false;
+        this.useBus = !this.useBus;
+    };
+
+    @action
+    handleUseSubway = () => {
+        this.useAll = false;
+        this.useSubway = !this.useSubway;
+    };
+
+    @action
+    handleUseBike = () => {
+        this.useAll = false;
+        this.useBike = !this.useBike;
+    };
+
+    @action
+    handleUseCar = () => {
+        this.useCar = !this.useCar;
+    };
 
     @action
     handleRouteType = (value) => {
@@ -19,8 +55,22 @@ export default class RouteStore {
 
     @computed
     get getPathList() {
-        return this.pathList.filter(x => {
-            if (this.routeType === 'TOTAL') {
+        let pathList = this.pathList;
+        if (this.useCar) {
+            pathList = pathList.filter(x => x.useCar === true);
+        }
+        else {
+            pathList = pathList.filter(x => x.useCar === false);
+        }
+        if (this.useAll) {
+            return pathList;
+        } else {
+            return pathList.filter(x => this.useBus === x.useBus
+                && this.useSubway === x.useSubway
+                && this.useBike === x.useBike).sort((a, b) => a.info.totalTime < b.info.totalTime ? -1 : 1);
+        }
+        /*return this.pathList.filter(x => {
+            if (this.useBus === x.useBus) {
                 return true;
             } else if (this.routeType === 'SUBWAY') {
                 return x.info.busStationCount <= 0;
@@ -31,7 +81,7 @@ export default class RouteStore {
             } else {
                 return true;
             }
-        });
+        });*/
     }
 
     @computed
@@ -85,7 +135,6 @@ export default class RouteStore {
             }
         });
 */
-console.log(result);
         this.driveRoute = result.driveRoute;
         this.pathList = result.pathList.sort((a, b) => a.info.totalTime < b.info.totalTime ? -1 : 1);
         this.loading = yield false;

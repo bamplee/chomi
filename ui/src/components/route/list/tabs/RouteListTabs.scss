@@ -1,4 +1,8 @@
-.route-list-tabs {
+.route-list-tabs-header {
+  background-color: white;
+  padding: 16px;
+  border-bottom: 1px solid #e2e2e2;
+
   .ant-tabs-bar {
     padding-left: 15px;
     margin: 0;
@@ -12,5 +16,20 @@
 
   .ant-card-actions {
     border: none;
+  }
+}
+
+.route-list-tabs {
+  background-color: white;
+  margin-bottom: 6px;
+  padding: 10px 16px;
+
+  .all-selected {
+    color: white;
+    background-color: #F23A48;
+  }
+
+  button {
+    margin-right: 10px;
   }
 }
