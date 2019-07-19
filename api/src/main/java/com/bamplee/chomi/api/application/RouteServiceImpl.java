@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -261,10 +262,10 @@ public class RouteServiceImpl implements RouteService {
                   routeResponse::setForecastWarning);
         forecast.getList()
                 .stream()
-                .filter(x -> LocalDateTime.now()
+                .filter(x -> LocalDateTime.now().atZone(ZoneId.of("Asia/Seoul"))
                                           .isAfter(LocalDateTime.parse(x.getDtTxt(),
                                                                        DateTimeFormatter.ofPattern(
-                                                                           "yyyy-MM-dd HH:mm:ss"))))
+                                                                           "yyyy-MM-dd HH:mm:ss")).atZone(ZoneId.of("Asia/Seoul"))))
                 .min((a, b) -> b.getDt().compareTo(a.getDt()))
                 .ifPresent(routeResponse::setForecast);
         return routeResponse;
