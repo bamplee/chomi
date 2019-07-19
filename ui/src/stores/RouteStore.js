@@ -67,22 +67,25 @@ export default class RouteStore {
         this.loading = true;
         let result = yield api.route(departure.x, departure.y, destination.x, destination.y).then(res => res.data);
         this.routeType = yield 'TOTAL';
+/*
         result.pathList.forEach(path => {
             for (let i in path.subPathList) {
                 if (path.subPathList[i].parkingRouteInfo) {
                     path.subPathList = path.subPathList.slice(i, path.subPathList.length);
-/*
+/!*
                     let parkingInfo = path.subPathList[0].parkingRouteInfo.parkingInfo;
-*/
+*!/
                     let traoptimal = path.subPathList[0].parkingRouteInfo.subPathRoute.route.traoptimal[0];
                     path.info.totalTime = path.subPathList.map(x => x.subPath.sectionTime).reduce((a, b) => a + b) + Math.floor(traoptimal.summary.duration / 60000);
-/*
+/!*
                     path.info.payment += traoptimal.summary.fuelPrice;
-*/
+*!/
                     break;
                 }
             }
         });
+*/
+console.log(result);
         this.driveRoute = result.driveRoute;
         this.pathList = result.pathList.sort((a, b) => a.info.totalTime < b.info.totalTime ? -1 : 1);
         this.loading = yield false;

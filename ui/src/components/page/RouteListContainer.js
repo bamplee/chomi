@@ -14,7 +14,9 @@ class RouteListContainer extends Component {
         const {routeStore} = this.props;
         return (
             <React.Fragment>
+{/*
                 <CommonHeader/>
+*/}
                 <FromToPlaceInput history={this.props.history}/>
                 <Spin spinning={routeStore.loading} tip="Loading...">
                     <RouteListTabs/>
