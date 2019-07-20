@@ -169,7 +169,7 @@ function DetailRow(props) {
                                     </React.Fragment>
                             }
                             if (x.parkingRouteInfo !== null) {
-                                return <Timeline.Item color="#d4380d">
+                                return <Timeline.Item color="#d46b08">
                                     <div style={{
                                         display: 'flex',
                                         justifyContent: 'space-between'
@@ -177,7 +177,7 @@ function DetailRow(props) {
                                         <div style={{flex: 1}}>
                                             <Typography.Text strong
                                                              style={{
-                                                                 color: '#d4380d',
+                                                                 color: '#d46b08',
                                                                  fontSize: '0.8rem',
                                                                  marginRight: 5
                                                              }}>
@@ -228,7 +228,7 @@ function DetailRow(props) {
                                             <div style={{flex: 1}}>
                                                 <Typography.Text strong
                                                                  style={{
-                                                                     color: '#19AA56',
+                                                                     color: '#415363',
                                                                      fontSize: '0.8rem',
                                                                      marginRight: 5
                                                                  }}>
@@ -276,7 +276,7 @@ function DetailRow(props) {
                                             <div style={{flex: 1}}>
                                                 <Typography.Text strong
                                                                  style={{
-                                                                     color: '#19AA56',
+                                                                     color: '#415363',
                                                                      fontSize: '0.8rem',
                                                                      marginRight: 5
                                                                  }}>

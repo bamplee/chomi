@@ -25,12 +25,9 @@ export default class SearchStore {
     };
 
     @action swap = () => {
-        alert('개발중');
-        /*
-                let temp = this.departure;
-                this.departure = this.destination;
-                this.destination = temp;
-        */
+        let temp = this.departure;
+        this.departure = this.destination;
+        this.destination = temp;
     };
 
     @action course = () => {
