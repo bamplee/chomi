@@ -83,7 +83,7 @@ class RouteListTabs extends Component {
                             display: 'flex',
                             justifyContent: 'space-between'
                         }}>
-                            <Typography.Text>이용할 교통수단을 선택하세요</Typography.Text>
+                            <Typography.Text strong>이용할 교통수단을 선택하세요</Typography.Text>
                             <Icon style={{marginTop: 4}} type="close" onClick={this.handleIsOpenTrafficType}/>
                         </div>
                         <div style={{
@@ -120,7 +120,7 @@ class RouteListTabs extends Component {
                             display: 'flex',
                             justifyContent: 'space-between'
                         }}>
-                            <Typography.Text>경로 탐색 기준을 골라주세요</Typography.Text>
+                            <Typography.Text strong>경로 탐색 기준을 골라주세요</Typography.Text>
                             <Icon style={{marginTop: 4}} type="close" onClick={this.handleIsOpenSortType}/>
                         </div>
                         <div style={{
