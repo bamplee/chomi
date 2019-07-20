@@ -198,7 +198,7 @@ public class RouteServiceImpl implements RouteService {
                                         .getRoute()
                                         .getOrDefault("traoptimal", Lists.newArrayList())
                                         .get(0)
-                                        .getSummary().getDuration() / 1000) / 20;
+                                        .getSummary().getDuration() / 1000) / 40;
                         y.getBikeParkingRouteInfo().setTotalTime(sum);
                         return sum;
                     }
