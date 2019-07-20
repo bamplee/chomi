@@ -115,7 +115,7 @@ function DetailRow(props) {
                                                         <Typography.Text
                                                             style={{fontSize: '0.8rem'}}>
                                                             <Typography.Text
-                                                                type="secondary">출발</Typography.Text> - {x.subPath.startName}
+                                                                type="secondary">출발</Typography.Text> - {x.subPath.startName}역에서 {x.subPath.way ? x.subPath.way + '방면' : ''} {x.subPath.stationCount + '개역 이동'}
                                                         </Typography.Text>
                                                     </div>
                                                 </div>
@@ -156,7 +156,7 @@ function DetailRow(props) {
                                                         <Typography.Text
                                                             style={{fontSize: '0.8rem'}}>
                                                             <Typography.Text
-                                                                type="secondary">도착</Typography.Text> - {x.subPath.endName}
+                                                                type="secondary">도착</Typography.Text> - {x.subPath.endName}역
                                                         </Typography.Text>
                                                     </div>
                                                 </div>
@@ -201,7 +201,7 @@ function DetailRow(props) {
                                         <img
                                             src={'http://13.125.44.20/api/v1/maps/image?x=' + x.parkingRouteInfo.parkingInfo.lng + '&y=' + x.parkingRouteInfo.parkingInfo.lat}/>
                                     </div>
-                                    <div>
+                                    <div style={{marginBottom: 10}}>
                                         <Typography.Text style={{fontSize: '0.8rem'}}
                                                          type="secondary"
                                                          code>
@@ -242,7 +242,7 @@ function DetailRow(props) {
                                             }}>
                                                 <div>
                                                     <Typography.Text style={{fontSize: '0.8rem'}}>
-                                                        <Typography.Text type="secondary">출발</Typography.Text> - {x.bikeParkingRouteInfo.startBikeParkingInfo.stationName}
+                                                        <Typography.Text type="secondary">출발 자전거대여소</Typography.Text> - {x.bikeParkingRouteInfo.startBikeParkingInfo.stationName}
                                                     </Typography.Text>
                                                 </div>
                                             </div>
@@ -289,7 +289,7 @@ function DetailRow(props) {
                                             }}>
                                                 <div>
                                                     <Typography.Text style={{fontSize: '0.8rem'}}>
-                                                        <Typography.Text type="secondary">도착</Typography.Text> - {x.bikeParkingRouteInfo.endBikeParkingInfo.stationName}
+                                                        <Typography.Text type="secondary">도착 자전거대여소</Typography.Text> - {x.bikeParkingRouteInfo.endBikeParkingInfo.stationName}
                                                     </Typography.Text>
                                                 </div>
                                             </div>

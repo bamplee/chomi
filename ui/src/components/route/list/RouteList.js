@@ -23,6 +23,7 @@ class RouteList extends Component {
     loadLane = (idx) => {
         const {history, routeStore} = this.props;
         routeStore.loadLane(idx);
+        window.scrollTo(0, 0);
         history.push('/detail');
     };
 }
