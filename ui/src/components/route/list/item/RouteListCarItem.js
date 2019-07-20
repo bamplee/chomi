@@ -13,7 +13,7 @@ class RouteListCarItem extends Component {
             <div className="route-drive-bar">
                 {
                     routeStore.getTraoptimal ?
-                        <Card>
+                        <Card style={{marginTop: 4}}>
                             <div>
                                 <Icon type="car" theme="twoTone"/>
                                 <Typography.Text style={{fontSize: '0.7rem', paddingLeft: 4, paddingRight: 4}}
