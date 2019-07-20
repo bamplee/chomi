@@ -154,7 +154,7 @@ class PathRow extends Component {
                                 }
                                 if (x.bikeParkingRouteInfo !== null) {
                                     return <React.Fragment key={idx}>
-                                        <Timeline.Item color="#415363">
+                                        <Timeline.Item color="#19AA56">
                                             <div style={{
                                                 display: 'flex',
                                                 justifyContent: 'space-between'
@@ -162,7 +162,7 @@ class PathRow extends Component {
                                                 <div style={{flex: 1}}>
                                                     <Typography.Text strong
                                                                      style={{
-                                                                         color: '#415363',
+                                                                         color: '#19AA56',
                                                                          fontSize: '0.8rem',
                                                                          marginRight: 5
                                                                      }}>
@@ -190,7 +190,7 @@ class PathRow extends Component {
                                                 </div>
                                             </div>
                                         </Timeline.Item>
-                                        <Timeline.Item color="#415363">
+                                        <Timeline.Item color="#19AA56">
                                             <div style={{
                                                 display: 'flex',
                                                 justifyContent: 'space-between'
@@ -198,7 +198,7 @@ class PathRow extends Component {
                                                 <div style={{flex: 1}}>
                                                     <Typography.Text strong
                                                                      style={{
-                                                                         color: '#415363',
+                                                                         color: '#19AA56',
                                                                          fontSize: '0.8rem',
                                                                          marginRight: 5
                                                                      }}>
