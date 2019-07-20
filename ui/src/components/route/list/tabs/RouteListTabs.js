@@ -48,7 +48,8 @@ class RouteListTabs extends Component {
                         <Checkbox onChange={routeStore.handleUseCar} defaultChecked={routeStore.useCar}>주차장 경유 경로</Checkbox>
                     </div>
                 </div>
-                <div className="route-list-footer">
+                <div className="route-list-footer"
+                     style={{cursor: 'pointer', backgroundColor: routeStore.useRecommend ? '#e6f7ff' : ''}}>
                     <div className="top">
                         <div style={{display: 'flex', justifyContent: 'space-between'}}>
                             <div className="forecast-warning" style={{textAlign: 'center', fontSize: '0.6rem', marginRight: 16}}>
@@ -100,7 +101,7 @@ class RouteListTabs extends Component {
                         </div>
                         <div className="right">
                             <div className="description">
-                                <Checkbox onChange={routeStore.handleUseCar} defaultChecked={routeStore.useCar}>날씨별 추천 경로</Checkbox>
+                                <Checkbox onChange={routeStore.handleUseRecommend} defaultChecked={routeStore.useRecommend}>날씨별 추천 경로</Checkbox>
                             </div>
                             {/*
                             <div className="time">

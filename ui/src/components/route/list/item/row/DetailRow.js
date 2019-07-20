@@ -57,6 +57,7 @@ function DetailRow(props) {
                 </Timeline.Item>*/}
                 {
                     props.item.subPathList.map((x, idx) => {
+                        console.log(x);
                             if (x.subPath !== null) {
                                 return x.subPath.trafficType === 3 ?
                                     x.subPath.distance > 0 &&
@@ -65,7 +66,8 @@ function DetailRow(props) {
                                         color="#9A9A9E">
                                         <div style={{
                                             display: 'flex',
-                                            justifyContent: 'space-between'
+                                            justifyContent: 'space-between',
+                                            marginBottom: 10
                                         }}>
                                             <div style={{
                                                 flex: 3,
@@ -80,44 +82,92 @@ function DetailRow(props) {
                                                 </div>
                                             </div>
                                         </div>
+                                        <div style={{border: '1px solid #e2e2e2'}}/>
                                     </Timeline.Item> :
-                                    <Timeline.Item
-                                        key={idx}
-                                        color={x.subPath.trafficType === 1 ? '#096dd9' : '#FCB82B'}>
-                                        <div style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between'
-                                        }}>
-                                            <div style={{flex: 1}}>
-                                                <Typography.Text strong
-                                                                 style={{
-                                                                     color: x.subPath.trafficType === 1 ? '#096dd9' : '#FCB82B',
-                                                                     fontSize: '0.8rem',
-                                                                     marginRight: 5
-                                                                 }}>
-                                                    {
-                                                        x.subPath.trafficType === 1 ?
-                                                            x.subPath.lane[0].name :
-                                                            x.subPath.lane[0].busNo
-                                                    }
-                                                </Typography.Text>
-                                            </div>
+                                    <React.Fragment>
+                                        <Timeline.Item
+                                            key={idx}
+                                            color={x.subPath.trafficType === 1 ? '#096dd9' : '#FCB82B'}>
                                             <div style={{
-                                                flex: 3,
                                                 display: 'flex',
-                                                flexDirection: 'column',
+                                                justifyContent: 'space-between'
                                             }}>
-                                                <div>
-                                                    <Typography.Text
-                                                        style={{fontSize: '0.8rem'}}>
-                                                        <Typography.Text type="secondary">출발</Typography.Text> - {x.subPath.startName}
-                                                        <br/>
-                                                        <Typography.Text type="secondary">도착</Typography.Text> - {x.subPath.endName}
+                                                <div style={{flex: 1}}>
+                                                    <Typography.Text strong
+                                                                     style={{
+                                                                         color: x.subPath.trafficType === 1 ? '#096dd9' : '#FCB82B',
+                                                                         fontSize: '0.8rem',
+                                                                         marginRight: 5
+                                                                     }}>
+                                                        {
+                                                            x.subPath.trafficType === 1 ?
+                                                                x.subPath.lane[0].name :
+                                                                x.subPath.lane[0].busNo
+                                                        }
                                                     </Typography.Text>
                                                 </div>
+                                                <div style={{
+                                                    flex: 3,
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                }}>
+                                                    <div>
+                                                        <Typography.Text
+                                                            style={{fontSize: '0.8rem'}}>
+                                                            <Typography.Text
+                                                                type="secondary">출발</Typography.Text> - {x.subPath.startName}
+                                                        </Typography.Text>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </Timeline.Item>
+                                            <div className="map-image">
+                                                <img
+                                                    src={'http://13.125.44.20/api/v1/maps/image?x=' + x.subPath.startX + '&y=' + x.subPath.startY}/>
+                                            </div>
+                                            <div style={{border: '1px solid #e2e2e2'}}/>
+                                        </Timeline.Item>
+                                        <Timeline.Item
+                                            key={idx}
+                                            color={x.subPath.trafficType === 1 ? '#096dd9' : '#FCB82B'}>
+                                            <div style={{
+                                                display: 'flex',
+                                                justifyContent: 'space-between'
+                                            }}>
+                                                <div style={{flex: 1}}>
+                                                    <Typography.Text strong
+                                                                     style={{
+                                                                         color: x.subPath.trafficType === 1 ? '#096dd9' : '#FCB82B',
+                                                                         fontSize: '0.8rem',
+                                                                         marginRight: 5
+                                                                     }}>
+                                                        {
+                                                            x.subPath.trafficType === 1 ?
+                                                                x.subPath.lane[0].name :
+                                                                x.subPath.lane[0].busNo
+                                                        }
+                                                    </Typography.Text>
+                                                </div>
+                                                <div style={{
+                                                    flex: 3,
+                                                    display: 'flex',
+                                                    flexDirection: 'column',
+                                                }}>
+                                                    <div>
+                                                        <Typography.Text
+                                                            style={{fontSize: '0.8rem'}}>
+                                                            <Typography.Text
+                                                                type="secondary">도착</Typography.Text> - {x.subPath.endName}
+                                                        </Typography.Text>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="map-image">
+                                                <img
+                                                    src={'http://13.125.44.20/api/v1/maps/image?x=' + x.subPath.endX + '&y=' + x.subPath.endY}/>
+                                            </div>
+                                            <div style={{border: '1px solid #e2e2e2'}}/>
+                                        </Timeline.Item>
+                                    </React.Fragment>
                             }
                             if (x.parkingRouteInfo !== null) {
                                 return <Timeline.Item color="#d4380d">
@@ -145,22 +195,27 @@ function DetailRow(props) {
                                                     <Typography.Text type="secondary">도착</Typography.Text> - {x.parkingRouteInfo.parkingInfo.parkingName}
                                                 </Typography.Text>
                                             </div>
-                                            <div>
-                                                <Typography.Text style={{fontSize: '0.8rem'}}
-                                                                 type="secondary"
-                                                                 code>
-                                                    잔여<Typography.Text
-                                                    style={{fontSize: '0.7rem'}}
-                                                    type="danger"> {x.parkingRouteInfo.parkingInfo.capacity - x.parkingRouteInfo.parkingInfo.curParking}</Typography.Text>면
-                                                    / 총<Typography.Text
-                                                    style={{
-                                                        fontSize: '0.7rem',
-                                                        color: '#002766'
-                                                    }}> {x.parkingRouteInfo.parkingInfo.capacity}</Typography.Text>면
-                                                </Typography.Text>
-                                            </div>
                                         </div>
                                     </div>
+                                    <div className="map-image">
+                                        <img
+                                            src={'http://13.125.44.20/api/v1/maps/image?x=' + x.parkingRouteInfo.parkingInfo.lng + '&y=' + x.parkingRouteInfo.parkingInfo.lat}/>
+                                    </div>
+                                    <div>
+                                        <Typography.Text style={{fontSize: '0.8rem'}}
+                                                         type="secondary"
+                                                         code>
+                                            잔여<Typography.Text
+                                            style={{fontSize: '0.7rem'}}
+                                            type="danger"> {x.parkingRouteInfo.parkingInfo.capacity - x.parkingRouteInfo.parkingInfo.curParking}</Typography.Text>면
+                                            / 총<Typography.Text
+                                            style={{
+                                                fontSize: '0.7rem',
+                                                color: '#002766'
+                                            }}> {x.parkingRouteInfo.parkingInfo.capacity}</Typography.Text>면
+                                        </Typography.Text>
+                                    </div>
+                                    <div style={{border: '1px solid #e2e2e2'}}/>
                                 </Timeline.Item>
                             }
                             if (x.bikeParkingRouteInfo !== null) {
@@ -190,22 +245,27 @@ function DetailRow(props) {
                                                         <Typography.Text type="secondary">출발</Typography.Text> - {x.bikeParkingRouteInfo.startBikeParkingInfo.stationName}
                                                     </Typography.Text>
                                                 </div>
-                                                <div>
-                                                    <Typography.Text style={{fontSize: '0.8rem'}}
-                                                                     type="secondary"
-                                                                     code>
-                                                        주차대수<Typography.Text
-                                                        style={{fontSize: '0.7rem'}}
-                                                        type="danger"> {x.bikeParkingRouteInfo.startBikeParkingInfo.parkingBikeTotCnt}</Typography.Text>대
-                                                        / 총<Typography.Text
-                                                        style={{
-                                                            fontSize: '0.7rem',
-                                                            color: '#002766'
-                                                        }}> {x.bikeParkingRouteInfo.startBikeParkingInfo.rackTotCnt}</Typography.Text>대
-                                                    </Typography.Text>
-                                                </div>
                                             </div>
                                         </div>
+                                        <div className="map-image">
+                                            <img
+                                                src={'http://13.125.44.20/api/v1/maps/image?x=' + x.bikeParkingRouteInfo.endBikeParkingInfo.stationLongitude + '&y=' + x.bikeParkingRouteInfo.endBikeParkingInfo.stationLatitude}/>
+                                        </div>
+                                        <div style={{marginBottom: 10}}>
+                                            <Typography.Text style={{fontSize: '0.8rem'}}
+                                                             type="secondary"
+                                                             code>
+                                                주차대수<Typography.Text
+                                                style={{fontSize: '0.7rem'}}
+                                                type="danger"> {x.bikeParkingRouteInfo.startBikeParkingInfo.parkingBikeTotCnt}</Typography.Text>대
+                                                / 총<Typography.Text
+                                                style={{
+                                                    fontSize: '0.7rem',
+                                                    color: '#002766'
+                                                }}> {x.bikeParkingRouteInfo.startBikeParkingInfo.rackTotCnt}</Typography.Text>대
+                                            </Typography.Text>
+                                        </div>
+                                        <div style={{border: '1px solid #e2e2e2'}}/>
                                     </Timeline.Item>
                                     <Timeline.Item color="#19AA56">
                                         <div style={{
@@ -232,22 +292,27 @@ function DetailRow(props) {
                                                         <Typography.Text type="secondary">도착</Typography.Text> - {x.bikeParkingRouteInfo.endBikeParkingInfo.stationName}
                                                     </Typography.Text>
                                                 </div>
-                                                <div>
-                                                    <Typography.Text style={{fontSize: '0.8rem'}}
-                                                                     type="secondary"
-                                                                     code>
-                                                        주차대수<Typography.Text
-                                                        style={{fontSize: '0.7rem'}}
-                                                        type="danger"> {x.bikeParkingRouteInfo.endBikeParkingInfo.parkingBikeTotCnt}</Typography.Text>대
-                                                        / 총<Typography.Text
-                                                        style={{
-                                                            fontSize: '0.7rem',
-                                                            color: '#002766'
-                                                        }}> {x.bikeParkingRouteInfo.endBikeParkingInfo.rackTotCnt}</Typography.Text>대
-                                                    </Typography.Text>
-                                                </div>
                                             </div>
                                         </div>
+                                        <div className="map-image">
+                                            <img
+                                                src={'http://13.125.44.20/api/v1/maps/image?x=' + x.bikeParkingRouteInfo.endBikeParkingInfo.stationLongitude + '&y=' + x.bikeParkingRouteInfo.endBikeParkingInfo.stationLatitude}/>
+                                        </div>
+                                        <div style={{marginBottom: 10}}>
+                                            <Typography.Text style={{fontSize: '0.8rem'}}
+                                                             type="secondary"
+                                                             code>
+                                                주차대수<Typography.Text
+                                                style={{fontSize: '0.7rem'}}
+                                                type="danger"> {x.bikeParkingRouteInfo.endBikeParkingInfo.parkingBikeTotCnt}</Typography.Text>대
+                                                / 총<Typography.Text
+                                                style={{
+                                                    fontSize: '0.7rem',
+                                                    color: '#002766'
+                                                }}> {x.bikeParkingRouteInfo.endBikeParkingInfo.rackTotCnt}</Typography.Text>대
+                                            </Typography.Text>
+                                        </div>
+                                        <div style={{border: '1px solid #e2e2e2'}}/>
                                     </Timeline.Item>
                                 </React.Fragment>
                             }

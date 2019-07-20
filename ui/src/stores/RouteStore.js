@@ -12,6 +12,7 @@ export default class RouteStore {
     @observable forecast = {};
     @observable forecastWarning = {};
     @observable useAll = true;
+    @observable useRecommend = false;
     @observable useBus = false;
     @observable useSubway = false;
     @observable useBike = false;
@@ -27,6 +28,11 @@ export default class RouteStore {
         this.useBus = false;
         this.useSubway = false;
         this.useBike = false;
+    };
+
+    @action
+    handleUseRecommend = () => {
+        this.useRecommend = !this.useRecommend;
     };
 
     @action
