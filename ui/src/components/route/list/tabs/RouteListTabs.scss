@@ -5,6 +5,11 @@
   display: flex;
   justify-content: space-between;
 
+  .item {
+    display: flex;
+    align-items: center;
+  }
+
   .ant-tabs-bar {
     padding-left: 15px;
     margin: 0;
@@ -39,11 +44,43 @@
 .route-list-footer {
   background-color: white;
   margin-bottom: 6px;
-  padding: 10px 16px;
+  padding: 12px 16px;
+
   .top {
     display: flex;
     justify-content: space-between;
+
+    .forecast-warning {
+      display: flex;
+
+      .description {
+        margin-left: 5px;
+        margin-top: 3px;
+      }
+    }
+
+    .forecast {
+      display: flex;
+
+      .description {
+        margin-left: 5px;
+        margin-top: 5px;
+      }
+    }
+
+    .right {
+      display: flex;
+      align-self: center;
+
+      .description {
+      }
+
+      .time {
+        text-align: right;
+      }
+    }
   }
+
   .bottom {
     text-align: right;
   }
