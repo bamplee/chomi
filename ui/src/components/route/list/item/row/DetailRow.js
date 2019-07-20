@@ -57,7 +57,6 @@ function DetailRow(props) {
                 </Timeline.Item>*/}
                 {
                     props.item.subPathList.map((x, idx) => {
-                        console.log(x);
                             if (x.subPath !== null) {
                                 return x.subPath.trafficType === 3 ?
                                     x.subPath.distance > 0 &&
@@ -82,7 +81,7 @@ function DetailRow(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div style={{border: '1px solid #e2e2e2'}}/>
+
                                     </Timeline.Item> :
                                     <React.Fragment>
                                         <Timeline.Item
@@ -124,7 +123,7 @@ function DetailRow(props) {
                                                 <img
                                                     src={'http://13.125.44.20/api/v1/maps/image?x=' + x.subPath.startX + '&y=' + x.subPath.startY}/>
                                             </div>
-                                            <div style={{border: '1px solid #e2e2e2'}}/>
+
                                         </Timeline.Item>
                                         <Timeline.Item
                                             key={idx}
@@ -165,7 +164,7 @@ function DetailRow(props) {
                                                 <img
                                                     src={'http://13.125.44.20/api/v1/maps/image?x=' + x.subPath.endX + '&y=' + x.subPath.endY}/>
                                             </div>
-                                            <div style={{border: '1px solid #e2e2e2'}}/>
+
                                         </Timeline.Item>
                                     </React.Fragment>
                             }
@@ -192,7 +191,8 @@ function DetailRow(props) {
                                         }}>
                                             <div>
                                                 <Typography.Text style={{fontSize: '0.8rem'}}>
-                                                    <Typography.Text type="secondary">도착</Typography.Text> - {x.parkingRouteInfo.parkingInfo.parkingName}
+                                                    <Typography.Text
+                                                        type="secondary">도착</Typography.Text> - {x.parkingRouteInfo.parkingInfo.parkingName}
                                                 </Typography.Text>
                                             </div>
                                         </div>
@@ -215,7 +215,7 @@ function DetailRow(props) {
                                             }}> {x.parkingRouteInfo.parkingInfo.capacity}</Typography.Text>면
                                         </Typography.Text>
                                     </div>
-                                    <div style={{border: '1px solid #e2e2e2'}}/>
+
                                 </Timeline.Item>
                             }
                             if (x.bikeParkingRouteInfo !== null) {
@@ -242,7 +242,8 @@ function DetailRow(props) {
                                             }}>
                                                 <div>
                                                     <Typography.Text style={{fontSize: '0.8rem'}}>
-                                                        <Typography.Text type="secondary">출발 자전거대여소</Typography.Text> - {x.bikeParkingRouteInfo.startBikeParkingInfo.stationName}
+                                                        <Typography.Text type="secondary">출발
+                                                            자전거대여소</Typography.Text> - {x.bikeParkingRouteInfo.startBikeParkingInfo.stationName}
                                                     </Typography.Text>
                                                 </div>
                                             </div>
@@ -265,7 +266,7 @@ function DetailRow(props) {
                                                 }}> {x.bikeParkingRouteInfo.startBikeParkingInfo.rackTotCnt}</Typography.Text>대
                                             </Typography.Text>
                                         </div>
-                                        <div style={{border: '1px solid #e2e2e2'}}/>
+
                                     </Timeline.Item>
                                     <Timeline.Item color="#19AA56">
                                         <div style={{
@@ -289,7 +290,8 @@ function DetailRow(props) {
                                             }}>
                                                 <div>
                                                     <Typography.Text style={{fontSize: '0.8rem'}}>
-                                                        <Typography.Text type="secondary">도착 자전거대여소</Typography.Text> - {x.bikeParkingRouteInfo.endBikeParkingInfo.stationName}
+                                                        <Typography.Text type="secondary">도착
+                                                            자전거대여소</Typography.Text> - {x.bikeParkingRouteInfo.endBikeParkingInfo.stationName}
                                                     </Typography.Text>
                                                 </div>
                                             </div>
@@ -312,7 +314,7 @@ function DetailRow(props) {
                                                 }}> {x.bikeParkingRouteInfo.endBikeParkingInfo.rackTotCnt}</Typography.Text>대
                                             </Typography.Text>
                                         </div>
-                                        <div style={{border: '1px solid #e2e2e2'}}/>
+
                                     </Timeline.Item>
                                 </React.Fragment>
                             }

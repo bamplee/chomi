@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Badge, Button, Checkbox, Icon, Typography} from 'antd';
+import {Badge, Button, Checkbox, Icon, Radio, Typography} from 'antd';
 import {inject, observer} from 'mobx-react/index';
 
 import './RouteListTabs.scss';
@@ -7,111 +7,233 @@ import './RouteListTabs.scss';
 @inject('routeStore')
 @observer
 class RouteListTabs extends Component {
+    constructor(props) {
+        super(props);
+        this.state = this.initState();
+    };
+
+    initState = () => {
+        return {
+            isOpenTrafficType: false,
+            isOpenSortType: false,
+        };
+    };
+
+    handleIsOpenTrafficType = () => {
+        this.setState({isOpenTrafficType: !this.state.isOpenTrafficType, isOpenSortType: false});
+    };
+
+    handleIsOpenSortType = () => {
+        this.setState({isOpenTrafficType: false, isOpenSortType: !this.state.isOpenSortType});
+    };
+
     render() {
         const {routeStore} = this.props;
         return (
             <React.Fragment>
-                <div className="route-list-tabs">
-                    <Button style={{marginRight: 10}} className={routeStore.useAll ? "all-selected" : ""} size="small"
-                            onClick={routeStore.handleUseAll}>
-                        추천경로
+                <div className="route-list-tabs-main">
+                    <Button style={{marginRight: 10}} className={this.state.isOpenTrafficType ? "all-selected" : ''}
+                            onClick={this.handleIsOpenTrafficType}>
+                        {
+                            <React.Fragment>
+                                {
+                                    routeStore.useCar &&
+                                    <Typography.Text style={{color: this.state.isOpenTrafficType && '#ffffff'}}>
+                                        자동차
+                                    </Typography.Text>
+                                }
+                                {
+                                    routeStore.useBus &&
+                                    <Typography.Text style={{color: this.state.isOpenTrafficType && '#ffffff'}}>
+                                        {routeStore.useCar && ', '}
+                                        버스
+                                    </Typography.Text>
+                                }
+                                {
+                                    routeStore.useSubway &&
+                                    <Typography.Text style={{color: this.state.isOpenTrafficType && '#ffffff'}}>
+                                        {(routeStore.useCar || routeStore.useBus) && ', '}
+                                        지하철
+                                    </Typography.Text>
+                                }
+                                {
+                                    routeStore.useBike &&
+                                    <Typography.Text style={{color: this.state.isOpenTrafficType && '#ffffff'}}>
+                                        {(routeStore.useCar || routeStore.useBus || routeStore.useSubway) && ', '}
+                                        자전거
+                                    </Typography.Text>
+                                }
+                            </React.Fragment>
+                        }
                     </Button>
-                    <span style={{borderRight: '1px solid #e2e2e2', marginRight: 10}}/>
-                    <Button type={routeStore.useBus ? "primary" : "dashed"} size="small"
-                            onClick={routeStore.handleUseBus}>
-                        버스
+                    <Button style={{marginRight: 10}} className={this.state.isOpenSortType ? "all-selected" : ''}
+                            onClick={this.handleIsOpenSortType}>
+                        {
+                            routeStore.sortType === 'transfer' ? '환승' : routeStore.sortType === 'time' ? '시간' : routeStore.sortType === 'weather' ? '날씨' : '걸음'
+                        }
                     </Button>
-                    <Button type={routeStore.useSubway ? "primary" : "dashed"} size="small"
-                            onClick={routeStore.handleUseSubway}>
-                        지하철
-                    </Button>
-                    <Button type={routeStore.useBike ? "primary" : "dashed"} size="small"
-                            onClick={routeStore.handleUseBike}>
-                        자전거
-                    </Button>
-                    {/*
+                </div>
+                {
+                    this.state.isOpenTrafficType &&
+                    <div className="route-list-tabs">
+                        <div style={{
+                            marginBottom: 8,
+                            borderBottom: '1px solid #e8e8e8',
+                            paddingBottom: 8,
+                            display: 'flex',
+                            justifyContent: 'space-between'
+                        }}>
+                            <Typography.Text>이용할 교통수단을 선택하세요</Typography.Text>
+                            <Icon style={{marginTop: 4}} type="close" onClick={this.handleIsOpenTrafficType}/>
+                        </div>
+                        <div style={{
+                            marginBottom: 8,
+                            paddingBottom: 8,
+                            display: 'flex',
+                            justifyContent: 'space-between'
+                        }}>
+                            <Checkbox indeterminate={true} onChange={routeStore.handleUseAll}
+                                      checked={routeStore.useAll}>전체</Checkbox>
+                        </div>
+                        <div>
+                            <Checkbox onChange={routeStore.handleUseCar} checked={routeStore.useCar}>자동차</Checkbox>
+                            <Checkbox onChange={routeStore.handleUseBus} checked={routeStore.useBus}>버스</Checkbox>
+                            <Checkbox onChange={routeStore.handleUseSubway}
+                                      checked={routeStore.useSubway}>지하철</Checkbox>
+                            <Checkbox onChange={routeStore.handleUseBike} checked={routeStore.useBike}>자전거</Checkbox>
+                        </div>
+                        {/*
                     <Button type={routeStore.useCar ? "primary" : "dashed"} size="small"
                             onClick={routeStore.handleUseCar}>
                         자동차
                     </Button>
 */}
-                </div>
-                <div className="route-list-tabs-header"
-                     style={{cursor: 'pointer', backgroundColor: routeStore.useCar ? '#e6f7ff' : ''}}>
-                    <div className="item">
-                        <Badge dot>
-                            <Icon type="notification"/>
-                        </Badge>
-                        <Typography.Text style={{marginLeft: 10, marginRight: 6}}>자동차로 출발하시나요?</Typography.Text>
                     </div>
-                    <div className="item">
-                        <Checkbox onChange={routeStore.handleUseCar} defaultChecked={routeStore.useCar}>주차장 경유 경로</Checkbox>
+                }
+                {
+                    this.state.isOpenSortType &&
+                    <div className="route-list-tabs">
+                        <div style={{
+                            marginBottom: 8,
+                            borderBottom: '1px solid #e8e8e8',
+                            paddingBottom: 8,
+                            display: 'flex',
+                            justifyContent: 'space-between'
+                        }}>
+                            <Typography.Text>경로 탐색 기준을 골라주세요</Typography.Text>
+                            <Icon style={{marginTop: 4}} type="close" onClick={this.handleIsOpenSortType}/>
+                        </div>
+                        <div style={{
+                            marginBottom: 8,
+                            paddingBottom: 8,
+                            display: 'flex',
+                            justifyContent: 'space-between'
+                        }}>
+                            <Radio.Group onChange={this.handleSortType} value={routeStore.sortType}>
+                                <Radio value={'time'}>시간</Radio>
+                                <Radio value={'transfer'}>환승</Radio>
+                                <Radio value={'walk'}>걸음</Radio>
+                                <Radio value={'weather'}>날씨</Radio>
+                            </Radio.Group>
+                        </div>
+{/*
+                        <div>
+                        <Radio.Group onChange={this.handleSortType} value={routeStore.sortType}>
+                            <Radio value={'time'}>시간</Radio>
+                            <Radio value={'transfer'}>환승</Radio>
+                            <Radio value={'walk'}>걸음</Radio>
+                            <Radio value={'weather'}>날씨</Radio>
+                        </Radio.Group>
+                        </div>
+*/}
+                        {/*
+                    <Button type={routeStore.useCar ? "primary" : "dashed"} size="small"
+                            onClick={routeStore.handleUseCar}>
+                        자동차
+                    </Button>
+*/}
                     </div>
-                </div>
-                <div className="route-list-footer"
-                     style={{cursor: 'pointer', backgroundColor: routeStore.useRecommend ? '#e6f7ff' : ''}}>
-                    <div className="top">
-                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                            <div className="forecast-warning" style={{textAlign: 'center', fontSize: '0.6rem', marginRight: 16}}>
-                                <div style={{marginTop: 3, paddingBottom: 2}}>
-                                    {
-                                        routeStore.forecastWarning.CAISTEP === '좋음' ?
-                                            <img src="https://imgur.com/ptAjDjW.png" alt={"face"}
-                                                 style={{width: 26, height: 26}}/>
-                                            :
-                                            <img src="https://imgur.com/Ewu55gU.png" alt={"bad"}
-                                                 style={{width: 26, height: 26}}/>
-                                    }
-                                </div>
-                                <div className="description">
-                                    <div>
-                                        <Typography.Text type="secondary">미세먼지</Typography.Text>
-                                    </div>
-                                    <div style={{marginTop: -4}}>
-                                        <Typography.Text type="secondary">
-                                            {
-                                                routeStore.forecastWarning.CAISTEP
-                                            }
-                                        </Typography.Text>
-                                    </div>
-                                </div>
-                            </div>
-                            {
-                                routeStore.forecast &&
-                                <div className="forecast" style={{width: '50px', textAlign: 'center', fontSize: '0.8rem', marginRight: 2}}>
-                                    <div style={{paddingRight: 3}}>
+                }
+                {
+                    routeStore.sortType === 'weather' ?
+                    <div className="route-list-footer"
+                         style={{cursor: 'pointer', backgroundColor: '#e6f7ff'}}>
+                        <div className="top">
+                            <div style={{display: 'flex'}}>
+                                <div className="forecast-warning"
+                                     style={{textAlign: 'center', fontSize: '0.6rem', marginRight: 16}}>
+                                    <div style={{marginTop: 3, paddingBottom: 2}}>
                                         {
-                                            routeStore.forecast.rain ?
-                                                <img src="https://imgur.com/NywhKKt.png" alt={"rain"}
-                                                     style={{width: 30, height: 30}}/>
+                                            routeStore.forecastWarning.CAISTEP === '좋음' ?
+                                                <img src="https://imgur.com/ptAjDjW.png" alt={"face"}
+                                                     style={{width: 26, height: 26}}/>
                                                 :
-                                                <img src="https://imgur.com/XSOby2y.png" alt={"normal"}
-                                                     style={{width: 30, height: 30}}/>
+                                                <img src="https://imgur.com/Ewu55gU.png" alt={"bad"}
+                                                     style={{width: 26, height: 26}}/>
                                         }
                                     </div>
                                     <div className="description">
-                                        <Typography.Text type="secondary">
-                                            {
-                                                ((routeStore.forecast.main && routeStore.forecast.main.temp - 273.15) * 1).toFixed(1) + '°'
-                                            }
-                                        </Typography.Text>
+                                        <div>
+                                            <Typography.Text type="secondary">미세먼지</Typography.Text>
+                                        </div>
+                                        <div style={{marginTop: -4}}>
+                                            <Typography.Text type="secondary">
+                                                {
+                                                    routeStore.forecastWarning.CAISTEP
+                                                }
+                                            </Typography.Text>
+                                        </div>
                                     </div>
                                 </div>
-                            }
-                        </div>
-                        <div className="right">
-                            <div className="description">
-                                <Checkbox onChange={routeStore.handleUseRecommend} defaultChecked={routeStore.useRecommend}>날씨별 추천 경로</Checkbox>
+                                {
+                                    routeStore.forecast &&
+                                    <div className="forecast"
+                                         style={{
+                                             width: '50px',
+                                             textAlign: 'center',
+                                             fontSize: '0.8rem',
+                                             marginRight: 2
+                                         }}>
+                                        <div style={{paddingRight: 3}}>
+                                            {
+                                                routeStore.forecast.rain ?
+                                                    <img src="https://imgur.com/NywhKKt.png" alt={"rain"}
+                                                         style={{width: 30, height: 30}}/>
+                                                    :
+                                                    <img src="https://imgur.com/XSOby2y.png" alt={"normal"}
+                                                         style={{width: 30, height: 30}}/>
+                                            }
+                                        </div>
+                                        <div className="description">
+                                            <Typography.Text type="secondary">
+                                                {
+                                                    ((routeStore.forecast.main && routeStore.forecast.main.temp - 273.15) * 1).toFixed(1) + '°'
+                                                }
+                                            </Typography.Text>
+                                        </div>
+                                    </div>
+                                }
                             </div>
-                            {/*
-                            <div className="time">
-                                <Typography.Text disabled
-                                                 style={{fontSize: '0.7rem'}}>{this.getTimeStamp()}</Typography.Text>
+                            <div className="right">
+                                <div className="description">
+                                <span style={{marginRight: 8}}>
+                                    <Badge dot>
+                                        <Icon type="notification"/>
+                                </Badge>
+                            </span>
+                                    {
+                                        routeStore.forecast ?
+                                            routeStore.forecastWarning.CAISTEP === '좋음' && !routeStore.forecast.rain ?
+                                                <Typography.Text>화창한 날 좋은길 보실래요?</Typography.Text>
+                                                : routeStore.forecast.rain ?
+                                                <Typography.Text>비 많이 안맞는 길 추천해드려요!</Typography.Text> : ''
+                                            : ''
+                                    }
+                                </div>
                             </div>
-*/}
                         </div>
-                    </div>
-                </div>
+                    </div> : ''
+                }
             </React.Fragment>
             /*
                         <Tabs className="route-list-tabs" activeKey={routeStore.routeType}
@@ -123,6 +245,11 @@ class RouteListTabs extends Component {
             */
         )
     }
+
+    handleSortType = (e) => {
+        const {routeStore} = this.props;
+        routeStore.handleSortType(e.target.value);
+    };
 
     getTimeStamp = () => {
         let d = new Date();

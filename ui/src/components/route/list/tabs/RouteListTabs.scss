@@ -1,3 +1,19 @@
+.route-list-tabs-main {
+  background-color: white;
+  padding: 10px 14px;
+  border-bottom: 1px solid #e2e2e2;
+
+  .all-selected {
+    color: white;
+    background-color: #0B53B0;
+  }
+
+  .all-selected-open {
+    color: black;
+    background-color: #e8e8e8;
+  }
+}
+
 .route-list-tabs-header {
   background-color: white;
   padding: 16px;
@@ -27,13 +43,13 @@
 }
 
 .route-list-tabs {
-  background-color: white;
+  background-color: #fafafa;
   margin-bottom: 6px;
   padding: 10px 16px;
 
   .all-selected {
-    color: white;
-    background-color: #F23A48;
+    color: #595959;
+    background-color: #d6e4ff;
   }
 
   button {
@@ -42,13 +58,13 @@
 }
 
 .route-list-footer {
-  background-color: white;
   margin-bottom: 6px;
   padding: 12px 16px;
+  background-color: #e6f7ff;
 
   .top {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 
     .forecast-warning {
       display: flex;
@@ -70,7 +86,7 @@
 
     .right {
       display: flex;
-      align-self: center;
+      margin-top: 16px;
 
       .description {
       }

@@ -28,7 +28,7 @@ class RouteDetail extends Component {
                                     description={
                                         <React.Fragment>
                                             <TimeRow item={routeStore.detailPath}/>
-                                            <DetailRow item={routeStore.detailPath}/>
+                                            <PathRow item={routeStore.detailPath}/>
                                         </React.Fragment>
                                     }
                     />

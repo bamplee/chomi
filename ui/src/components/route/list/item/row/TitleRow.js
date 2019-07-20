@@ -10,12 +10,19 @@ function TitleRow(props) {
                 <Typography.Text className="minute" strong>
                     {props.item.info.totalTime}분
                 </Typography.Text>
+                <Typography.Text className="walking-minute" type="secondary">
+                    (도보 {props.item.subPathList.filter(x => x.subPath !== null ? x.subPath.trafficType === 3 : false).map(x => x.subPath.sectionTime).reduce((a, b) => a + b)}분)
+                </Typography.Text>
             </div>
+            <div className="dot"/>
             <div>
                 <Typography.Text className="price" type="secondary">
-                    교통비 <Typography.Text
-                    type="warning">{props.item.info.payment}</Typography.Text>원
+                    <Typography.Text>{props.item.info.payment + (
+                        props.item.subPathList.filter(x => x.parkingRouteInfo !== null).length > 0 ?
+                            props.item.subPathList.filter(x => x.parkingRouteInfo !== null)[0].parkingRouteInfo.subPathRoute.route.traoptimal[0].summary.fuelPrice : 0
+                    )}원</Typography.Text>
                 </Typography.Text>
+{/*
                 {
                     props.item.subPathList.filter(x => x.parkingRouteInfo !== null).length > 0 ?
                     <Typography.Text className="price" type="secondary">
@@ -23,7 +30,8 @@ function TitleRow(props) {
                         type="warning">{props.item.subPathList.filter(x => x.parkingRouteInfo !== null)[0].parkingRouteInfo.subPathRoute.route.traoptimal[0].summary.fuelPrice}</Typography.Text>원
                     </Typography.Text> : ''
                 }
-                {
+*/}
+                {/*{
                     props.item.subPathList.filter(x => x.parkingRouteInfo !== null).length > 0 ?
                         props.item.subPathList.filter(x => x.parkingRouteInfo !== null)[0].parkingRouteInfo.parkingInfo.payYn === 'Y' ?
                             props.item.subPathList.filter(x => x.parkingRouteInfo !== null)[0].parkingRouteInfo.parkingInfo.holidayPayYn === 'N' ?
@@ -39,7 +47,7 @@ function TitleRow(props) {
                                 주차 주말 무료
                             </Typography.Text>
                          : ''
-                }
+                }*/}
 {/*
                 + props.item.subPathList[0].parkingRouteInfo.subPathRoute.route.traoptimal[0].summary.fuelPrice
 */}
