@@ -18,7 +18,7 @@ class RouteDetail extends Component {
             <React.Fragment>
                 <PageHeader style={{backgroundColor: '#0050b3', padding: '12px 15px 12px 15px'}}
                             title={<Button type="link" shape="circle" icon="arrow-left" style={{color: 'white'}}
-                                            onClick={history.goBack}/>}
+                                            onClick={() => window.history.back()}/>}
                             subTitle={<Typography.Text style={{color: 'white'}}>{searchStore.departure.name} - {searchStore.destination.name}</Typography.Text>}/>
                 <CommonMap/>
                 <List.Item className="route-list-item">
