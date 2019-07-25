@@ -144,6 +144,9 @@ export default class RouteStore {
                                 return x;
                             }
                         }
+                        else {
+                            return x;
+                        }
                     } else {
                         return x;
                     }

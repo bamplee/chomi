@@ -9,8 +9,4 @@ import RootStore from "./stores";
 const root = new RootStore(); // *** 루트 스토어 생성
 
 ReactDOM.render(
-    <Provider {...root}>
-        <BrowserRouter>
-            <App/>
-        </BrowserRouter>
-    </Provider>, document.getElementById('root'));
+    <Provider {...root}><BrowserRouter><App/></BrowserRouter></Provider>, document.getElementById('root'));
